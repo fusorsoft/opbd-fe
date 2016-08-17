@@ -1,0 +1,35 @@
+@mixin font-smoothing($smoothing) {
+	-webkit-font-smoothing: $smoothing;
+	   -moz-font-smoothing: $smoothing;
+	    -ms-font-smoothing: $smoothing;
+			font-smoothing: $smoothing;
+}
+
+@mixin drop-shadow ($radius, $alpha) {
+	-webkit-box-shadow: 0px $radius $radius 0px rgba(0,0,0,$alpha);
+	   -moz-box-shadow: 0px $radius $radius 0px rgba(0,0,0,$alpha);
+	    -ms-box-shadow: 0px $radius $radius 0px rgba(0,0,0,$alpha);
+	        box-shadow: 0px $radius $radius 0px rgba(0,0,0,$alpha);
+}
+
+@mixin transform-rotate($degrees) {
+  	-webkit-transform: rotate($degrees);
+       -moz-transform: rotate($degrees);
+        -ms-transform: rotate($degrees);
+         -o-transform: rotate($degrees);
+            transform: rotate($degrees);
+}
+
+@mixin text-stroke($width, $color) {
+	-webkit-text-stroke-width: $width;
+	   -moz-text-stroke-width: $width;
+	    -ms-text-stroke-width: $width;
+	     -o-text-stroke-width: $width;
+	        text-stroke-width: $width;
+
+	-webkit-text-stroke-color: $color;
+	   -moz-text-stroke-color: $color;
+	    -ms-text-stroke-color: $color;
+	     -o-text-stroke-color: $color;
+	        text-stroke-color: $color;
+}

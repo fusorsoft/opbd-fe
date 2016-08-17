@@ -1,0 +1,13 @@
+header {
+	$largeBreak: 980px;
+	$mediumBreak: 890px;
+	
+	//background: $headerBackground url('/assets/images/cslogo.png') no-repeat right top;
+	background: $headerBackground url('/assets/images/banner2.png') no-repeat top left;
+	background-size: cover; 
+	padding: 5em 3em;
+	height: 300px;
+	position: relative;
+
+	@include font-smoothing(antialiased);
+}

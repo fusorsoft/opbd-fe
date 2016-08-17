@@ -1,0 +1,23 @@
+.ob-body-damage-chart {
+	display: flex;
+	max-height: 0;
+	overflow: hidden;
+
+	> div {
+		> div {
+			
+			> div:first-child {
+				font-weight: bold;
+			}
+			
+			padding: 10px 0px;
+			border-bottom: 1px dotted darkgray;
+		}
+	}
+
+	> div:first-child {
+		> div:first-child {
+			height: 45px;
+		}
+	}
+}

@@ -1,0 +1,63 @@
+<h1>Add Data</h1>
+
+<toaster-container></toaster-container>
+<input type="file" id="files" name="files"
+	onchange="angular.element(this).scope().fileNameChanged(this)"/>
+
+<div class="ob-pull-right">
+	<input type='button' value="Submit Data" class="ob-button-primary" data-ng-click="submitData()"
+		data-ng-disabled="!submitEnabled"/>
+	<div>{{errorMessage}}</div>
+</div>
+
+<dl class="ob-def-list">
+	
+	<dt>Client Name:</dt>
+	<dd>{{data.MatchMetadata.ClientName}}</dd>
+
+	<dt>Map Name:</dt>
+	<dd>{{data.MatchMetadata.MapName}}</dd>
+
+	<dt>Server Name:</dt>
+	<dd>{{data.MatchMetadata.ServerName}}</dd>
+
+	<dt>File Name:</dt>
+	<dd>{{data.DemoFileMetadata.Filename}}</dd>
+
+	<dt>File Hash:</dt>
+	<dd>{{data.DemoFileMetadata.FileHash}}</dd>
+	
+</dl>
+
+<table class="ob-table">
+	<thead>
+		<tr>
+			<th colspan="4" class="ob-uber-heading">
+				<div class="ob-pull-left">
+					<input type="checkbox" data-ng-model="selectAll" data-ng-change="selectAllToggled()"
+						data-tooltip="Select All"/>
+				</div>
+				Players
+			</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat="(key, value) in playerDisplayData | groupBy: 'MatchTeam' | toArray:true | orderBy: '$key'">
+		<tr class="ob-row-heading">
+			<td colspan="4">{{value.$key}}</td>
+		</tr>
+		<tr>
+			<th></th>
+			<th>Player</th>
+			<th>SteamID</th>
+			<th>Team</th>
+		</tr>
+		<tr data-ng-repeat="player in value" data-ng-class="player.checked ? 'selected' : ''">
+			<td><input type="checkbox" data-ng-model="player.checked" data-ng-disabled="player.disabled"
+					data-ng-change="playerToggled()"/>
+			</td>
+			<td>{{player.Name}}</td>
+			<td>{{player.SteamID}}</td>
+			<td>{{player.MatchTeam}}</td>
+		</tr>
+	</tbody>
+</table>

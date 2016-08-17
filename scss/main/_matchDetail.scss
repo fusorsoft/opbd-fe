@@ -1,0 +1,42 @@
+.ob-match-detail-container {
+	background-position: top right;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+
+	>div {
+		background-color: rgba(255,255,255,0.3);
+		padding: 2em;
+	}
+}
+
+.ob-match-detail-heading {
+	display: flex;
+
+	h1, h2 {
+		margin: auto;
+	}
+
+	>div {
+		border-top: 1px solid #cecece;
+		border-bottom: 1px solid #cecece;
+
+		background-color: rgba(255,255,255,0.8);
+		padding: 1em;
+
+		&:first-child {
+			border-left: 1px solid #cecece;
+			padding-top: 2em;
+		}
+
+		&:last-child {
+			border-right: 1px solid #cecece;
+		}
+	}
+}
+
+.ob-round-graph-container {
+	margin-top: 2em;
+	background-color: rgba(31,46,63,0.9);
+	color: rgba(255,255,255,0.5);
+	border: 1px solid #cecece;
+}

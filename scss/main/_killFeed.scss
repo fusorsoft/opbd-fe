@@ -1,0 +1,59 @@
+.ob-kill-feed {
+	padding: 5px 20px;
+	min-width: 20%;
+	max-width: 30%;
+	flex-grow: 1;
+	height:auto !important;
+
+	.ob-team-icon-container {
+		text-align: center;
+	}
+
+	i.ob-tooltip {
+		font-size: 1.3em;
+		margin-left: 5px;
+	}
+
+	div.ob-kill {
+		margin: 10px 0px;
+		background-color: rgba(0,0,0,0.4);
+		padding: 5px 10px;
+		border-radius: 3px;
+		border: 1px solid;
+		text-align: center;
+		font-weight: bold;
+
+		&:hover {
+			cursor: pointer;
+			color: rgba(255,255,255,0.8);
+			background-color: rgba(0,0,0,0.8);
+		}
+
+		span:first-child {
+			float: left;
+			margin-right: 5px;
+		}
+
+		&.selected {
+			background-color: blue;
+		}
+	}
+
+	div.ob-weapon-data {
+
+		margin: 10px 0px; 
+		padding: 10px; 
+		border: 1px solid #cecece; 
+		background-color: rgba(0,0,0,0.2);
+	}
+
+	span.img-container {
+		margin: 0px 10px;
+
+		img {
+			height: 20px;
+			vertical-align: middle;
+		}	
+	}
+	
+}

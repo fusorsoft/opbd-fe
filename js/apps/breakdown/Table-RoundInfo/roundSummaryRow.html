@@ -1,0 +1,9 @@
+<tr>
+	<td><i class="fa" ng-class="visible === 'true' ? 'fa-minus-circle' : 'fa-plus-circle'" aria-hidden="true" ></i></td>
+	<td>{{parseInt(round, 10) + 1}}</td>
+	<td ng-style="roundData.Outcome === 'Loss' ? { color: 'red' } : { color: 'green' }">{{roundData.Outcome}}</td>
+	<td>{{roundData.DamageData.TotalDamage}}</td>
+	<td>{{roundData.DamageData.Kills}}</td>
+	<td>{{roundData.DamageData.Assists}}</td>
+	<td><span ng-if="roundData.DeathInfo">{{roundData.DeathInfo.TimeInToRound}} seconds</span></td>
+</tr>

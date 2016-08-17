@@ -1,0 +1,121 @@
+#content > div {
+	$borderColor: #54606d;
+
+	display: flex;
+
+	>div {
+		padding: 20px;
+		width: 100%;
+	}
+
+	img {
+		max-width: 500px;
+		height:auto;
+	}
+
+	.left {
+	}
+
+	.right {
+		width:180px;
+	}
+}
+
+.ob-home {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	color: #111;
+	font-size: 1.1em;
+	
+	.ob-hero {
+		width: 100%;
+		background-color: rgb(55,65,70);
+		padding-top: 5em;
+		padding-bottom: 3em;
+		color: #e1e1e1;
+
+		div:first-child {
+
+			width: 420px;
+			margin: 10px auto;
+		}
+
+		div.ob-search-container {
+			width: 500px;
+			margin: 10px auto;
+			background-color: #333;
+			padding: 20px;
+			border-radius: 10px;
+			text-align: center;
+			position: relative;
+
+			h1 {
+				margin-top: auto;
+			}
+
+			input {
+				width: 80%;
+				height: 1.5em;
+				font-size: 1.5em;
+			}
+
+			ul {
+				background-color: white;
+				width: 74%;
+				left: 13%;
+				margin: 0px auto;
+				z-index: 999;
+				border: 0px 1px 1px 1px;
+				border-color: #cecece;
+				position: absolute;
+				color: #111;
+
+				li {
+					font-size: 1.1em;
+					text-align: left;
+					padding: 5px;
+					cursor: pointer;
+
+					&.selected {
+						background-color: #cecece;
+					}
+				}
+			}
+		}
+	}
+
+	.ob-home-section {
+		padding: 2em 8em;
+	}
+
+	#ob-how-it-works {
+		display: flex;
+		justify-content: space-between;
+
+		>div {
+			width: 20%;
+			background-color: #333;
+			color: white;
+			padding: 2em;
+			border-radius: 10px;
+
+			div.ob-centered {
+				font-size: 4em;
+			}
+		}
+	}
+
+	#ob-key-features {
+		background-color: rgb(110, 146, 169);
+		color: rgba(0,0,0,0.7);
+
+		h2, h3 {
+			color: #2a5773;
+		}
+	}
+
+	#ob-feedback-toggle div.vertical-text {
+		padding: 6px;
+	}
+}

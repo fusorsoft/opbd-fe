@@ -1,0 +1,213 @@
+// these are sensitive to order....
+@import 'reset';
+@import 'mixins';
+@import 'colors';
+@import 'headings';
+@import 'fonts';
+@import 'header';
+@import 'globalNav';
+@import 'loginFlyout';
+@import 'userActionsMenu';
+@import 'content';
+@import 'footer';
+@import 'forms';
+@import 'tables';
+@import 'lib/pure-styles';
+@import 'lib/css-lib';
+@import 'chart';
+@import 'bodyDamageChart';
+@import 'textDecorations';
+@import 'layouts';
+@import 'flashMessages';
+@import 'ads';
+@import 'feedbackFlyout';
+@import 'matchSummaryAside';
+@import 'killFeed';
+@import 'tooltips';
+@import 'signin';
+@import 'matchDetail';
+@import 'beta';
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+
+*, *:before, *:after
+{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height:100%;
+}
+
+html {
+	height:100%;
+}
+
+html, body {
+	font: 14px/1.5 'Open Sans', sans-serif;
+	color: $mainTextColor;
+	background-color: $mainBackground;
+}
+
+a {
+	color: $linkColor;
+
+	&:visited {
+		color: $linkColor;
+	}
+}
+
+p {
+	margin-bottom:10px;
+	//text-indent: 5%;
+}
+
+dl.ob-def-list {
+	margin: 10px 0;
+	clear: both;
+
+	dt {
+		float:left;
+		text-align: right;
+		padding-right: 10px;
+		font-weight: bold;
+		min-width: 7.5em;
+	}
+
+	dd::after {
+		content: " ";
+		display: block;
+		clear: left;
+	} 
+}
+
+.ob-hidden {
+	display: none;
+}
+
+.ob-pull-left {
+	float: left;
+}
+
+.ob-pull-right {
+	float: right;
+}
+
+.ob-clear {
+	clear: both;
+}
+
+.ob-fluff-image {
+	border: 1px solid #cecece;
+	margin: 20px;
+}
+
+.ob-centered {
+	text-align: center;
+}
+
+.vertical-text {
+  @include transform-rotate(90deg);
+}
+
+.ob-match-outcome {
+
+	padding: 3px;
+	width: 55px;
+	display: block;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid;
+
+	&.ob-loss {
+		color: #D8000C;
+		background-color: #FFBABA;
+	}
+
+	&.ob-win {
+		color: #4F8A10;
+		background-color: #DFF2BF;
+	}
+
+	&.ob-draw {
+		color: #9F6000;
+		background-color: #FEEFB3;
+	}
+}
+
+// Extending classes from purecss.io to remove dependency in markup....
+
+.ob-form-aligned {
+	@extend .pure-form;
+	@extend .pure-form-aligned;
+	fieldset {
+		display: inline-block;
+	}
+}
+
+.ob-controls {
+	@extend .pure-controls;
+}
+
+.ob-control-group {
+	@extend .pure-control-group;
+}
+
+.ob-form-stacked {
+	@extend .pure-form;
+	@extend .pure-form-stacked;
+}
+
+.ob-button {
+	@extend .pure-button;
+}
+
+.ob-button-primary {
+	@extend .pure-button;
+	@extend .pure-button-primary;
+
+	&:visited {
+		color: inherit
+	}
+}
+
+em {
+	font-style: italic;
+}
+
+strong {
+	font-weight: bold;
+}
+
+
+.ob-body {
+	flex-grow: 2;
+	padding-top: 2em;
+	background-color: rgb(55,65,70);
+}
+
+.ob-content {
+	padding: 3em 8em;
+	display: flex;
+	justify-content: space-between;
+	background-color: rgba(0,0,0,0.1);
+
+	>div {
+		border: 1px solid rgba(0,0,0,0.2);
+		padding: 2em;
+		background-color: white;
+
+		&:first-child {
+			flex-grow: 1;
+			border-right: none;
+		}
+
+		&:last-child {
+			border-left: none;
+		}
+	}
+}

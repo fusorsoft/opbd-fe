@@ -1,0 +1,51 @@
+<div class="ob-breakdown-container">
+<div>
+
+	<!-- Horizontal Ad -->
+	<div class="ob-horizontal-ad-container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-5941170862103259"
+		     data-ad-slot="5488228125"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+
+	<h1>{{username}}'s Friends</h1>
+
+	<toaster-container></toaster-container>
+
+	<div class="ob-friends-container">
+		<div ng-repeat="(key, value) in friends" ng-click="goToFriend(value.steamID)">
+			<div style="display: flex">
+				<div>
+					<span class="ob-friend-name">{{value.username}}</a>
+				</div>
+				<div style="text-align: right; flex: 1; font-size: 1.2em; padding-right: 5px;">
+					<i class="fa fa-trash-o" style="cursor: pointer" aria-hidden="true" ng-click="removeFriend(key)"></i>
+				</div>
+			</div>
+			
+			<div style="display: flex; margin-top: 15px">
+				<div class="ob-image-container container">
+					<img src="{{value.avatarMedium}}" ng-if="value.avatarMedium"/>
+					<img src="/assets/images/ctlogo64.png" ng-if="!value.avatarMedium"/>
+				</div>
+				<div class="ob-info-container container">
+					<dl>
+						<dt>Matches Played</dt>
+						<dd>{{value.matchesPlayedTogether}}</dd>
+						<dt>Win Rate</dt>
+						<dd>{{value.winRate}}</dd>
+						<dt>Streak</dt>
+						<dd>{{value.streak}}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>

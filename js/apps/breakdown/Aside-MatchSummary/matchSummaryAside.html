@@ -1,0 +1,11 @@
+<div class="ob-match-summary-aside" ng-click="goToMatch()">
+	<div>
+		<img ng-src="{{::mapIcon}}"/>
+	</div>
+	<div>
+		<div class="ob-score"><i class="fa fa-trophy" aria-hidden="true" ng-if="result === 'Win'"></i> {{::roundWins}} - {{::roundLosses}}</div>
+		<div>{{::mapName}}</div>
+		<div>{{::matchDate}}</div>
+		<div>{{::adr}}</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+#userActionsMenu {
+	position: absolute;
+	//top: 240px;
+	right: 0.1%;
+	border: 1px solid gray;
+	height: 200px;
+	width: 150px;
+	z-index:100;
+
+	background-color: white;
+
+	@include drop-shadow(10px, 0.5);
+
+	li {
+		border-bottom: 1px dotted gray;
+
+		a {
+			display: block;
+			text-decoration: none;
+			padding: 10px;
+		}
+	}
+
+	li:hover {
+			background-color: #cecece;
+			color: black;
+		}
+}

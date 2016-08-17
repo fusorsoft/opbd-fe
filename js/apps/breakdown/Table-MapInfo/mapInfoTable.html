@@ -1,0 +1,50 @@
+<div>
+	<table class="ob-table ob-map-summary-table">
+		<thead>
+			<tr>
+				<th colspan="7"><h2>Map Breakdown - minimum 5 matches</h2></th>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<th></th>
+				<th>Map</th>
+				<th>W/L/T</th>
+				<th>Total ADR</th>
+				<th>Round Win Rate</th>
+				<th>W/L Differential</th>
+				<th>Streak</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat="(key, value) in mapData | toArray | orderBy: 'map'"  data-ng-if="value.data.length >= 5" ng-class="visibilities[key] ? 'visible' : 'hidden'">
+			<tr map-summary-row map-data="value.data" ng-click="toggleVisiblity(value.map, value.data)" map="{{value.map}}" visible="{{visibilities[value.map]}}" class="ob-summary-row"/>
+			<tr map-detail-row map-data="loadData[value.map]" ng-class="visibilities[value.map] ? 'visible' : 'hidden'" map="{{value.map}}"/>
+		</tbody>
+
+		<thead>
+			<tr>
+				<th colspan="7"><h2>Other Maps</h2></th>
+			</tr>
+		</thead>
+
+		<thead>
+			<tr>
+				<th></th>
+				<th>Map</th>
+				<th>W/L/T</th>
+				<th>Total ADR</th>
+				<th>Round Win Rate</th>
+				<th>W/L Differential</th>
+				<th>Streak</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat="(key, value) in mapData | toArray | orderBy: 'map'"  data-ng-if="value.data.length <= 5" >
+			<tr map-summary-row map-data="value.data" ng-click="toggleVisiblity(value.map, value.data)" map="{{value.map}}" visible="{{visibilities[value.map]}}" class="ob-summary-row"/>			
+			<tr map-detail-row map-data="loadData[value.map]" ng-class="visibilities[key] ? 'visible' : 'hidden'" ng-if="loadData[value.map]"/>
+
+		</tbody>
+
+	</table>
+</div>

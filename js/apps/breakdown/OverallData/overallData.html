@@ -1,0 +1,80 @@
+<div class="ob-breakdown-container">
+<div>
+
+	<!-- Horizontal Ad -->
+	<div class="ob-horizontal-ad-container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-5941170862103259"
+		     data-ad-slot="5488228125"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+
+	<h1>Overall Data for {{playerName}}</h1>
+
+	<h2>Recent Matches</h2>
+	<div class="ob-match-summary-container">
+		<div data-ng-repeat="m in recentMatches">
+			<match-summary-aside 
+				round-wins="{{::m.totalRoundWins}}"
+				round-losses="{{::(m.totalRoundsPlayed - m.totalRoundWins)}}"
+				map="{{::m.map}}"
+				match-date="{{::(m.demoDate | date : short)}}"
+				adr="{{::m.adr}}"
+				match-id="{{::m.matchId}}"
+				result="{{::m.result}}"/>
+		</div>
+	</div>
+
+	<div>
+		<div class="ob-overall-stats-container">
+			<dl class="ob-list-side-by-side">
+				<dt>Kills</dt>
+				<dd>{{::totals.kills}}</dd>
+				<dt>Deaths</dt>
+				<dd>{{::totals.deaths}}</dd>
+				<dt>Assists</dt>
+				<dd>{{::totals.assists}}</dd>
+				<dt>KDA</dt>
+				<dd>{{::totals.kda}}</dd>
+			</dl>
+			<dl class="ob-list-side-by-side">
+				<dt>Total ADR</dt>
+				<dd>{{::totals.totalADR}}</dd>
+				<dt>CT ADR</dt>
+				<dd>{{::totals.ctADR}}</dd>
+				<dt>T ADR</dt>
+				<dd>{{::totals.tADR}}</dd>
+			</dl>
+
+			<dl class="ob-list-side-by-side">
+				<dt>Overall Round Winrate</dt>
+				<dd>{{::totals.roundWinRate}}% ({{::totals.totalRoundWins}} / {{::totals.totalRoundsPlayed}})</dd>
+
+				<dt>Counter Terrorist Winrate</dt>
+				<dd>{{::totals.ctRoundWinRate}}% ({{::totals.ctRoundsWon}} / {{::totals.ctRoundsPlayed}})</dd>
+
+				<dt>Terrorist Winrate</dt>
+				<dd>{{::totals.tRoundWinRate}}% ({{::totals.tRoundsWon}} / {{::totals.tRoundsPlayed}})</dd>
+			</dl>
+		</div>
+	</div>
+
+	<div class="ob-chart-fullwidth">
+		<h2>Win/Loss Differential</h2>
+		<match-history-chart match-history-data="matchHistoryData" chart-title="Win/Loss Differential" ng-if="matchHistoryData"/>
+	</div>
+
+
+	<div class="ob-chart-fullwidth">
+		<h2>ADR Over Time</h2>
+		<adr-over-time-chart adr-over-time-data="adrOverTimeData" chart-title="ADR Over Time" ng-if="adrOverTimeData"/>
+	</div>
+
+	
+	<map-info-table class="ob-map-data" map-data="mapData" ng-if="mapData"/>
+</div>
+</div>

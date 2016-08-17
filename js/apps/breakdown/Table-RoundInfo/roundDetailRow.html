@@ -1,0 +1,46 @@
+<tr>
+	<td colspan="7">
+		<div class="ob-detail-container" style="display: flex">
+			<div class="ob-kill-feed">
+
+				<h3>You were playing as {{roundData.Team}}</h3>
+				<div class='ob-team-icon-container'>
+					<img ng-src="{{teamIcon}}"/>
+				</div>
+
+				<h3 style="display: inline-block">Your Kill Feed</h3>
+				<i class="ob-tooltip fa fa-question-circle" aria-hidden="true" 
+					tooltips 
+					tooltip-template="Click an item in the feed to see the map display"
+					tooltip-smart="true">
+				</i>
+
+				<div class="ob-kill" ng-repeat="k in killFeed track by $index" ng-click="killSelected(k)" ng-style="k.isKiller ? { 'border-color': 'green' } : { 'border-color': 'red' }" ng-class="k.selected ? 'selected' : ''">
+					<span>{{k.timeInRound}}s</span>
+					<span ng-style="k.killerTeam === 'CT' ? {'color': '#4169e1' } : {'color': '#ffcc66'}">{{k.killer}}</span>
+					<span class="img-container">
+						<img ng-src="{{k.weaponIcon}}"/> 
+						<img ng-if="k.headshot" src="/assets/images/weaponIcons/headshot.png"/>
+					</span>
+					<span ng-style="k.victimTeam === 'CT' ? {'color': '#4169e1' } : {'color': '#ffcc66'}">{{k.victim}}</span>
+				</div>
+
+				<h3>Weapon Data</h3>
+				<div class="ob-weapon-data" ng-repeat="w in weaponDamageData">
+					<h3 style="margin-top: 0px;">{{w.weapon}}</h3>
+					<dl class="ob-list-side-by-side">
+						<dt>Accuracy</dt>
+						<dd>{{w.accuracy | number: 1}}% ({{w.shotsHit}}/{{w.shotsFired}})</dd>
+						<dt>Damage</dt>
+						<dd>{{w.damage}}</dd>
+					</dl>
+				</div>
+			</div>
+			<div>
+				<div style="width: 835px;">
+					<kill-death-map kill-data="selectedKill" team="{{roundData.Team}}" map="{{map}}"/>
+				</div>
+			</div>
+		</div>
+	</td>
+</tr>

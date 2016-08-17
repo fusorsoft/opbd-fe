@@ -1,0 +1,43 @@
+nav {
+	background-color: white;
+	color: #111;
+	text-transform: none;
+	width: 100%;
+	margin:0 auto;
+
+	>ul {
+		display: flex;
+
+		>li {
+			 
+			>a {
+				display: block;
+				text-decoration: none;
+				cursor: pointer;
+				padding: 13.5px 15px;
+
+				&:hover {
+					height: auto;
+					background-color: rgb(55,65,70);
+					color: rgb(157,175,183);
+				}
+			}
+
+			a.ob-nav-signin {
+				&:hover {
+					background-color: inherit !important;
+				}
+			}
+
+			&:last-child {
+				// push the last child to the right (user dropdown)
+				margin-left: auto;
+			}
+		}
+	}
+
+	.steamLogin {
+		padding-top: 9px;
+		padding-right: 9px;
+	}
+}

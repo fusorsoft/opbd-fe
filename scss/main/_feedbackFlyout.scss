@@ -1,0 +1,59 @@
+// ob-feedback form
+$footerheight: 75px;
+
+#ob-feedback-form-container {
+  position: fixed;
+  bottom: $footerheight;
+  width: 400px;
+  //height: 450px;
+  z-index: 10;
+  transition: right 1s;
+}
+
+#ob-feedback-form-container.open {
+  bottom: $footerheight;
+  right: 0px;
+}
+
+#ob-feedback-form-container.closed {
+  bottom: $footerheight;
+  right: -350px;
+}
+
+#ob-feedback-toggle {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background-color: #ff851b;//$navBackground;
+  color: #222;//$mainTextColor;
+  width: 50px;
+  height: 150px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#ob-feedback-toggle div.vertical-text {
+  position: absolute;
+  left: -45.5px;
+  top: 55px;
+  width: 140px;
+  border: 1px solid #222;// $mainTextColor;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#ob-feedback-form {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 350px;
+  border: 2px solid $navBackground;
+  //background-color: $mainBackground;
+  background-color: rgba(255,255,255,0.9);
+  padding: 20px;
+
+  input, textarea {
+    width: 100%;
+  }
+}

@@ -1,0 +1,27 @@
+<table class="ob-table ob-weapon-info-table">
+	<thead>
+		<tr>
+			<th colspan="7" class="ob-uber-heading">Weapon Info</th>
+		</tr>
+		<tr class="ob-col-headings">
+			<th></th>
+			<th data-ng-click="headingClicked('Weapon')">Weapon</th>
+			<th data-ng-click="headingClicked('Accuracy')">Accuracy</th>
+			<th data-ng-click="headingClicked('HeadshotPercentage')">Headshot %</th>
+			<th data-ng-click="headingClicked('TotalDamage')">Total Damage</th>
+			<th data-ng-click="headingClicked('Kills')">Kills</th>
+			<th></th>
+		</tr>
+	</thead>
+ 	<tr data-ng-repeat="w in weaponInfoData | orderBy: orderByField : reverse" ng-class="w.expanded === true ? 'visible' : 'hidden'" ng-click="toggleRow(w)">
+ 		<td><i class="fa" ng-class="w.expanded === true ? 'fa-minus-circle' : 'fa-plus-circle'" aria-hidden="true" ></i></td>
+ 		<td>{{w.Weapon}}</td>
+ 		<td>{{w.Accuracy * 100 | number: 1}}% ({{w.ShotsHit}}/{{w.ShotsFired}})</td>
+ 		<td>{{w.HeadshotPercentage * 100 | number: 1}}%</td>
+ 		<td>{{w.TotalDamage}}</td>
+ 		<td>{{w.Kills}} <span ng-if="w.HeadshotKills > 0">({{w.HeadshotKills}} HS)</span></td>
+ 		<td>
+ 			<body-damage-chart weapon-damage-data="w" body-image-url="/assets/images/Anarchist-HalfSize.png"/>
+ 		</td>
+ 	</tr>
+</table>

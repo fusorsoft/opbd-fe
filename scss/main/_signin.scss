@@ -1,0 +1,20 @@
+.ob-signin-container {
+	margin: 3em 0;
+	padding: 5em 0;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+
+	>div {
+		width: 35%;
+		padding:2em;
+	}
+
+	>div:first-child {
+		border-right: 1px dotted #cecece;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+}

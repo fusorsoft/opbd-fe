@@ -1,0 +1,22 @@
+#content {
+	width: 85%;
+	margin-left: auto;
+	margin-right: auto;
+	flex-grow: 1;
+	display: flex;
+	margin-top: 10px;
+	padding-bottom:30px;
+	> div {
+		flex: 1;
+	}
+
+	ul {
+		list-style-type: square;
+		list-style-position: inside; 
+
+		li {
+			margin-left: 15px;
+			display: list-item;
+		}
+	}
+}

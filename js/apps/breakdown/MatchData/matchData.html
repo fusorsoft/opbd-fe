@@ -1,0 +1,58 @@
+<div class="ob-breakdown-container">
+<div>
+	<!-- Horizontal Ad -->
+	<div class="ob-horizontal-ad-container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-5941170862103259"
+		     data-ad-slot="5488228125"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+
+	<h1>Match Data for {{playerName}}</h1>
+
+	<h2>Win/Loss Differential over Time</h2>
+
+	<div class="ob-chart-fullwidth">
+		<match-history-chart match-history-data="matchHistoryData" ng-if="matchHistoryData"/>
+	</div>
+
+	<table class="ob-table">
+		<thead>
+			<tr>
+				<th colspan="6" class="ob-uber-heading">
+					Matches
+				</th>
+			</tr>
+			<tr>
+				<th>Map</th>
+				<th data-toolip="This is the modified date of the demo file">Demo Date</th>
+				<th>Score</th>
+				<th></th>
+				<th>K/D/A</th>
+				<th>ADR</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="m in matchdata | orderBy: 'demoDate' : true">
+				<td><a href="#/MatchData/{{m.matchId}}">{{m.map}}</a></td>
+				<td>{{m.demoDate | date}}</td>
+				<td><span class="ob-match-outcome" data-ng-class="outcomeCellClass(m.result)">{{m.userScore}} : {{m.opponentScore}}</span></td>
+				<td>
+					<div ng-if="m.initialRank.Rank != m.finalRank.Rank">
+						<img ng-src="{{m.initialRank.SmallImg}}" alt="{{m.initialRank.Name}}"/> 
+						<i class="fa fa-long-arrow-right" aria-hidden="true" style="font-size: 1.5em"></i> 
+						<img ng-src="{{m.finalRank.SmallImg}}" alt="{{m.finalRank.Name}}"/> 
+					</div>
+				</td>
+				<td>{{m.kills}} / {{m.deaths}} / {{m.assists}}</td>
+				<td>{{m.adr}}</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+</div>

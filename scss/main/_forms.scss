@@ -1,0 +1,12 @@
+form legend.obLegend {
+	border-bottom: 1px solid gray;
+	font-size: 2em;
+	color: $linkColor;
+}
+
+.ob-invalid-input,
+.ob-invalid-input:focus {
+	background-color: #f99 !important;
+	border-color: #f44 !important;
+	color: #f44 !important;
+}

@@ -1,0 +1,20 @@
+<h1>User Administration</h1>
+
+<table class="ob-table">
+	<thead>
+		<tr>
+			<th></th>
+			<th>User</th>
+			<th>Roles</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="user in data">
+			<td style="width: 50px;"><a href="/User/{{user.steamID}}"><img data-ng-src="{{user.avatar}}"/></a></td>
+			<td><a href="/User/{{user.steamID}}">{{user.username}}</a></td>
+			<td>{{user.roles}}</td>
+			<tD><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+		</tr>
+	</tbody>
+</table>

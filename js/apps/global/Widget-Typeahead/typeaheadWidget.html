@@ -1,0 +1,9 @@
+<div class="ob-search-box">
+	<input type="search" placeholder="Search for a player" ng-model="searchTerm"/>
+	<ul>
+       	<li ng-repeat="value in searchData" ng-class="focusIndex === $index ? 'selected' : ''"
+       		ng-mouseover="onMouseOver($index)" ng-click="onClick($index)">
+       		{{value.label}}
+       	</li>
+    </ul>
+</div>

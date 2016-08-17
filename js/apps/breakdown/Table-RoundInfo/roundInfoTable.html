@@ -1,0 +1,20 @@
+<div>
+	<table class="ob-table ob-map-summary-table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Round</th>
+				<th>Result</th>
+				<th>Damage</th>
+				<th>Kills</th>
+				<th>Assists</th>
+				<th>Survived</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat="(key, value) in roundData | toArray: true | orderBy: key" >
+			<tr round-summary-row round-data="value" ng-click="toggleVisiblity(key)" round="{{key}}" visible="{{visibilities[key]}}" class="ob-summary-row"/>
+			<tr round-detail-row round-data="value" ng-class="visibilities[key] ? 'visible' : 'hidden'" ng-if="value.WeaponData" map="{{map}}"/>
+		</tbody>
+	</table>
+</div>

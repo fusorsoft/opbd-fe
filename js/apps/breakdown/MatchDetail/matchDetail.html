@@ -1,0 +1,119 @@
+<div class="ob-match-detail-container" ng-style="mapInfo.screenshot ? {'background-image': 'url(' + mapInfo.screenshot + ')'} : {}">
+<div>
+
+	<!-- Horizontal Ad -->
+	<div class="ob-horizontal-ad-container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-5941170862103259"
+		     data-ad-slot="5488228125"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+
+	<div class="ob-match-detail-heading">
+		<div>
+			<img ng-src="{{mapInfo.medIconUrl}}"/>
+		</div>
+		<div>		
+			<h1>Match Detail for {{playerData.Name}}</h1>
+			<h2 style="margin-top: 0px;">{{mapInfo.prettyName}}</h2>
+			<div>{{demoFileMetadata.Created | date : 'short'}}</div>
+			<div style="padding-top: 5px;">
+			<img ng-src="{{averageRank.Img}}" style="height: 35px;" alt="Average Rank for this Match: {{averageRank.Abbreviation}}"/>
+			</div>
+		</div>
+	</div>
+	<toaster-container></toaster-container>
+	<!--<h2>{{corroboratorCount}} Corroborators</h2>-->
+
+	<div class="ob-round-graph-container">
+
+		<div class="ob-match-banner">
+			<div style="flex-grow: 1" ng-style="playerData.RoundData['1'].Team === 'T' ? { color: '#FFE066'} : { color: '#0099FF' } ">
+				<div ng-if="playerData.RoundData['1'].Team === 'T'">
+					{{playerData.TWins}} : {{playerData.TRoundsPlayed - playerData.TWins}}
+				</div>
+				<div ng-if="playerData.RoundData['1'].Team === 'CT'">
+					{{playerData.CTWins}} : {{playerData.CTRoundsPlayed - playerData.CTWins}}
+				</div>
+			</div>
+			<div ng-style="(playerData.TotalRoundsPlayed - playerData.TotalWins) > playerData.TotalWins ? {color: 'red'} : {color: 'green'} ">
+				<div style="font-size: 1.5em;">
+					{{playerData.TotalWins}} : {{playerData.TotalRoundsPlayed - playerData.TotalWins}}
+				</div>
+			</div>
+			<div style="flex-grow: 1; text-align: right;" ng-style="playerData.RoundData['1'].Team === 'T' ? { color: '#06C' } : { color: '#FFE066'} ">
+				<div ng-if="playerData.RoundData['1'].Team === 'CT'">
+					{{playerData.TWins}} : {{playerData.TRoundsPlayed - playerData.TWins}}
+				</div>
+				<div ng-if="playerData.RoundData['1'].Team === 'T'">
+					{{playerData.CTWins}} : {{playerData.CTRoundsPlayed - playerData.CTWins}}
+				</div>
+			</div>
+		</div>
+
+		<round-breakdown round-data="playerData.RoundData"></round-breakdown>
+
+	</div>
+
+	<table class="ob-table" ng-if="matchdata">
+
+		<thead>
+			<tr>
+				<th colspan="4">Scoreboard</th>
+			</tr>
+		</thead>
+
+		<tbody ng-repeat="(key, value) in matchdata | groupBy: 'matchTeam' | toArray:true | orderBy: '$key'">
+			<tr class="ob-row-heading">
+				<td colspan="4">{{value.$key}}</td>
+			</tr>
+			<tr>
+				<th>Player</th>
+				<th>K/D/A</th>
+				<th>MVPs</th>
+				<th>ADR</th>
+			</tr>
+			<tr ng-repeat="m in value | orderBy: '-kills'">
+				<td>
+					<img ng-src="{{m.finalRank.SmallImg}}" alt="{{m.finalRank.Name}}" style="float: left; margin-right: 1em;"/>
+					<user-link name="{{m.name}}" steam-id="{{m.steamId}}" match-id="{{m.matchId}}" ng-if="playerData.SteamID !== m.steamId"/>
+					<span ng-if="playerData.SteamID === m.steamId" style="font-weight: bold">{{m.name}}</span>
+				</td>
+				<td>{{m.kills}} / {{m.deaths}} / {{m.assists}}</td>
+				<td>{{m.mvps}}</td>
+				<td>{{m.adr}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="ob-charts-container">
+		<div class="ob-chart-container">
+			<weapon-damage-chart weapon-damage-data="weaponDamageData" chart-title="Total Damage by Weapon" ng-if="weaponDamageData"/>
+		</div>
+
+		<div class="ob-chart-container">
+			<kda-chart kda-data="kdaData" chart-title="CT/T K/D/A" ng-if="kdaData"/>
+		</div>
+
+		<div class="ob-chart-container">
+			<adr-chart adr-data="adrData" chart-title="Average Damage Per Round" ng-if="adrData"/>
+		</div>
+
+		<div class="ob-chart-container">
+			<kill-count-chart kill-count-data="killCountData" chart-title="Round Kill Counts" ng-if="killCountData"/>
+		</div>
+
+		<div class="ob-chart-container">
+			<round-damage-chart round-damage-data="roundDamageData" chart-title="Damage Per Round" ng-if="roundDamageData"/>
+		</div>
+	</div>
+
+	<weapon-info-table weapon-info-data="playerData.WeaponData"/>
+
+	<round-info-table round-data="playerData.RoundData" map="{{matchMetadata.MapName}}"/>
+</div>
+</div>
