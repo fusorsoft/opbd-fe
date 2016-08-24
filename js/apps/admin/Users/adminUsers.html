@@ -1,5 +1,30 @@
 <h1>User Administration</h1>
 
+<div>
+	<h1><img src="{{currentUser.avatar}}"/> {{currentUser.username}}</h1>
+	
+	<h2>User Info</h2>
+	<table>
+		<tr>
+			<th>Email</th>
+			<td><a href='mailto:{{currentUser.email}}'>{{currentUser.email}}</a></td>
+		</tr>
+		<tr>
+			<th>SteamID</th>
+			<td>{{currentUser.steamID}}</td>
+		</tr>
+	</table>
+
+	<h2>Roles</h2>
+	<ul>
+		<li><input type='checkbox' data-ng-model="visitorChecked" data-ng-checked="currentUser.roles.indexOf('visitor') > -1"/> Visitor</li>
+		<li><input type='checkbox' data-ng-model="userChecked" data-ng-checked="currentUser.roles.indexOf('user') > -1"/> User</li>
+		<li><input type='checkbox' data-ng-model="adminChecked" data-ng-checked="currentUser.roles.indexOf('admin') > -1"/> Admin</li>
+	</ul>
+
+	<button type="button" data-ng-click="updateUser()">Update</button>
+</div>
+
 <table class="ob-table">
 	<thead>
 		<tr>
@@ -10,7 +35,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr data-ng-repeat="user in data">
+		<tr data-ng-repeat="user in data" data-ng-click="setCurrentUser(user)">
 			<td style="width: 50px;"><a href="/User/{{user.steamID}}"><img data-ng-src="{{user.avatar}}"/></a></td>
 			<td><a href="/User/{{user.steamID}}">{{user.username}}</a></td>
 			<td>{{user.roles}}</td>

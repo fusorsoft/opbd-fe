@@ -1,6 +1,6 @@
 angular.module('adminDataAccess', []);
 
-var adminControllers = angular.module('adminControllers', ['adminDataAccess']);
+var adminControllers = angular.module('adminControllers', ['adminDataAccess', 'toaster']);
 var adminApp = angular.module('adminApp', ['ngRoute', 'adminControllers']);
 
 adminApp.config(['$routeProvider', function($routeProvider) {

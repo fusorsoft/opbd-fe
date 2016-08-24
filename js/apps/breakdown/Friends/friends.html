@@ -24,7 +24,7 @@
 					<span class="ob-friend-name">{{value.username}}</a>
 				</div>
 				<div style="text-align: right; flex: 1; font-size: 1.2em; padding-right: 5px;">
-					<i class="fa fa-trash-o" style="cursor: pointer" aria-hidden="true" ng-click="removeFriend(key)"></i>
+					<i class="fa fa-trash-o" style="cursor: pointer" aria-hidden="true" ng-click="removeFriend(key); $event.stopPropagation();"></i>
 				</div>
 			</div>
 			
