@@ -1,12 +1,27 @@
-angular.module('adminControllers').controller('userAdminController', ['$scope', 'Users', 'toaster',  function($scope, users, toaster){ 
+angular.module('adminControllers').controller('userAdminController', [
+	'$scope', 
+	'Users', 
+	'toaster',  
+	'ngDialog',
+	function($scope, users, toaster, ngDialog) { 
 	
 	$scope.currentUser = null;
-	// $scope.visitorChecked = false;
-	// $scope.userChecked = false;
-	// $scope.adminChecked = false;
+	
+	$scope.checks = {
+		visitorChecked: false,
+		userChecked: false,
+		adminChecked: false
+	};
 
 	$scope.setCurrentUser = function(user) {
 		$scope.currentUser = user;
+		$scope.checks.visitorChecked = user.roles.indexOf('visitor') > -1;
+		$scope.checks.userChecked = user.roles.indexOf('user') > -1;
+		$scope.checks.adminChecked = user.roles.indexOf('admin') > -1;
+		ngDialog.open({
+			template: 'userEditorTemplate',
+			scope: $scope,
+		});
 	};
 
 	$scope.updateUser = function() {
@@ -14,20 +29,22 @@ angular.module('adminControllers').controller('userAdminController', ['$scope', 
 		if ($scope.currentUser) {
 			var newRoles = [];
 
-			if ($scope.visitorChecked) {
+			if ($scope.checks.visitorChecked) {
 				newRoles.push("visitor");
 			}
 
-			if ($scope.userChecked) {
+			if ($scope.checks.userChecked) {
 				newRoles.push("user");
 			}
 
-			if ($scope.adminChecked) {
+			if ($scope.checks.adminChecked) {
 				newRoles.push("admin");
 			}
 
 			users.updateUser($scope.currentUser.steamID, newRoles).then(function() {
 				toaster.pop('success', 'Success', 'User updated!');
+				$scope.currentUser.roles = newRoles;
+				ngDialog.closeAll();
 			}, function(err) {
 				toaster.pop('error', 'Error', 'Error updating user');
 			});

@@ -1,6 +1,6 @@
 <h1>User Administration</h1>
 
-<div>
+<script type="text/ng-template" id="userEditorTemplate">
 	<h1><img src="{{currentUser.avatar}}"/> {{currentUser.username}}</h1>
 	
 	<h2>User Info</h2>
@@ -17,19 +17,29 @@
 
 	<h2>Roles</h2>
 	<ul>
-		<li><input type='checkbox' data-ng-model="visitorChecked" data-ng-checked="currentUser.roles.indexOf('visitor') > -1"/> Visitor</li>
-		<li><input type='checkbox' data-ng-model="userChecked" data-ng-checked="currentUser.roles.indexOf('user') > -1"/> User</li>
-		<li><input type='checkbox' data-ng-model="adminChecked" data-ng-checked="currentUser.roles.indexOf('admin') > -1"/> Admin</li>
+		<li>
+			<input type='checkbox' data-ng-model="checks.visitorChecked" id="visitorCheckbox"/>
+			<label for="visitorCheckbox">Visitor</label>
+		</li>
+		<li>
+			<input type='checkbox' data-ng-model="checks.userChecked" id="userCheckbox"/>
+			<label for="userCheckbox">User</label>
+		</li>
+		<li>
+			<input type='checkbox' data-ng-model="checks.adminChecked" id="adminCheckbox"/>
+			<label for="adminCheckbox">Admin</label>
+		</li>
 	</ul>
 
 	<button type="button" data-ng-click="updateUser()">Update</button>
-</div>
+</script>
 
 <table class="ob-table">
 	<thead>
 		<tr>
 			<th></th>
 			<th>User</th>
+			<th>Steam ID</th>
 			<th>Roles</th>
 			<th>Email</th>
 		</tr>
@@ -37,7 +47,8 @@
 	<tbody>
 		<tr data-ng-repeat="user in data" data-ng-click="setCurrentUser(user)">
 			<td style="width: 50px;"><a href="/User/{{user.steamID}}"><img data-ng-src="{{user.avatar}}"/></a></td>
-			<td><a href="/User/{{user.steamID}}">{{user.username}}</a></td>
+			<td><a href="/User/{{user.steamID}}" ng-click="$event.stopPropagation()">{{user.username}}</a></td>
+			<td>{{user.steamID}}</td>
 			<td>{{user.roles}}</td>
 			<tD><a href="mailto:{{user.email}}">{{user.email}}</a></td>
 		</tr>
