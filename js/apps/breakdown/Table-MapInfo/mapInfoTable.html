@@ -42,7 +42,7 @@
 
 		<tbody ng-repeat="(key, value) in mapData | toArray | orderBy: 'map'"  data-ng-if="value.data.length <= 5" >
 			<tr map-summary-row map-data="value.data" ng-click="toggleVisiblity(value.map, value.data)" map="{{value.map}}" visible="{{visibilities[value.map]}}" class="ob-summary-row"/>			
-			<tr map-detail-row map-data="loadData[value.map]" ng-class="visibilities[key] ? 'visible' : 'hidden'" ng-if="loadData[value.map]"/>
+			<tr map-detail-row map-data="loadData[value.map]" ng-class="visibilities[value.map] ? 'visible' : 'hidden'" map="{{value.map}}"/>
 
 		</tbody>
 
