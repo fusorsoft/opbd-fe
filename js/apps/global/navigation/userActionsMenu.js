@@ -1,5 +1,14 @@
-$(function() {
-	$('#userActionsToggle').click(function() {
-		$('#userActionsMenu').toggle(500, 'linear');
-	});
+function toggleUserActionsClass() {
+	elem = document.getElementById('userActionsMenu');
+	elem.classList.toggle('ob-fadeOut');
+	elem.classList.toggle('ob-fadeIn');
+}
+
+document.addEventListener('DOMContentLoaded', function(event) {
+
+	var toggleElement = document.getElementById('userActionsToggle');
+
+	if (toggleElement) {
+		toggleElement.addEventListener('click', toggleUserActionsClass, false);
+	}
 });

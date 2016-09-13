@@ -66,6 +66,26 @@ p {
 	//text-indent: 5%;
 }
 
+ol {
+	padding-left: 1em;
+	
+	li {
+		counter-increment: step-counter;
+		margin-bottom: 1em;
+
+		&::before {
+			content: counter(step-counter);
+		    margin-right: 5px;
+		    font-size: 80%;
+		    background-color: #374146;
+		    color: white;
+		    font-weight: bold;
+		    padding: 3px 8px;
+		    border-radius: 3px;
+		}
+	}
+}
+
 dl.ob-def-list {
 	margin: 10px 0;
 	clear: both;
@@ -87,6 +107,18 @@ dl.ob-def-list {
 
 .ob-hidden {
 	display: none;
+}
+
+.ob-fadeOut {
+	visibility: hidden;
+	opacity: 0;
+	transition: all .5s ease;
+}
+
+.ob-fadeIn {
+	visibility: visible;
+	opacity: 1;
+	transition: all .5s ease;
 }
 
 .ob-pull-left {
@@ -210,4 +242,28 @@ strong {
 			border-left: none;
 		}
 	}
+}
+
+.ob-error-notification {
+	color: #d8000c; 
+	background-color: #ffbaba; 
+	border: 1px solid #d8000c; 
+	padding:5px; 
+	margin-bottom: 10px;
+}
+
+.ob-warning-notification {
+	color: #9f6000; 
+	background-color: #feefb3; 
+	border: 1px solid #9f6000; 
+	padding:5px; 
+	margin-bottom: 10px;
+}
+
+.ob-information-notification {
+	color: #00529B; 
+	background-color: #BDE5F8; 
+	border: 1px solid #00529B; 
+	padding:5px; 
+	margin-bottom: 10px;
 }

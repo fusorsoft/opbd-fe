@@ -11,8 +11,22 @@
 
 	@include drop-shadow(10px, 0.5);
 
+	ul {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: space-between;
+	}
+
 	li {
 		border-bottom: 1px dotted gray;
+		height: 4em;
+
+		&.filler {
+			&:hover {
+				background-color: inherit;
+			}
+		}
 
 		a {
 			display: block;
