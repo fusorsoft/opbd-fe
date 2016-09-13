@@ -1,32 +1,15 @@
-$(function() {
-	// shim for browsers that don't respect the html5 required attribute
-	// *cough* safari *cough*
-	$('form').each(function() {
-		var thisForm = $(this);
+function toggleFeedbackClass() {
+	elem = document.getElementById('ob-feedback-form-container');
+	elem.classList.toggle('closed');
+	elem.classList.toggle('open');
+}
 
-		thisForm.submit(function(e) {
+document.addEventListener('DOMContentLoaded', function(event) {
 
-			var ref = thisForm.find("[required]");
+	var toggleElement = document.getElementById('ob-feedback-toggle');
 
-			$(ref).each(function() {
-				if ($(this).val() === '') {
-
-					$(this).focus();
-
-					e.preventDefault();
-
-					thisForm.trigger("validationError", "Required field cannot be blank");
-
-					return false;
-				}
-			});
-			return true;
-		});
-	});
-
-
-	$('#ob-feedback-toggle').click(function() {
-		$('#ob-feedback-form-container').toggleClass('closed open');
-	});
-
+	if (toggleElement) {
+		toggleElement.addEventListener('click', toggleFeedbackClass, false);
+	}
 });
+
