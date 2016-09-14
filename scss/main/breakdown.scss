@@ -2,6 +2,7 @@
 	
 	width: 100%;
 	margin-top: 0px;
+	background-color: rgba(0, 0, 0, 0.1);
 	
 	.breakdown-banner {
 		padding: 1em 2em;
@@ -12,27 +13,13 @@
 			display: inline-block;
 		}
 	}
-	
-	.side-by-side {
 
-		display: flex;
-
-		.left {
-			min-width: 15em;
-			padding: 0 1em;
-			background-color: #222;
-		}
-
-		.right {
-			//padding: 20px;
-			flex: 1;
-			background-color: rgba(0,0,0,0.1);
-		}
+	>div:nth-child(2) {
+		padding-top:2em;
 	}
 }
 
 .ob-breakdown-container {
-
 	>div {
 		padding: 2em;
 	}

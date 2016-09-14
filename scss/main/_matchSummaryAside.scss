@@ -1,7 +1,11 @@
 .ob-match-summary-container {
 	display: flex; 
 	justify-content: space-between; 
-	flex-wrap: wrap
+	flex-wrap: wrap;
+
+	>div {
+		flex-basis: 19%;
+	}
 }
 
 .ob-match-summary-aside {
@@ -13,11 +17,11 @@
 	margin: 5px none; //10px;
 
 	&:hover {
-		background-color: rgba(255,255,255,0.3);
+		background-color: rgba(255,255,255,0.6);
 	}
 
 	>div {
-		padding: 10px;
+		padding: 1em;
 
 		&:first-child {
 			min-width: 120px;

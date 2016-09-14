@@ -1,18 +1,21 @@
-<div class="ob-match-detail-container" ng-style="mapInfo.screenshot ? {'background-image': 'url(' + mapInfo.screenshot + ')'} : {}">
-<div>
+<div class="ob-match-detail-container">
 
-	<!-- Horizontal Ad -->
-	<div class="ob-horizontal-ad-container">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- Horizontal Ad -->
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-5941170862103259"
-		     data-ad-slot="5488228125"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-	</div>
+<style ng-if="mapInfo.screenshot">
+
+#breakdownContent {
+	background-image: url({{mapInfo.screenshot}});
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: inherit;
+}
+
+#breakdownContent >div:not(:first-child) {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+</style>
+
+<div>
 
 	<div class="ob-match-detail-heading">
 		<div>

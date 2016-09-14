@@ -10,6 +10,7 @@ angular.module('breakdownAppControllers').controller('FriendsController', [
 	function($scope, $filter, $location, $window, $q, userData, toaster, matchUtils) {
 
 		var userId = $location.absUrl().match(/\/User\/(\d+)\#/)[1];
+		$scope.screenshot = "/assets/images/backgrounds/" + Math.floor((Math.random() * 8) + 1) + ".jpg";
 
 		$scope.removeFriend = function(friendId) {
 			var friendName = $scope.friends[friendId].username;

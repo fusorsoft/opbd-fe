@@ -20,19 +20,32 @@
 	<div id="content">
 		<div data-ng-app="breakdownApp" id="breakdownContent" data-ng-controller="breakdownAppController">
 			<div class="breakdown-banner">
-				
 				<ng-include src="'/ng-partials/breakdown/Navigation/breakdownNav.html'"/>
 			</div>
-			<div class="side-by-side">
-				<!-- <div class="left">
-					
-				</div> -->
 
-				<div class="right">
-					<div data-ng-view></div>
-				</div>
+			<div class="ob-horizontal-ad-container">
+				<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:728px;height:90px"
+				     data-ad-client="ca-pub-5941170862103259"
+				     data-ad-slot="5488228125"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 			</div>
-			
+	
+			<div data-ng-view></div>
+
+			<div class="ob-horizontal-ad-container">
+				<!-- Large Horizontal -->
+				<ins class="adsbygoogle"
+				     style="display:inline-block;width:970px;height:90px"
+				     data-ad-client="ca-pub-5941170862103259"
+				     data-ad-slot="5986446524"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
 		</div> 
 	</div>
 

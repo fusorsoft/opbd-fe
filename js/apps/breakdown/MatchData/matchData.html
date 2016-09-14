@@ -1,22 +1,30 @@
 <div class="ob-breakdown-container">
+
+<style ng-if="screenshot">
+
+#breakdownContent {
+	background-image: url({{screenshot}});
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: inherit;
+	background-size: 100% 100%;
+	background-position: right top;
+}
+
+#breakdownContent >div:not(:first-child) {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+</style>
+
 <div>
-	<!-- Horizontal Ad -->
-	<div class="ob-horizontal-ad-container">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-5941170862103259"
-		     data-ad-slot="5488228125"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
+	<div style="background-color: rgba(255,255,255,0.8); border: 1px solid #cecece; margin-bottom:2em; padding:1em;">
+		<h1>Match Data for {{playerName}}</h1>
 	</div>
 
-	<h1>Match Data for {{playerName}}</h1>
-
-	<h2>Win/Loss Differential over Time</h2>
-
 	<div class="ob-chart-fullwidth">
+		<h2>Win/Loss Differential over Time</h2>
+
 		<match-history-chart match-history-data="matchHistoryData" ng-if="matchHistoryData"/>
 	</div>
 

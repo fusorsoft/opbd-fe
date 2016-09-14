@@ -1,21 +1,28 @@
 <div class="ob-breakdown-container">
+
+<style ng-if="screenshot">
+
+#breakdownContent {
+	background-image: url({{screenshot}});
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-color: inherit;
+	background-size: 100% 100%;
+	background-position: right top;
+}
+
+#breakdownContent >div:not(:first-child) {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+</style>
+
 <div>
 
-	<!-- Horizontal Ad -->
-	<div class="ob-horizontal-ad-container">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-5941170862103259"
-		     data-ad-slot="5488228125"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
+	<div style="background-color: rgba(255,255,255,0.8); border: 1px solid #cecece; margin-bottom:2em; padding:1em;">
+		<h1>Overall Data for {{playerName}}</h1>
 	</div>
 
-	<h1>Overall Data for {{playerName}}</h1>
-
-	<h2>Recent Matches</h2>
 	<div class="ob-match-summary-container">
 		<div data-ng-repeat="m in recentMatches">
 			<match-summary-aside 
@@ -63,7 +70,7 @@
 		</div>
 	</div>
 
-	<div>
+	<div style="background-color: rgba(255,255,255,0.8); border: 1px solid #cecece; margin-bottom:2em;">
 		<history-data-chart history-data="historyData"></history-data-chart>
 	</div>
 
