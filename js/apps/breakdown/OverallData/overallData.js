@@ -122,8 +122,27 @@ breakdownControllers.controller('OverallDataController', [
 			}
 
 			$scope.adrOverTimeData = adrDataPoints;
-
 			$scope.matchHistoryData = historyDataPoints;
+
+		
+			$scope.historyData = {};
+			var adrLabels = $scope.adrOverTimeData.map(function(d) { return $filter('date')(d.date, "M-dd-yy");	});
+			var adrData = $scope.adrOverTimeData.map(function(d) { return d.adr; });
+
+			var historyLabels = $scope.matchHistoryData.map(function(d) { return $filter('date')(d.date, "M-dd-yy");	});
+			var historyData = $scope.matchHistoryData.map(function(d) { return d.differential; });
+
+			$scope.historyData.ADROverTime = {
+				labels: adrLabels,
+				data: adrData,
+				series: "ADR Over Time",
+			};
+
+			$scope.historyData.DifferentialOverTime = {
+				labels: historyLabels,
+				data: historyData,
+				series: "Win/Loss Differential Over Time"
+			};
 
 			var total = function(field) {
 				sum = 0;

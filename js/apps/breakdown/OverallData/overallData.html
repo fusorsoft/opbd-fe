@@ -63,18 +63,10 @@
 		</div>
 	</div>
 
-	<div class="ob-chart-fullwidth">
-		<h2>Win/Loss Differential</h2>
-		<match-history-chart match-history-data="matchHistoryData" chart-title="Win/Loss Differential" ng-if="matchHistoryData"/>
+	<div>
+		<history-data-chart history-data="historyData"></history-data-chart>
 	</div>
 
-
-	<div class="ob-chart-fullwidth">
-		<h2>ADR Over Time</h2>
-		<adr-over-time-chart adr-over-time-data="adrOverTimeData" chart-title="ADR Over Time" ng-if="adrOverTimeData"/>
-	</div>
-
-	
 	<map-info-table class="ob-map-data" map-data="mapData" ng-if="mapData"/>
 </div>
 </div>

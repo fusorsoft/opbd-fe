@@ -1,0 +1,21 @@
+<div class="ob-time-chart-container">
+	<div>
+		<h2>Stats over time</h2>
+	</div>
+
+	<div>
+		<div>
+			<ul>
+				<li data-ng-click="selectedData = 'DifferentialOverTime'" ng-class="selectedData === 'DifferentialOverTime' ? 'selected' : ''">Win/Loss Differential</li>
+				<li data-ng-click="selectedData = 'ADROverTime'" ng-class="selectedData === 'ADROverTime' ? 'selected' : ''">ADR</li>
+			</ul>
+		</div>
+
+		<div>
+			<canvas class="chart chart-line" chart-data="[historyData[selectedData].data]"
+				chart-labels="historyData[selectedData].labels"  chart-series="historyData[selectedData].series"
+				chart-options="historyChartOptions" height="50" ng-if="historyData"></canvas>
+			
+		</div>
+	</div>
+</div>
