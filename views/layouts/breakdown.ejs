@@ -18,13 +18,19 @@
 	</div>
 
 	<div id="content">
-		<div data-ng-app="breakdownApp" id="breakdownContent">
-			<div class="left" data-ng-controller="breakdownNavController">
+		<div data-ng-app="breakdownApp" id="breakdownContent" data-ng-controller="breakdownAppController">
+			<div class="breakdown-banner">
+				
 				<ng-include src="'/ng-partials/breakdown/Navigation/breakdownNav.html'"/>
 			</div>
+			<div class="side-by-side">
+				<!-- <div class="left">
+					
+				</div> -->
 
-			<div class="right">
-				<div data-ng-view></div>
+				<div class="right">
+					<div data-ng-view></div>
+				</div>
 			</div>
 			
 		</div> 

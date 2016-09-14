@@ -2,17 +2,32 @@
 	
 	width: 100%;
 	margin-top: 0px;
-	display: flex;
 	
-	.left {
-		min-width: 15em;
-		padding: 2em;
-	}
+	.breakdown-banner {
+		padding: 1em 2em;
+		background-color: #222;
 
-	.right {
-		//padding: 20px;
-		flex: 1;
-		background-color: rgba(0,0,0,0.1);
+		h1 {
+			color: #cecece;
+			display: inline-block;
+		}
+	}
+	
+	.side-by-side {
+
+		display: flex;
+
+		.left {
+			min-width: 15em;
+			padding: 0 1em;
+			background-color: #222;
+		}
+
+		.right {
+			//padding: 20px;
+			flex: 1;
+			background-color: rgba(0,0,0,0.1);
+		}
 	}
 }
 
@@ -33,28 +48,28 @@
 
 ul.ob-matchdata-nav {
 	list-style-type: none !important;
+	display:flex;
 
 	li {
 
 		&:first-child {
-			padding: 10px;
-			
 			&:hover {
 				background-color: inherit;
 			}
 		}
 
 		margin-left: 0px !important;
-		//text-transform: uppercase;
-		border-bottom: 1px dotted gray;
+		border-right: 1px dotted gray;
+		padding: 0 2em;
+
 
 		&:hover {
-			background-color: rgba(0,0,0,0.1);
+			background-color: rgba(0,0,0,0.4);
 		}
 
 		a {
 			display: block;
-			//height: 35px;
+			color: #cecece;
 			line-height: 35px;
 			padding: 1em 1em;
 			text-decoration: none;

@@ -22,6 +22,24 @@ var breakdownControllers = angular.module('breakdownAppControllers',
 
 var breakdownApp = angular.module('breakdownApp', ['ngRoute', 'breakdownAppControllers']);
 
+breakdownApp.controller('breakdownAppController', [
+	'$scope',
+	'userData',
+	'$location',
+	function($scope, userData, $location) {
+
+		var matches = $location.absUrl().match(/\/User\/(\d+)/);
+
+		if (matches) {
+			var userId =  matches[1];
+
+			userData.getUserInfo(userId).then(function(response) {
+				$scope.userInfo = response.data;
+			});
+		}
+	}
+]);
+
 breakdownApp.config(['$routeProvider', function($routeProvider) {
 
 	var basePath = '/ng-partials/breakdown';

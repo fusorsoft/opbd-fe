@@ -4,6 +4,7 @@
 	<!-- Horizontal Ad -->
 	<div class="ob-horizontal-ad-container">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- Horizontal Ad -->
 		<ins class="adsbygoogle"
 		     style="display:inline-block;width:728px;height:90px"
 		     data-ad-client="ca-pub-5941170862103259"
@@ -63,7 +64,7 @@
 
 		<thead>
 			<tr>
-				<th colspan="4">Scoreboard</th>
+				<th colspan="4" class="ob-uber-heading">Scoreboard</th>
 			</tr>
 		</thead>
 
@@ -80,7 +81,7 @@
 			<tr ng-repeat="m in value | orderBy: '-kills'">
 				<td>
 					<img ng-src="{{m.finalRank.SmallImg}}" alt="{{m.finalRank.Name}}" style="float: left; margin-right: 1em;"/>
-					<user-link name="{{m.name}}" steam-id="{{m.steamId}}" match-id="{{m.matchId}}" ng-if="playerData.SteamID !== m.steamId"/>
+					<user-link name="{{m.name}}" steam-id="{{m.steamId}}" match-id="{{m.matchId}}" ng-if="playerData.SteamID !== m.steamId"></user-link>
 					<span ng-if="playerData.SteamID === m.steamId" style="font-weight: bold">{{m.name}}</span>
 				</td>
 				<td>{{m.kills}} / {{m.deaths}} / {{m.assists}}</td>
