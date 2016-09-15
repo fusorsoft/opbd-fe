@@ -9,8 +9,13 @@
 	}
 }
 
+.ob-match-detail-banner {
+	display: flex;
+}
+
 .ob-match-detail-heading {
 	display: flex;
+	margin-right: 1em;
 
 	h1, h2 {
 		margin: auto;
@@ -25,17 +30,18 @@
 
 		&:first-child {
 			border-left: 1px solid #cecece;
-			padding-top: 2em;
+			padding-top: 4em;
 		}
 
 		&:last-child {
 			border-right: 1px solid #cecece;
+			padding-top: 3em;
 		}
 	}
 }
 
 .ob-round-graph-container {
-	margin-top: 2em;
+	flex-grow: 1;
 	background-color: rgba(31,46,63,0.9);
 	color: rgba(255,255,255,0.5);
 	border: 1px solid #cecece;

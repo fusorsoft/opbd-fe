@@ -27,6 +27,7 @@ breakdownControllers.controller('MatchDetailController',  [
 			$scope.mapInfo = Maps.GetMapData($scope.matchMetadata.MapName);
 
 			$timeout(function() {
+				// wait for digest cycle to finish before transitioning background
 				$scope.screenshot = $scope.mapInfo.screenshot;
 			},0);
 
@@ -35,12 +36,16 @@ breakdownControllers.controller('MatchDetailController',  [
 				$scope.matchdata = data;
 
 				var sumRanks = 0;
+				var numRankedPlayers = 0;
 
 				data.map(function(userData) {
-					sumRanks += userData.finalRank.Rank;	
+					if (userData.finalRank) {
+						sumRanks += userData.finalRank.Rank;	
+						numRankedPlayers++;
+					}
 				});
 
-				var avgRank = Math.round(sumRanks / 10);
+				var avgRank = Math.round(sumRanks / numRankedPlayers);
 				$scope.averageRank = Ranks.GetRankData(avgRank);				
 
 			}, function(err) {

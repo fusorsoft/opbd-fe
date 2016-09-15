@@ -1,0 +1,16 @@
+.ob-overall-banner {
+	background-color: rgba(255,255,255,0.8); 
+	border: 1px solid #cecece; 
+	margin-bottom:2em; 
+	padding:1em;
+	display: flex;
+
+	div {
+		flex-grow: 1;
+		text-align: right;
+
+		img {
+			height: 56px;
+		}
+	}
+}

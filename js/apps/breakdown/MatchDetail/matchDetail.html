@@ -9,26 +9,28 @@
 </style>
 
 <div>
-	<div class="ob-match-detail-heading">
-		<div>
-			<img ng-src="{{mapInfo.medIconUrl}}"/>
-		</div>
-		<div>		
-			<h1>Match Detail for {{playerData.Name}}</h1>
-			<h2 style="margin-top: 0px;">{{mapInfo.prettyName}}</h2>
-			<div>{{demoFileMetadata.Created | date : 'short'}}</div>
-			<div style="padding-top: 5px;">
-			<img ng-src="{{averageRank.Img}}" style="height: 35px;" alt="Average Rank for this Match: {{averageRank.Abbreviation}}"/>
+	<div class="ob-match-detail-banner">
+		<div class="ob-match-detail-heading">
+			<div>
+				<img ng-src="{{mapInfo.medIconUrl}}"/>
 			</div>
+			<div>		
+				<h1>Match Detail for {{playerData.Name}}</h1>
+				<h2 style="margin-top: 0px;">{{mapInfo.prettyName}}</h2>
+				<div>{{demoFileMetadata.Created | date : 'short'}}</div>
+				<div style="padding-top: 5px;">
+				<img ng-src="{{averageRank.Img}}" style="height: 35px;" alt="Average Rank for this Match: {{averageRank.Abbreviation}}"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="ob-round-graph-container">
+			<round-breakdown player-data="playerData"></round-breakdown>
 		</div>
 	</div>
 
 	<toaster-container></toaster-container>
 	<!--<h2>{{corroboratorCount}} Corroborators</h2>-->
-
-	<div class="ob-round-graph-container">
-		<round-breakdown player-data="playerData"></round-breakdown>
-	</div>
 
 	<table class="ob-table" ng-if="matchdata">
 

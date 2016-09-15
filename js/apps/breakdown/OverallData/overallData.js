@@ -40,6 +40,7 @@ breakdownControllers.controller('OverallDataController', [
 
 			$scope.matchdata = response;
 			$scope.playerName = $scope.matchdata[$scope.matchdata.length - 1].name;
+			$scope.rank = $scope.matchdata[$scope.matchdata.length - 1].finalRank;
 
 			var last5Matches = $scope.matchdata.slice(-5).reverse();
 
