@@ -1,9 +1,11 @@
 <% if (user) { %>
 <div id="ob-feedback-form-container" class="closed">
 	<script type="text/javascript">
-		angular.element(document).ready(function() {
-			var feedbackForm = document.getElementById('ob-feedback-form');
-			angular.bootstrap(feedbackForm, ['feedbackApp']);
+		waitForAngular(function() {
+			angular.element(document).ready(function() {
+				var feedbackForm = document.getElementById('ob-feedback-form');
+				angular.bootstrap(feedbackForm, ['feedbackApp']);
+			});
 		});
 	</script>
 	<div id="ob-feedback-toggle">
@@ -77,3 +79,7 @@
 			</div>
 		</div>
 </footer>
+
+
+<script type="text/javascript" src="/js/lib/lib.js"></script>
+<script type="text/javascript" src="/js/opBDglobal.js"></script>

@@ -4,10 +4,11 @@ breakdownControllers.controller('MatchDetailController',  [
 	'$scope', 
 	'$location',
 	'$route',
+	'$timeout',
 	'matchData',
 	'Ranks',
 	'Maps',
-	function($scope, $location, $route, matchData, Ranks, Maps) {
+	function($scope, $location, $route, $timeout, matchData, Ranks, Maps) {
 		var matchId = $route.current.params.matchId;
 
 		$scope.demoFileMetadata = {};
@@ -24,6 +25,10 @@ breakdownControllers.controller('MatchDetailController',  [
 			$scope.breakdownMetadata = response.data.breakdownMetadata;
 			$scope.corroboratorCount = response.data.breakdownMetadata.corroborators.length;
 			$scope.mapInfo = Maps.GetMapData($scope.matchMetadata.MapName);
+
+			$timeout(function() {
+				$scope.screenshot = $scope.mapInfo.screenshot
+			},0);
 
 			matchData.getMatchSummary($scope.breakdownMetadata.breakdownMatchId).then(function(data) {
 				

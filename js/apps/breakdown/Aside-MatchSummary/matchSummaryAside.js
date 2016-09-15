@@ -1,13 +1,13 @@
 var breakdownDirectives = angular.module('breakdownDirectives');
 
-breakdownDirectives.directive('matchSummaryAside', ['Maps', function(Maps) {
+breakdownDirectives.directive('matchSummaryAside', ['$http', 'Maps', '$window', function($http, Maps, $window) {
 
 	var link = function(scope, elem, attrs) {
-        mapInfo = Maps.GetMapData(scope.map);
-        scope.mapName = mapInfo ? mapInfo.prettyName : "";
-        scope.mapIcon = mapInfo ? mapInfo.medIconUrl : "";
+        scope.mapInfo = Maps.GetMapData(scope.map);
+        scope.mapName = scope.mapInfo ? scope.mapInfo.prettyName : "";
+        scope.mapIcon = scope.mapInfo ? scope.mapInfo.medIconUrl : "";
 
-        scope.goToMatch = function() {
+        scope.goToMatch = function() {         
             window.location.href ="#/MatchData/" + scope.matchId;
         };
     };

@@ -26,7 +26,10 @@ breakdownApp.controller('breakdownAppController', [
 	'$scope',
 	'userData',
 	'$location',
-	function($scope, userData, $location) {
+	'$timeout',
+	'$templateCache', 
+	'$http',
+	function($scope, userData, $location, $timeout, $templateCache, $http) {
 
 		var matches = $location.absUrl().match(/\/User\/(\d+)/);
 
@@ -37,6 +40,17 @@ breakdownApp.controller('breakdownAppController', [
 				$scope.userInfo = response.data;
 			});
 		}
+
+		$timeout(function() {
+			var overlay = document.getElementById('loadingOverlay');
+			overlay.style.display = "none";
+
+			var basePath = '/ng-partials/breakdown';
+
+			$http.get(basePath + '/MatchData/matchData.html', { cache: $templateCache });
+			$http.get(basePath + '/MatchDetail/matchDetail.html', { cache: $templateCache });
+			$http.get(basePath + '/Friends/friends.html', { cache: $templateCache });
+		}, 0);
 	}
 ]);
 

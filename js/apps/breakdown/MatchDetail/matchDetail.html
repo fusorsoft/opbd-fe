@@ -1,16 +1,9 @@
 <div class="ob-match-detail-container">
 
-<style ng-if="mapInfo.screenshot">
+<style ng-if="screenshot">
 
 #breakdownContent {
-	background-image: url({{mapInfo.screenshot}});
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-color: inherit;
-}
-
-#breakdownContent >div:not(:first-child) {
-	background-color: rgba(255, 255, 255, 0.3);
+	background-image: url({{screenshot}});
 }
 
 </style>
