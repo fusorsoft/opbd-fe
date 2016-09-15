@@ -25,44 +25,12 @@
 	}
 }
 
-
 #content {
 	width: 100%;
 	margin-top: 0px;
 	padding-bottom: 0px;
 	background-color: white;
 	position:relative;
-}
-
-ul.ob-matchdata-nav {
-	list-style-type: none !important;
-	display:flex;
-
-	li {
-
-		&:first-child {
-			&:hover {
-				background-color: inherit;
-			}
-		}
-
-		margin-left: 0px !important;
-		border-right: 1px dotted gray;
-		padding: 0 2em;
-
-
-		&:hover {
-			background-color: rgba(0,0,0,0.4);
-		}
-
-		a {
-			display: block;
-			color: #cecece;
-			line-height: 35px;
-			padding: 1em 1em;
-			text-decoration: none;
-		}
-	}
 }
 
 .ob-map-breakdown {

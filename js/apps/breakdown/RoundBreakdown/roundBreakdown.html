@@ -1,16 +1,42 @@
-<div class="ob-round-breakdown">
-	<div data-ng-repeat="(key, value) in roundData | toArray:true | orderBy: $key">
-		<div data-ng-class="getRoundBreakdownCellClass(value.Team, value.Outcome)">
-			<div data-ng-repeat="i in range(value.DamageData.Kills) track by $index">
-				<i class="fa fa-times" aria-hidden="true"></i>
+<div>
+	<div class="ob-match-banner">
+		<div style="flex-grow: 1" ng-style="playerData.RoundData['1'].Team === 'T' ? { color: '#FFE066'} : { color: '#0099FF' } ">
+			<div ng-if="playerData.RoundData['1'].Team === 'T'">
+				{{playerData.TWins}} : {{playerData.TRoundsPlayed - playerData.TWins}}
 			</div>
-			<div data-ng-if="value.MVP">
-				<i class="fa fa-star" aria-hidden="true"></i>
+			<div ng-if="playerData.RoundData['1'].Team === 'CT'">
+				{{playerData.CTWins}} : {{playerData.CTRoundsPlayed - playerData.CTWins}}
 			</div>
 		</div>
-		<div data-ng-class="value.DeathInfo &amp;&amp; value.Outcome === 'Loss' ? 'died' : ''">
-			<i class="fa fa-times" aria-hidden="true" ng-if="value.DeathInfo"></i>
+		<div ng-style="(playerData.TotalRoundsPlayed - playerData.TotalWins) > playerData.TotalWins ? {color: 'red'} : {color: 'green'} ">
+			<div style="font-size: 1.5em;">
+				{{playerData.TotalWins}} : {{playerData.TotalRoundsPlayed - playerData.TotalWins}}
+			</div>
 		</div>
-		<div>{{value.$key}}</div>
+		<div style="flex-grow: 1; text-align: right;" ng-style="playerData.RoundData['1'].Team === 'T' ? { color: '#06C' } : { color: '#FFE066'} ">
+			<div ng-if="playerData.RoundData['1'].Team === 'CT'">
+				{{playerData.TWins}} : {{playerData.TRoundsPlayed - playerData.TWins}}
+			</div>
+			<div ng-if="playerData.RoundData['1'].Team === 'T'">
+				{{playerData.CTWins}} : {{playerData.CTRoundsPlayed - playerData.CTWins}}
+			</div>
+		</div>
+	</div>
+	
+	<div class="ob-round-breakdown">
+		<div data-ng-repeat="(key, value) in playerData.RoundData | toArray:true | orderBy: $key">
+			<div data-ng-class="getRoundBreakdownCellClass(value.Team, value.Outcome)">
+				<div data-ng-repeat="i in range(value.DamageData.Kills) track by $index">
+					<i class="fa fa-times" aria-hidden="true"></i>
+				</div>
+				<div data-ng-if="value.MVP">
+					<i class="fa fa-star" aria-hidden="true"></i>
+				</div>
+			</div>
+			<div data-ng-class="value.DeathInfo &amp;&amp; value.Outcome === 'Loss' ? 'died' : ''">
+				<i class="fa fa-times" aria-hidden="true" ng-if="value.DeathInfo"></i>
+			</div>
+			<div>{{value.$key}}</div>
+		</div>
 	</div>
 </div>

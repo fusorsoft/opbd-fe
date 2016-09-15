@@ -5,12 +5,6 @@ breakdownDirectives.directive('roundBreakdown', function() {
 
 	var controller = ['$scope', function ($scope) {
 
-		function init() {
-			$scope.items = angular.copy($scope.datasource);
-		}
-
-		init();
-
 		$scope.range = function(n) {
 			return new Array(n);
 		};
@@ -32,7 +26,7 @@ breakdownDirectives.directive('roundBreakdown', function() {
 		restrict: 'E',
 		replace: 'true',
 		scope: {
-			roundData: '=roundData'
+			playerData: '=playerData'
 		},
 		controller: controller,
 		templateUrl: '/ng-partials/breakdown/RoundBreakdown/roundBreakdown.html'

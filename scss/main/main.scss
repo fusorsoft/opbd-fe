@@ -3,32 +3,22 @@
 @import 'mixins';
 @import 'colors';
 @import 'headings';
-@import 'fonts';
 @import 'header';
 @import 'globalNav';
-@import 'loginFlyout';
-@import 'userActionsMenu';
 @import 'content';
 @import 'footer';
 @import 'forms';
 @import 'tables';
-@import 'lib/pure-styles';
 @import 'lib/css-lib';
 @import 'chart';
-@import 'bodyDamageChart';
 @import 'textDecorations';
 @import 'layouts';
 @import 'flashMessages';
 @import 'ads';
-@import 'feedbackFlyout';
-@import 'matchSummaryAside';
-@import 'killFeed';
 @import 'tooltips';
-@import 'signin';
-@import 'matchDetail';
-@import 'timeChart';
 @import 'loadingOverlay';
-@import 'beta';
+@import 'signin';
+@import '../../js/**/*.scss';
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
@@ -148,67 +138,6 @@ dl.ob-def-list {
   @include transform-rotate(90deg);
 }
 
-.ob-match-outcome {
-
-	padding: 3px;
-	width: 55px;
-	display: block;
-	text-align: center;
-	font-weight: bold;
-	border: 1px solid;
-
-	&.ob-loss {
-		color: #D8000C;
-		background-color: #FFBABA;
-	}
-
-	&.ob-win {
-		color: #4F8A10;
-		background-color: #DFF2BF;
-	}
-
-	&.ob-draw {
-		color: #9F6000;
-		background-color: #FEEFB3;
-	}
-}
-
-// Extending classes from purecss.io to remove dependency in markup....
-
-.ob-form-aligned {
-	@extend .pure-form;
-	@extend .pure-form-aligned;
-	fieldset {
-		display: inline-block;
-	}
-}
-
-.ob-controls {
-	@extend .pure-controls;
-}
-
-.ob-control-group {
-	@extend .pure-control-group;
-}
-
-.ob-form-stacked {
-	@extend .pure-form;
-	@extend .pure-form-stacked;
-}
-
-.ob-button {
-	@extend .pure-button;
-}
-
-.ob-button-primary {
-	@extend .pure-button;
-	@extend .pure-button-primary;
-
-	&:visited {
-		color: inherit
-	}
-}
-
 em {
 	font-style: italic;
 }
@@ -216,7 +145,6 @@ em {
 strong {
 	font-weight: bold;
 }
-
 
 .ob-body {
 	flex-grow: 2;
@@ -244,28 +172,4 @@ strong {
 			border-left: none;
 		}
 	}
-}
-
-.ob-error-notification {
-	color: #d8000c; 
-	background-color: #ffbaba; 
-	border: 1px solid #d8000c; 
-	padding:5px; 
-	margin-bottom: 10px;
-}
-
-.ob-warning-notification {
-	color: #9f6000; 
-	background-color: #feefb3; 
-	border: 1px solid #9f6000; 
-	padding:5px; 
-	margin-bottom: 10px;
-}
-
-.ob-information-notification {
-	color: #00529B; 
-	background-color: #BDE5F8; 
-	border: 1px solid #00529B; 
-	padding:5px; 
-	margin-bottom: 10px;
 }

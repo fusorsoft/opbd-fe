@@ -27,7 +27,7 @@ breakdownControllers.controller('MatchDetailController',  [
 			$scope.mapInfo = Maps.GetMapData($scope.matchMetadata.MapName);
 
 			$timeout(function() {
-				$scope.screenshot = $scope.mapInfo.screenshot
+				$scope.screenshot = $scope.mapInfo.screenshot;
 			},0);
 
 			matchData.getMatchSummary($scope.breakdownMetadata.breakdownMatchId).then(function(data) {

@@ -1,3 +1,5 @@
+@import 'lib/pure-styles';
+
 form legend.obLegend {
 	border-bottom: 1px solid gray;
 	font-size: 2em;
@@ -9,4 +11,40 @@ form legend.obLegend {
 	background-color: #f99 !important;
 	border-color: #f44 !important;
 	color: #f44 !important;
+}
+
+// Extending classes from purecss.io to remove dependency in markup....
+
+.ob-form-aligned {
+	@extend .pure-form;
+	@extend .pure-form-aligned;
+	fieldset {
+		display: inline-block;
+	}
+}
+
+.ob-controls {
+	@extend .pure-controls;
+}
+
+.ob-control-group {
+	@extend .pure-control-group;
+}
+
+.ob-form-stacked {
+	@extend .pure-form;
+	@extend .pure-form-stacked;
+}
+
+.ob-button {
+	@extend .pure-button;
+}
+
+.ob-button-primary {
+	@extend .pure-button;
+	@extend .pure-button-primary;
+
+	&:visited {
+		color: inherit
+	}
 }
