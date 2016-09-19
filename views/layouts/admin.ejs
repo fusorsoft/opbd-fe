@@ -19,14 +19,12 @@
 
 	<div id="content">
 		<div data-ng-app="adminApp" id="breakdownContent">
-			<div class="left">
+			<div class="breakdown-banner">
 				<ng-include src="'/ng-partials/admin/Navigation/adminNav.html'"/>
 			</div>
 
-			<div class="right">
-				<div data-ng-view></div>
-			</div>
-			
+			<div data-ng-view></div>
+						
 			<toaster-container></toaster-container>
 		</div> 
 	</div>

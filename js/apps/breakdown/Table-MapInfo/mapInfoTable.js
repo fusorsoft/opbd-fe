@@ -28,14 +28,15 @@ breakdownDirectives.directive('mapInfoTable', ['$timeout', function($timeout) {
 	};
 }]);
 
-breakdownDirectives.directive('mapSummaryRow', ['Maps', function(Maps) {
+breakdownDirectives.directive('mapSummaryRow', ['$document', 'Maps', function($document, Maps) {
 
 	var link = function(scope, elem, attrs) {
 
 		elem.on('click', function() {		
 			if (scope.visible !== "false") {
 				// something something digest loop causing logic to be inverted....
-				$('body').animate({scrollTop: elem.offset().top}, 'slow');
+				$document.scrollTo(elem, 0, 500);
+				//$('body').animate({scrollTop: elem.offset().top}, 'slow');
 			}
 		});
 

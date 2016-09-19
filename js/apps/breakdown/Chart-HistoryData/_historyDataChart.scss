@@ -52,6 +52,7 @@
 					cursor: inherit;
 					background-color: $backgroundColor;
 					border: 1px solid $borderColor;
+					border-radius: 5px 0 0 5px;
 					border-right: none;
 					&:hover {
 						background-color: $backgroundColor;

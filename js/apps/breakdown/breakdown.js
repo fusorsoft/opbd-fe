@@ -8,6 +8,7 @@ var breakdownDirectives = angular.module('breakdownDirectives',
 	'csgoData', 
 	'dataAccess',
 	'720kb.tooltips',
+	'duScroll',
 	]);
 
 var breakdownControllers = angular.module('breakdownAppControllers', 
