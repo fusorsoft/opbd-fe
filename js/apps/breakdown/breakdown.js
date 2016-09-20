@@ -18,7 +18,8 @@ var breakdownControllers = angular.module('breakdownAppControllers',
 	'breakdownDirectives', 
 	'csgoData',
 	'dataAccess',
-	'utils'
+	'utils',
+	'ngSanitize'
 	]);
 
 var breakdownApp = angular.module('breakdownApp', ['ngRoute', 'breakdownAppControllers']);

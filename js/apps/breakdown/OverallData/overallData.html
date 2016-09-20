@@ -2,6 +2,10 @@
 
 <div>
 
+	<div class="ob-warning-notification" ng-if="warningMessage">
+		<i class="fa fa-exclamation-circle" aria-hidden="true"></i> <span ng-bind-html="warningMessage"></span>
+	</div>
+
 	<div class="ob-overall-banner">
 		<h1>Overall Data for {{playerName}}</h1>
 		<div>

@@ -6,8 +6,9 @@ breakdownControllers.controller('OverallDataController', [
 	'$filter',
 	'$location',
 	'$window',
+	'$sce',
 	'matchData',
-	function($scope, $routeParams, $filter, $location, $window, matchData) {
+	function($scope, $routeParams, $filter, $location, $window, $sce, matchData) {
 
 		$scope.matchdata = [];
 
@@ -37,6 +38,18 @@ breakdownControllers.controller('OverallDataController', [
 			that it really needed it...
 
 			*/
+
+			if(response.length === 0) {
+				if ($window._obContextInfo.currentUserSteamId === userId) {
+					// current logged in user viewing their own data
+					$scope.warningMessage = "You don't have any data!  <a href='/Client'>Get The Client</a> and get started!";
+				} else {
+					// no data for user being viewed, but it's not the current user
+					$scope.warningMessage = "This user has no data.  If you played with this user, <a href='/Client'>Get The Client</a> and help them out.";
+				}
+
+				return;
+			}
 
 			$scope.matchdata = response;
 			$scope.playerName = $scope.matchdata[$scope.matchdata.length - 1].name;
