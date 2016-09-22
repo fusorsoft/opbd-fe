@@ -1,0 +1,78 @@
+.ob-friends-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  a.ob-friend-name {
+    font-size: 1.2em;
+  }
+
+  .container {
+    padding: 5px;
+  }
+
+  .ob-image-container img {
+    height: 64px;
+    width: 64px;
+  }
+
+  >div {
+    border: 1px solid #cecece;
+    padding: 5px;
+    margin: 10px;
+    width: 250px;
+    background-color: rgba(255,255,255,0.8);
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255,255,255,0.3);
+    }
+
+    >div:first-child {
+    	display: flex;
+    	font-weight: bold;
+    	font-size: 1.5em;
+    	color: #54606d;
+    }
+
+    >div:last-child {
+    	display: flex; 
+    	margin-top: 15px
+    }
+  }
+
+  dl {
+    //width: 140px;
+
+    dt {
+      font-weight: bold;
+      float: left;
+      clear: left;
+      width: 110px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    dd {
+      //width: 30px;
+      padding-left: 0.5em;
+      margin-left: 115px;
+    }
+    
+  }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-friends-container {
+		display: block;
+
+		> div {
+			margin: 1em auto;
+			width: auto;
+
+			>div:last-child {
+				justify-content: space-around;
+			}
+		}
+	}
+}

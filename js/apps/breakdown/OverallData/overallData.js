@@ -16,7 +16,7 @@ breakdownControllers.controller('OverallDataController', [
 
 		var dummyMatches = [];
 
-		for (var i = 0; i < 5; i++) {
+		for (var i = 0; i < 4; i++) {
 			dummyMatches.push({
 				totalRoundWins: 0,
 				totalRoundsPlayed: 0,

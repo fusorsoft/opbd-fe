@@ -26,3 +26,13 @@
 		}
 	}
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-weapon-info-table {
+		th, td {
+			&:first-child, &:nth-child(5), &:nth-child(6), &:nth-child(7) {
+				display: none;
+			}
+		}
+	}
+}

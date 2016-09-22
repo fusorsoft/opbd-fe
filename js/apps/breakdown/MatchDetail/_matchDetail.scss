@@ -46,3 +46,49 @@
 	color: rgba(255,255,255,0.5);
 	border: 1px solid #cecece;
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-match-detail-banner {
+		display: block;
+	}
+
+	.ob-match-detail-heading {
+		margin-right: 0;
+		margin-bottom: 1em;
+		position: relative;
+
+		>div:last-child {
+			width: 100%;
+		}
+
+		>div {
+			padding-top:5em !important;
+		}
+
+		h1 {
+			position: absolute;
+			top: 0.2em;
+			left: 1em;
+		}
+	}
+
+	.ob-match-detail-container > div {
+		padding: 1em;
+	}
+
+	.ob-scoreboard {
+		th, td {
+			&:nth-child(3), &:nth-child(4) {
+				display: none;
+			}
+		}
+
+		img {
+			width: 25%;
+		}
+	}
+
+	.ob-chart-container {
+		margin: 1em auto;
+	}
+}

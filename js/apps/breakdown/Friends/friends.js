@@ -11,6 +11,9 @@ angular.module('breakdownAppControllers').controller('FriendsController', [
 
 		var userId = $location.absUrl().match(/\/User\/(\d+)\#/)[1];
 
+		var _obContextInfo = $window._obContextInfo;
+		$scope.deletable = _obContextInfo && _obContextInfo.currentUserSteamId && _obContextInfo.currentUserSteamId === _obContextInfo.userSteamId;
+
 		$scope.removeFriend = function(friendId) {
 			var friendName = $scope.friends[friendId].username;
 

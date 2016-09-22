@@ -1,0 +1,41 @@
+.ob-round-info-table {
+	.ob-detail-container {
+		display: flex;
+	}
+
+	.ob-kill-map-container {
+		width: 835px;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-round-info-table {
+
+		width: auto;
+
+		th, td {
+			&:nth-child(4), &:nth-child(6), &:nth-child(7), &:nth-child(8) {
+				display: none;
+			}
+		}
+
+		.ob-kill-map-container {
+			 width: auto;
+			 text-align: center;
+
+			canvas {
+				width: 100%;
+				margin: 0 auto;
+			}
+		}
+
+		tr.visible div.ob-detail-container {
+			display: block;
+
+			.ob-kill-feed {
+				min-width: auto;
+				max-width: none;
+			}
+		}
+	}
+}

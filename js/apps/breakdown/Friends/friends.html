@@ -9,16 +9,16 @@
 
 	<div class="ob-friends-container">
 		<div ng-repeat="(key, value) in friends" ng-click="goToFriend(value.steamID)">
-			<div style="display: flex">
+			<div>
 				<div>
 					<span class="ob-friend-name">{{value.username}}</a>
 				</div>
 				<div style="text-align: right; flex: 1; font-size: 1.2em; padding-right: 5px;">
-					<i class="fa fa-trash-o" style="cursor: pointer" aria-hidden="true" ng-click="removeFriend(key); $event.stopPropagation();"></i>
+					<i class="fa fa-trash-o" style="cursor: pointer" aria-hidden="true" ng-click="removeFriend(key); $event.stopPropagation();" ng-if="deletable"></i>
 				</div>
 			</div>
 			
-			<div style="display: flex; margin-top: 15px">
+			<div>
 				<div class="ob-image-container container">
 					<img src="{{value.avatarMedium}}" ng-if="value.avatarMedium"/>
 					<img src="/assets/images/ctlogo64.png" ng-if="!value.avatarMedium"/>

@@ -5,10 +5,11 @@ breakdownControllers.controller('MatchDetailController',  [
 	'$location',
 	'$route',
 	'$timeout',
+	'$window',
 	'matchData',
 	'Ranks',
 	'Maps',
-	function($scope, $location, $route, $timeout, matchData, Ranks, Maps) {
+	function($scope, $location, $route, $timeout, $window, matchData, Ranks, Maps) {
 		var matchId = $route.current.params.matchId;
 
 		$scope.demoFileMetadata = {};

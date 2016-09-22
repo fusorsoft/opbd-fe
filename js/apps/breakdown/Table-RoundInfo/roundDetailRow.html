@@ -1,6 +1,6 @@
 <tr>
 	<td colspan="7">
-		<div class="ob-detail-container" style="display: flex">
+		<div class="ob-detail-container">
 			<div class="ob-kill-feed">
 
 				<h3>You were playing as {{roundData.Team}}</h3>
@@ -36,11 +36,13 @@
 					</dl>
 				</div>
 			</div>
+			
 			<div>
-				<div style="width: 835px;">
+				<div class="ob-kill-map-container">
 					<kill-death-map kill-data="selectedKill" team="{{roundData.Team}}" map="{{map}}"/>
 				</div>
 			</div>
+
 		</div>
 	</td>
 </tr>

@@ -29,9 +29,9 @@
 				<div data-ng-repeat="i in range(value.DamageData.Kills) track by $index">
 					<i class="fa fa-times" aria-hidden="true"></i>
 				</div>
-				<div data-ng-if="value.MVP">
-					<i class="fa fa-star" aria-hidden="true"></i>
-				</div>
+			</div>
+			<div>
+				<i data-ng-if="value.MVP" class="fa fa-star" aria-hidden="true"></i>
 			</div>
 			<div data-ng-class="value.DeathInfo &amp;&amp; value.Outcome === 'Loss' ? 'died' : ''">
 				<i class="fa fa-times" aria-hidden="true" ng-if="value.DeathInfo"></i>

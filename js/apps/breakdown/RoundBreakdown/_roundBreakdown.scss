@@ -31,6 +31,7 @@
 		}
 
 		>div:first-child {
+			// kills
 			height: 85px;
 			display: flex;
 			flex-direction: column;
@@ -45,11 +46,86 @@
 			}
 		}
 
-		>div:nth-child(2) {
+		>div:nth-child(3) {
+			//death
 			height: 20px;
 			margin-top: 10px;
 			&.died {
 				background: linear-gradient(to top, transparent, $deathCellColor)
+			}
+		}
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+	.ob-match-banner {
+		align-items: center;
+	}
+
+	.ob-round-breakdown {
+		flex-direction: column;
+		font-size: 1.5em;
+
+		>div {
+			width: 100%;
+			display: flex;
+			margin-bottom: 0.5em;
+
+			>div:nth-child(4) {
+				// round number cell
+				order: 0;
+				width: 2em;
+			}
+
+			>div:nth-child(3) {
+				// death cell
+				height: auto;
+				margin-top: auto;
+				order: 1;
+				width: 1.5em;
+				margin-right: 0.5em;
+
+				&.died {
+					background: linear-gradient(to right, transparent, #f44);
+				}
+
+			}
+
+			>div:nth-child(2) {
+				// mvp cell
+				order: 2;
+				height: auto;
+				margin-top: auto;
+				width: 0;
+				.fa-star {
+					position: absolute;
+					right: auto;
+					bottom: 0.3em;
+					left: -0.9em;
+					font-size: 0.8em;
+				}
+			}
+
+			>div:first-child {
+				// kills scell
+				height: auto;
+				flex-direction: row;
+				justify-content: flex-start;
+				order: 3;
+				flex-grow: 1;
+
+				>div {
+					width: 1.5em;
+				}
+
+				&.ctWin {
+					background: linear-gradient(to left, transparent, #557096);
+				}
+
+				&.tWin {
+					background: linear-gradient(to left, transparent, #8e7140);
+				}
 			}
 		}
 	}

@@ -22,3 +22,21 @@
 		background-color: #FEEFB3;
 	}
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-chart-fullwidth {
+		display: none;
+	}
+
+	.ob-match-list-table {
+		th,td {
+			&:nth-child(5), &:nth-child(6) {
+				display: none;
+			}
+		}
+
+		img {
+			width: 35%;
+		}
+	}
+}

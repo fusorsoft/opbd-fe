@@ -1,8 +1,10 @@
 var breakdownDirectives = angular.module('breakdownDirectives');
 
-breakdownDirectives.directive('userLink', ['toaster', 'userData', function(toaster, userData) {
+breakdownDirectives.directive('userLink', ['$window', 'toaster', 'userData', function($window, toaster, userData) {
 
 	var link = function(scope, elem, attrs) {
+
+		scope.loggedIn = $window._obContextInfo.currentUserSteamId ? true : false;
 
 		if (scope.matchId) {
 			scope.userLink = "/User/" + scope.steamId + '#/MatchData/' + scope.matchId;
