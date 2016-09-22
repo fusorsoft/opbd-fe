@@ -38,3 +38,36 @@
 		border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 	}
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-scroll-container {
+		overflow-y: scroll;
+
+		>div {
+			-webkit-overflow-scrolling: touch;
+		}
+	}
+
+	.ob-breakdown-container {
+		>div {
+			padding: 1em;
+		}
+	}
+
+	#breakdownContent {
+
+		.breakdown-banner {
+			position: fixed;
+			z-index: 1000;
+			padding: 0;
+			width: 100%;
+			bottom: 0px;
+			-webkit-transfrom: translateZ(10px);
+		}
+	}
+
+	footer {
+		padding-bottom: 5em; // push for toolbar
+		z-index: 1;
+	}
+}

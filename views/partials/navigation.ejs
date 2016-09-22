@@ -1,5 +1,6 @@
 <nav>
-	<ul>
+	<button class="hamburger" id="ob-global-nav-toggle">&#9776;</button>
+	<ul id="globalNavigation" class="ob-fadeOut">
 		<li><a href="/">Home</a></li>
 		<li><a href="/news">News</a></li>
 		<li><a href="/about">About</a></li>
@@ -10,15 +11,14 @@
 		<% if (user && user.roles.indexOf('admin') > -1) { %>
 		<li><a href="/Admin">Admin</a></li>
 		<% } %>
-		<li>
-			<% if (user) { %>
-				<a id="userActionsToggle"><%= user.username %> <i class='fa fa-chevron-down'></i></a>
-				<% include userActionsMenu %>
-			<% } else { %>
-				<div class="steamLogin">
-					<a href="/User/Login/Steam" class="ob-nav-signin"><img src="/assets/images/sits_small.png"/></a>
-				</div>
-			<% } %>
-		</li>
 	</ul>
+
+	<% if (user) { %>
+		<a id="userActionsToggle"><%= user.username %> <i class='fa fa-chevron-down'></i></a>
+		<% include userActionsMenu %>
+	<% } else { %>
+		<div class="steamLogin">
+			<a href="/User/Login/Steam" class="ob-nav-signin"><img src="/assets/images/sits_small.png"/></a>
+		</div>
+	<% } %>
 </nav>

@@ -1,6 +1,21 @@
 <ul class="ob-matchdata-nav">
 	<li><h1><img ng-src="{{userInfo.avatar}}" style="float: left; margin-right: 10px;"/> {{userInfo.username}}</h1></li>
-	<li><a href="#/OverallData">Overall</a></li>
-	<li><a href="#/MatchData">Matches</a></li>
-	<li><a href="#/Friends">{{userInfo.username}}'s Friends</a></li>
+	<li>
+		<a href="#/OverallData">
+			<i class="fa fa-area-chart" aria-hidden="true"></i>
+			Overall
+		</a>
+	</li>
+	<li>
+		<a href="#/MatchData">
+			<i class="fa fa-list" aria-hidden="true"></i>
+			Matches
+		</a>
+	</li>
+	<li>
+		<a href="#/Friends">
+			<i class="fa fa-users" aria-hidden="true"></i>
+			{{userInfo.username}}'s Friends
+		</a>
+	</li>
 </ul>

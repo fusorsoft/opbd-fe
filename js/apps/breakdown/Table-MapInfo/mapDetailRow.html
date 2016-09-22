@@ -1,7 +1,7 @@
 <tr>
 	<td colspan="7">
-		<div class="ob-detail-container" style="display:flex">
-			<div style="width:25%; padding-top: 1em;">
+		<div class="ob-detail-container">
+			<div class="ob-map-detail-header">
 				<div style="text-align: center">
 					<img ng-src="{{::mapIcon}}" ng-if="mapIcon"/>
 				</div>
@@ -9,7 +9,7 @@
 				<aggregate-map-data-chart map-data="mapData.historyData" chart-title="Win / Loss / Draw" ng-if="mapData.historyData"/>
 			</div>
 
-			<div class="ob-overall-stats-container" style="width:75%">
+			<div class="ob-overall-stats-container">
 				<dl class="ob-list-side-by-side" ng-if="mapData">
 					<dt>Total Kills</dt>
 					<dd>{{totals.kills}}</dd>

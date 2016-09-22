@@ -170,6 +170,50 @@ strong {
 
 		&:last-child {
 			border-left: none;
+			width: 25%;
+		}
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+	header {
+		height: 10em;
+		padding: 2em;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.ob-content {
+		padding: 0.5em;
+
+		flex-direction: column;
+
+		>div:first-child {
+			order: 2;
+			border-top: 0;
+			padding-top: 0.5em;
+		}
+
+		>div:last-child {
+			order: 1;
+			width: 100%;
+			border-left: 1px solid #cecece;
+			border-right: 1px solid #cecece;
+			border-top: 1px solid #cecece;
+			border-bottom: 0;
+			padding: 0.5em;
+		}
+	}
+
+	footer {
+		flex-direction: column;
+		text-align: center;
+
+		h3 {
+			text-align: center;
 		}
 	}
 }

@@ -2,10 +2,6 @@
 	display: flex; 
 	justify-content: space-between; 
 	flex-wrap: wrap;
-
-	>div {
-		flex-basis: 19%;
-	}
 }
 
 .ob-match-summary-aside {
@@ -39,5 +35,24 @@
 
 	.fa-trophy {
 		color: LimeGreen;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+	.ob-match-summary-aside {
+		margin-bottom: 0.5em;
+		flex-direction: column;
+
+
+		>div:first-child {
+			min-width: auto;
+			padding-bottom: 0;
+			margin-bottom: 0;
+		}
+
+		> div {
+			text-align: center;
+		}
 	}
 }

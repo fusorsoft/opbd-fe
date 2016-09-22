@@ -5,8 +5,14 @@ nav {
 	width: 100%;
 	margin:0 auto;
 
+	.hamburger {
+		display: none;
+	}
+
 	>ul {
 		display: flex;
+		width: 50%;
+		float: left;
 
 		>li {
 			 
@@ -28,16 +34,48 @@ nav {
 					background-color: inherit !important;
 				}
 			}
-
-			&:last-child {
-				// push the last child to the right (user dropdown)
-				margin-left: auto;
-			}
 		}
 	}
 
 	.steamLogin {
 		padding-top: 9px;
 		padding-right: 9px;
+		display: inline-block;
+		float: right;
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	nav .hamburger {
+		display: inline-block;
+		background: none;
+		border: 1px solid #cecece;
+		border-radius: 2px;
+		margin: 0.2em;
+		font-size: 1.2em;
+
+		~ul {
+			position: absolute;
+			z-index: 10;
+			//visibility: hidden;
+			display: block;
+			background-color: #1d1f20;
+
+			a {
+				color: #eee;
+			}
+
+			&.visible {
+				//visibility: visible;
+			}
+
+			li {
+				border-bottom: 1px dotted #cecece;
+
+				&:last-child {
+					border-bottom: 0;
+				}
+			}
+		}
 	}
 }

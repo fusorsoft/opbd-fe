@@ -23,8 +23,11 @@
 		font-size: 1.2em;
 		font-weight: bold;
 	}
+}
 
-	&:last-child {
-		margin-right: 0;
-	}	
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+	// .ob-top-user {
+	// 	flex-direction: column
+	// }
 }

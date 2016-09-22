@@ -23,74 +23,96 @@
 	</style>
 </head>
 <body>
+	<!-- safari is the new IE.... -->
+	<div class="ob-scroll-container">
 
-	<div class="ob-home">
-		<% include ../partials/navigation %>
+		<div class="ob-home">
+			<% include ../partials/navigation %>
 
-		<header>
-			<img src="/assets/images/opbreakdownlogo-horizontal.png"/>
-		</header>
+			<header>
+				<img src="/assets/images/opbreakdownlogo-horizontal.png"/>
+			</header>
 
-		<%- body %>
+			<%- body %>
 
-	</div>
-
-	<div id="content">
-		<div id="loadingOverlay" class="ob-loading-overlay">
-			<img src="/assets/images/ajax-loader.gif"/>
-			<div><strong>Loading...</strong></div>
 		</div>
 
-		<div id="breakdownContent" data-ng-controller="breakdownAppController">
-			<div class="breakdown-banner">
-				<ng-include src="'/ng-partials/breakdown/Navigation/breakdownNav.html'"/>
+		<div id="content">
+			<div id="loadingOverlay" class="ob-loading-overlay">
+				<img src="/assets/images/ajax-loader.gif"/>
+				<div><strong>Loading...</strong></div>
 			</div>
 
-			<div class="ob-horizontal-ad-container">
-				<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:728px;height:90px"
-				     data-ad-client="ca-pub-5941170862103259"
-				     data-ad-slot="5488228125"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
-			</div>
-	
-			<div data-ng-view></div>
+			<div id="breakdownContent" data-ng-controller="breakdownAppController">
+				<div class="breakdown-banner">
+					<ng-include src="'/ng-partials/breakdown/Navigation/breakdownNav.html'"/>
+				</div>
 
-			<div class="ob-horizontal-ad-container">
-				<!-- Large Horizontal -->
-				<ins class="adsbygoogle"
-				     style="display:inline-block;width:970px;height:90px"
-				     data-ad-client="ca-pub-5941170862103259"
-				     data-ad-slot="5986446524"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
-			</div>
-		</div> 
-	</div>
+				<div class="ob-horizontal-ad-container">
+					<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Responsive Ad 1 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="3636265725"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					<!--<ins class="adsbygoogle"
+					     style="display:inline-block;width:728px;height:90px"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="5488228125"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>-->
+				</div>
+		
+				<div data-ng-view></div>
 
-	<script type="text/javascript">
-		// (function() {
-		// 	
-		// 	overlay.style.backgroundColor = "red";
-		// })();
+				<div class="ob-horizontal-ad-container">
+					<!-- Large Horizontal -->
+					<!-- Responsive Ad 1 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="3636265725"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					<!--<ins class="adsbygoogle"
+					     style="display:inline-block;width:970px;height:90px"
+					     data-ad-client="ca-pub-5941170862103259"
+					     data-ad-slot="5986446524"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>-->
+				</div>
+			</div> 
+		</div>
 
-		waitForAngular(function() {
+		<script type="text/javascript">
+			// (function() {
+			// 	
+			// 	overlay.style.backgroundColor = "red";
+			// })();
 
-			e = document.createElement('script');
-			e.setAttribute('src', '/js/opBDbreakdown.js');
-			document.head.appendChild(e);
+			waitForAngular(function() {
 
-			angular.element(document).ready(function() {
-				var breakdownApp = document.getElementById('breakdownContent');
-				angular.bootstrap(breakdownApp, ['breakdownApp']);
+				e = document.createElement('script');
+				e.setAttribute('src', '/js/opBDbreakdown.js');
+				document.head.appendChild(e);
+
+				angular.element(document).ready(function() {
+					var breakdownApp = document.getElementById('breakdownContent');
+					angular.bootstrap(breakdownApp, ['breakdownApp']);
+				});
 			});
-		});
 
-	</script>
-	<% include ../partials/footer.ejs %>
+		</script>
+		<% include ../partials/footer.ejs %>
+
+	</div>
 </body>
 </html>

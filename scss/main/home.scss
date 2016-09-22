@@ -34,13 +34,12 @@
 		padding-top: 5em;
 		padding-bottom: 3em;
 		color: #e1e1e1;
+		text-align: center;
 
 		div:first-child {
-
-			width: 420px;
 			margin: 10px auto;
 		}
-
+		
 		div.ob-search-container {
 			width: 500px;
 			margin: 10px auto;
@@ -89,12 +88,21 @@
 	.ob-top-users {
 		display: flex;
 		justify-content: space-between;
-		flex-wrap: nowrap;
+		flex-wrap: wrap;
 		margin-bottom: 2em;
+
+		>div:last-child {
+			margin-right: 0;
+		}
 	}
 
 	.ob-home-section {
 		padding: 2em 8em;
+
+		img {
+			max-width: 100%;
+			max-height: auto;
+		}
 	}
 
 	#ob-how-it-works {
@@ -125,5 +133,71 @@
 
 	#ob-feedback-toggle div.vertical-text {
 		padding: 6px;
+	}
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+	.ob-home {
+		.ob-home-section {
+			padding: 2em 2em;
+		}
+
+		.ob-hero {
+
+			text-align: center;
+
+			img {
+				max-width: 80%;
+				max-height: auto;
+			}
+
+			div.ob-search-container {
+				width: 80%;
+			}
+		}
+
+		.ob-top-users {
+			display: block;
+
+			>div {
+				width: 80%;
+				margin: 1em auto;
+				height: auto;
+			}
+
+			>div:last-child {
+				margin-right: auto;
+			}
+		}
+
+		#ob-how-it-works {
+			flex-direction: column;
+			justify-content: space-between;
+
+			>div {
+				display: flex;
+				width: auto;
+				margin-bottom: 1em;
+				padding: 0.5em;
+
+				>div {
+					padding: 0 0.5em;
+				}
+
+				>p {
+					padding: 0.5em;
+				}
+			}
+		}
+
+		.ob-fluff-image {
+			margin: auto;
+		}
+
+		.ob-pull-left {
+			float: none;
+		}
 	}
 }

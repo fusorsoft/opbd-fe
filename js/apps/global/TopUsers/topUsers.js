@@ -31,7 +31,7 @@ topUsersController = topUsersApp.controller('topUsersController', [
 
 		}, function(err) {
 			// replace with toaster pop
-			alert(err);
+			//alert(err);
 		});
 	}
 ]);
