@@ -31,7 +31,7 @@
 	.ob-hero {
 		width: 100%;
 		background-color: rgb(55,65,70);
-		padding-top: 5em;
+		padding-top: 2em;
 		padding-bottom: 3em;
 		color: #e1e1e1;
 		text-align: center;
@@ -88,7 +88,7 @@
 	.ob-top-users {
 		display: flex;
 		justify-content: space-between;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		margin-bottom: 2em;
 
 		>div:last-child {
@@ -106,15 +106,28 @@
 	}
 
 	#ob-how-it-works {
-		display: flex;
-		justify-content: space-between;
+		background-color: #333;
+
+		h2 {
+			color: white;
+		}
 
 		>div {
-			width: 20%;
-			background-color: #333;
+			display: flex;
+			justify-content: center;
 			color: white;
 			padding: 2em;
 			border-radius: 10px;
+
+			>div {
+				flex-basis: 25%;
+				padding: 0 2em;
+				text-align: center;
+				border-right: 1px dotted white;
+				&:last-child {
+					border-right: none;
+				}
+			}
 
 			div.ob-centered {
 				font-size: 4em;
@@ -177,13 +190,15 @@
 			justify-content: space-between;
 
 			>div {
-				display: flex;
+				display: block;
 				width: auto;
 				margin-bottom: 1em;
 				padding: 0.5em;
 
 				>div {
-					padding: 0 0.5em;
+					padding: 1em 0.5em;
+					border-right: none;
+					border-bottom: 1px dotted white;
 				}
 
 				>p {

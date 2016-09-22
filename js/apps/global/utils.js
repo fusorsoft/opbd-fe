@@ -16,7 +16,20 @@ document.addEventListener('DOMContentLoaded', function(event) {
 	if (navigationToggleElement) {
 		navigationToggleElement.addEventListener('click', toggleHamburgerNav, false);
 	}
+
+	if (window.matchMedia) {
+		var handleMediaMatch = function(mql) {
+			if (mql.matches) {
+				var navigationToggleElement = document.getElementById('globalNavigation');
+				navigationToggleElement.classList.add('ob-fadeOut');
+			}
+		};
+
+		var mql = window.matchMedia('only screen and (min-device-width : 320px) and (max-device-width : 480px)');
+		handleMediaMatch(mql);
+	}
 });
+
 
 function toggleHamburgerNav() {
 	var elem = document.getElementById('globalNavigation');
