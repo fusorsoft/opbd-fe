@@ -1,5 +1,6 @@
 <div class="ob-search-box">
-	<input type="search" placeholder="Search for a player" ng-model="searchTerm"/>
+	<input type="search" placeholder="Search for a player" ng-model="searchTerm"
+		ng-model-options="{ updateOn: 'keyup', debounce: { 'keyup': 500 }}"/>
 	<ul>
        	<li ng-repeat="value in searchData" ng-class="focusIndex === $index ? 'selected' : ''"
        		ng-mouseover="onMouseOver($index)" ng-click="onClick($index)">
