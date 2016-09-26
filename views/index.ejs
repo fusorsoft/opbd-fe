@@ -27,7 +27,7 @@
 	<h2>Top Users</h2>
 
 	<div class="ob-top-users" id="topUsers" data-ng-controller="topUsersController">
-		<div ng-repeat="user in topUsers" class="ob-top-user" ng-click="goToUser(user)">
+		<div ng-repeat="user in topUsers" class="ob-top-user ob-block-button" ng-click="goToUser(user)">
 			<div>	
 				<img ng-src="{{user.user.avatarMedium}}" ng-if="user.user"/>
 			</div>

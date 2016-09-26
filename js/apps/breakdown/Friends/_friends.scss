@@ -17,16 +17,10 @@
   }
 
   >div {
-    border: 1px solid #cecece;
     padding: 5px;
     margin: 10px;
-    width: 250px;
+    flex-basis: 18%;
     background-color: rgba(255,255,255,0.8);
-
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(255,255,255,0.3);
-    }
 
     >div:first-child {
     	display: flex;

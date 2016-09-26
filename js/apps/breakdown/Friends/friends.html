@@ -8,7 +8,7 @@
 	<toaster-container></toaster-container>
 
 	<div class="ob-friends-container">
-		<div ng-repeat="(key, value) in friends" ng-click="goToFriend(value.steamID)">
+		<div ng-repeat="(key, value) in friends" class="ob-block-button" ng-click="goToFriend(value.steamID)">
 			<div>
 				<div>
 					<span class="ob-friend-name">{{value.username}}</a>

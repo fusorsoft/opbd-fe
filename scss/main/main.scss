@@ -217,3 +217,15 @@ strong {
 		}
 	}
 }
+
+.ob-block-button {
+	border: 1px solid #cecece;
+	border-radius: 5px;
+	@include drop-shadow(10px, 0.5);
+
+	&:hover {
+		cursor: pointer;
+		//background-color: #555;
+		background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.5))
+	}
+}

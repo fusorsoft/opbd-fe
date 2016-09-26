@@ -1,6 +1,4 @@
 .ob-top-user {
-	border: 1px solid #cecece;
-	border-radius: 5px;
 	padding: 1em;
 	flex-basis: 19%;
 	margin-right: 1em;
@@ -8,13 +6,6 @@
 	//background-color: #333;
 	background-color: #374146;
 	display: flex;
-	@include drop-shadow(10px, 0.5);
-
-	&:hover {
-		cursor: pointer;
-		//background-color: #555;
-		background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.5))
-	}
 
 	>div {
 		padding: 0.5em;
