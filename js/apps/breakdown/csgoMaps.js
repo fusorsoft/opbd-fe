@@ -149,6 +149,10 @@ angular.module('csgoData').factory('Maps', function mapDataFactory() {
 
 				break;
 			default:
+				info = new mapInfo(
+						mapName,
+						mapName
+					);
 
 		}
 

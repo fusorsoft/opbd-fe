@@ -56,7 +56,9 @@ angular.module('dataAccess').factory('matchData', ['$http', '$q', '$filter', 'Ra
 					tRoundsPlayed: userData.TRoundsPlayed,
 					ctRoundsPlayed: userData.CTRoundsPlayed,
 					tRoundsWon: userData.TWins,
-					ctRoundsWon: userData.CTWins
+					ctRoundsWon: userData.CTWins,
+
+					weaponData: userData.WeaponData,
 				};
 			});
 

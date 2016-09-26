@@ -7,8 +7,9 @@ breakdownControllers.controller('OverallDataController', [
 	'$location',
 	'$window',
 	'$sce',
+	'Maps',
 	'matchData',
-	function($scope, $routeParams, $filter, $location, $window, $sce, matchData) {
+	function($scope, $routeParams, $filter, $location, $window, $sce, maps, matchData) {
 
 		$scope.matchdata = [];
 
@@ -79,6 +80,11 @@ breakdownControllers.controller('OverallDataController', [
 			var shadowData = {};
 
 			var adrDataPoints = [];
+			var headshotKillDataPoints = [];
+			var headshotRateDataPoints = [];
+			var accuracyDataPoints = [];
+			var matchDates = [];
+			var matchMaps = [];
 
 			for (var i = 0; i < $scope.matchdata.length; i++) {
 				var thisMatch = $scope.matchdata[i];
@@ -109,63 +115,117 @@ breakdownControllers.controller('OverallDataController', [
 					s.currentDiff--;
 				}
 
-				historyDataPoints.push({
-					match: i,
-					differential: historyTracker,
-					date: thisMatch.demoDate,
-					map: thisMatch.map,
-					result: thisMatch.result
+				// per-map differential breakdown...
+				mapData.historyData.push({
+					differential: s.currentDiff,
+					result: thisMatch.result,
+					date: thisMatch.demoDate
 				});
 
-				mapData.historyData.push({
-					match: s.currentIndex,
-					differential: s.currentDiff,
-					date: thisMatch.demoDate,
-					map: thisMatch.map,
+				// overall stats
+				matchDates.push($filter('date')(thisMatch.demoDate, "M-dd-yy"));
+				matchMaps.push(thisMatch.map);
+
+				historyDataPoints.push({
+					differential: historyTracker,
 					result: thisMatch.result
 				});
 
 				adrDataPoints.push({
-					match: i,
-					date: thisMatch.demoDate,
 					adr: thisMatch.adr,
 					tadr: thisMatch.tSideAdr,
 					ctadr: thisMatch.ctSideAdr,
-					map: thisMatch.map
+				});
+
+				// Weapon data over time...
+
+				var headshots = thisMatch.weaponData.reduce(function(a, b) {
+					return a + b.HeadShots;
+				}, 0);
+
+				var shotsHit = thisMatch.weaponData.reduce(function(a, b) {
+					return a + b.ShotsHit;
+				}, 0);
+
+				var shotsFired = thisMatch.weaponData.reduce(function(a, b) {
+					return a + b.ShotsFired;
+				}, 0);
+
+				var headshotKills = thisMatch.weaponData.reduce(function(a, b) {
+					return a + b.HeadshotKills;
+				}, 0);
+
+				var headshotKillRate = Math.round((headshotKills / thisMatch.kills) * 100, 0);
+				var headshotRate = Math.round((headshots / shotsHit) * 100, 0);
+				var accuracy = Math.round((shotsHit / shotsFired) * 100, 0);
+
+				headshotKillDataPoints.push({
+					rate: headshotKillRate,
+				});
+
+				headshotRateDataPoints.push({
+					rate: headshotRate,
+				});
+
+				accuracyDataPoints.push({
+					accuracy: accuracy,
 				});
 			}
-
-			$scope.adrOverTimeData = adrDataPoints;
-			$scope.matchHistoryData = historyDataPoints;
-
 		
+			var historyDataField = function(rawData, pointField, series, labelFn) {
+				var self = this;
+				self.labels = matchDates;
+				self.matchMaps = matchMaps;
+				self.titleFn = function(index) { return maps.GetMapData(matchMaps[index]).prettyName; };
+				self.labelFn = labelFn;
+				self.rawData = rawData;
+				self.data = rawData.map(function(d) { return d[pointField]; });
+				self.series = series;
+			};
+
+
 			$scope.historyData = {};
-			var adrLabels = $scope.adrOverTimeData.map(function(d) { return $filter('date')(d.date, "M-dd-yy");	});
-			var adrData = $scope.adrOverTimeData.map(function(d) { return d.adr; });
+			$scope.historyData.ADROverTime = new historyDataField(adrDataPoints, "adr", "ADR", function(index) {
+				return [
+					"Date: " + this.labels[index],
+					"ADR: " + this.rawData[index].adr, 
+					"CT ADR: " + this.rawData[index].ctadr,
+					"T ADR: " + this.rawData[index].tadr
+				];
+			});
+			
+			$scope.historyData.DifferentialOverTime = new historyDataField(historyDataPoints, "differential", "Win/Loss Differential", function(index) {
+				return [
+					"Date: " + this.labels[index],
+					"Differential: " + (this.data[index] > 0 ? "+" + this.data[index] : this.data[index])
+				];
+			});
 
-			var historyLabels = $scope.matchHistoryData.map(function(d) { return $filter('date')(d.date, "M-dd-yy");	});
-			var historyData = $scope.matchHistoryData.map(function(d) { return d.differential; });
+			$scope.historyData.HeadshotKillsOverTime  = new historyDataField(headshotKillDataPoints, "rate", "Headshot Kill Rate", function(index) {
+				return [
+					"Date: " + this.labels[index],
+					"Rate: " + this.data[index] + "%"
+				];
+			});
 
-			$scope.historyData.ADROverTime = {
-				labels: adrLabels,
-				data: adrData,
-				series: "ADR Over Time",
-			};
+			$scope.historyData.HeadshotRateOverTime = new historyDataField(headshotRateDataPoints, "rate", "Headshot Rate", function(index) {
+				return [
+					"Date: " + this.labels[index],
+					"Rate: " + this.data[index] + "%"
+				];
+			});
 
-			$scope.historyData.DifferentialOverTime = {
-				labels: historyLabels,
-				data: historyData,
-				series: "Win/Loss Differential Over Time"
-			};
+			$scope.historyData.AccuracyOverTime = new historyDataField(accuracyDataPoints, "accuracy", "Accuracy", function(index) {
+				return [
+					"Date: " + this.labels[index],
+					"Accuracy: " + this.data[index] + "%"
+				];
+			});
 
 			var total = function(field) {
-				sum = 0;
-
-				for (var i = 0; i < $scope.matchdata.length; i++) {
-					sum += $scope.matchdata[i][field];
-				}
-
-				return sum;
+				return $scope.matchdata.reduce(function(a, b) {
+					return a + b[field];
+				}, 0);
 			};
 
 			var totalRoundsPlayed = total('totalRoundsPlayed');
