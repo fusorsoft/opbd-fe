@@ -1,11 +1,22 @@
 var breakdownDirectives = angular.module('breakdownDirectives');
 
-breakdownDirectives.directive('historyDataChart', ['$filter', 'Maps',  function($filter, maps) {
+breakdownDirectives.directive('historyDataChart', ['$filter', '$window', function($filter, $window) {
 
 	var link = function(scope, element, attrs) {
 
 		scope.selectedData = "DifferentialOverTime";
 		var emptyTitle = function() { return ""; };
+
+		scope.onClick = function(points, evt) {
+
+			if (points.length > 0) {
+				var firstPoint = points[0];
+				var dataIndex = firstPoint._index;
+				var datum = scope.historyData[scope.selectedData].matchIds[dataIndex];
+				
+				$window.location.href = "#/MatchData/" + datum;
+			}
+		};
 
 		scope.historyChartOptions = {
 			scales: {

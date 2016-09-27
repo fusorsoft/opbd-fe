@@ -7,9 +7,10 @@ breakdownControllers.controller('OverallDataController', [
 	'$location',
 	'$window',
 	'$sce',
+	'$timeout',
 	'Maps',
 	'matchData',
-	function($scope, $routeParams, $filter, $location, $window, $sce, maps, matchData) {
+	function($scope, $routeParams, $filter, $location, $window, $sce, $timeout, maps, matchData) {
 
 		$scope.matchdata = [];
 
@@ -85,6 +86,7 @@ breakdownControllers.controller('OverallDataController', [
 			var accuracyDataPoints = [];
 			var matchDates = [];
 			var matchMaps = [];
+			var matchIds = [];
 
 			for (var i = 0; i < $scope.matchdata.length; i++) {
 				var thisMatch = $scope.matchdata[i];
@@ -125,6 +127,7 @@ breakdownControllers.controller('OverallDataController', [
 				// overall stats
 				matchDates.push($filter('date')(thisMatch.demoDate, "M-dd-yy"));
 				matchMaps.push(thisMatch.map);
+				matchIds.push(thisMatch.matchId);
 
 				historyDataPoints.push({
 					differential: historyTracker,
@@ -176,6 +179,7 @@ breakdownControllers.controller('OverallDataController', [
 				var self = this;
 				self.labels = matchDates;
 				self.matchMaps = matchMaps;
+				self.matchIds = matchIds;
 				self.titleFn = function(index) { return maps.GetMapData(matchMaps[index]).prettyName; };
 				self.labelFn = labelFn;
 				self.rawData = rawData;
@@ -264,7 +268,6 @@ breakdownControllers.controller('OverallDataController', [
 				tRoundsWon: tRoundsWon,
 				ctRoundsWon: ctRoundsWon
 			};
-
 
 		}, function(err) {
 			console.log(err.message);
