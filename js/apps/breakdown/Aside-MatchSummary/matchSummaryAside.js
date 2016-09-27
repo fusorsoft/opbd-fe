@@ -6,10 +6,6 @@ breakdownDirectives.directive('matchSummaryAside', ['$http', 'Maps', '$window', 
         scope.mapInfo = Maps.GetMapData(scope.map);
         scope.mapName = scope.mapInfo ? scope.mapInfo.prettyName : "";
         scope.mapIcon = scope.mapInfo ? scope.mapInfo.medIconUrl : "";
-
-        scope.goToMatch = function() {         
-            window.location.href ="#/MatchData/" + scope.matchId;
-        };
     };
 
 	return {

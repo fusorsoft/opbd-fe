@@ -27,10 +27,6 @@ angular.module('breakdownAppControllers').controller('FriendsController', [
 				});
 		};
 
-		$scope.goToFriend = function(steamId) {
-			$window.location.href = "/User/" + steamId;
-		};
-
 		userData.getFriends(userId)
 			.then(function(response) {
 				$scope.username = response.data.username;

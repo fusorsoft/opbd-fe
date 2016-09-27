@@ -24,11 +24,6 @@ topUsersController = topUsersApp.controller('topUsersController', [
 
 		$http.get('/_api/users/top?limit=5').then(function(data) {
 			$scope.topUsers = data.data;
-
-			$scope.goToUser = function(user) {
-				$window.location.href = '/User/' + user._id;
-			};
-
 		}, function(err) {
 			// replace with toaster pop
 			//alert(err);

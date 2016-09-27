@@ -27,7 +27,7 @@
 	<h2>Top Users</h2>
 
 	<div class="ob-top-users" id="topUsers" data-ng-controller="topUsersController">
-		<div ng-repeat="user in topUsers" class="ob-top-user ob-block-button" ng-click="goToUser(user)">
+		<a ng-repeat="user in topUsers" class="ob-top-user ob-block-button" href="/User/{{user._id}}">
 			<div>	
 				<img ng-src="{{user.user.avatarMedium}}" ng-if="user.user"/>
 			</div>
@@ -35,7 +35,8 @@
 				<p>{{user.name[0]}}</p>
 				<p><em>{{user.count}} Matches</em></p>
 			</div>
-		</div>
+		</a>
+
 	</div>
 
 

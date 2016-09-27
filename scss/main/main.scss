@@ -222,6 +222,8 @@ strong {
 	border: 1px solid #cecece;
 	border-radius: 5px;
 	@include drop-shadow(10px, 0.5);
+	text-decoration: none;
+	color: $mainTextColor;
 
 	&:hover {
 		cursor: pointer;
