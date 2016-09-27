@@ -4,7 +4,7 @@
 	</div>
 
 	<div>
-		<div>
+		<div class="ob-chart-nav-container">
 			<ul>
 				<li data-ng-click="selectedData = 'DifferentialOverTime'" ng-class="selectedData === 'DifferentialOverTime' ? 'selected' : ''">Win/Loss Differential</li>
 				<li data-ng-click="selectedData = 'ADROverTime'" ng-class="selectedData === 'ADROverTime' ? 'selected' : ''">ADR</li>
@@ -18,10 +18,12 @@
 			</ul>
 		</div>
 
-		<div>
-			<canvas class="chart chart-line" chart-data="[historyData[selectedData].data]"
-				chart-labels="historyData[selectedData].labels"  chart-series="historyData[selectedData].series"
-				chart-options="historyChartOptions" height="50" ng-if="historyData" chart-click="onClick"></canvas>
+		<div class="ob-history-chart-container">
+			<div class="heading">
+				<span ng-repeat="f in filters" ng-class="f.selected ? 'selected': ''" ng-click="applyFilter(f)">{{f.name}}</span>
+			</div>
+			<canvas class="chart chart-line" chart-data="[data]" chart-labels="labels"  chart-series="series"
+				chart-options="historyChartOptions" height="50" ng-if="data" chart-click="onClick"></canvas>
 			
 		</div>
 	</div>

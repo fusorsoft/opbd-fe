@@ -15,15 +15,36 @@
 
 
 	// Chart & Nav
-	div:last-child {
+	>div:last-child {
 		width: 100%;
 		display: flex;
 
 		// Chart
-		div:last-child {
+		.ob-history-chart-container {
+
+			.heading {
+				margin-bottom: 1em;
+				text-align: right;
+
+				span {
+					padding: 0 0.5em;
+					cursor: pointer;
+
+					&.selected {
+						background-color: #374146;
+						color: white;
+						border-radius: 10px;
+						cursor: default;
+					}
+
+					&:last-child {
+					}
+				}
+			}
+
 			flex: 1;
 			background-color: $backgroundColor;
-			padding: 2em;
+			padding: 1em 2em;
 			border: 1px solid $borderColor;
 			border-left: none;
 		}

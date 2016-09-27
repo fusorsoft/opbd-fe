@@ -125,7 +125,7 @@ breakdownControllers.controller('OverallDataController', [
 				});
 
 				// overall stats
-				matchDates.push($filter('date')(thisMatch.demoDate, "M-dd-yy"));
+				matchDates.push(thisMatch.demoDate);
 				matchMaps.push(thisMatch.map);
 				matchIds.push(thisMatch.matchId);
 
