@@ -18,6 +18,8 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 
 		scope.filters = [
 			new filterNode("All Time", 0, true),
+			new filterNode("180 Days", 180, true),
+			new filterNode("60 Days", 60, true),
 			new filterNode("30 Days", 30, false),
 			new filterNode("7 Days", 7, false)
 		];

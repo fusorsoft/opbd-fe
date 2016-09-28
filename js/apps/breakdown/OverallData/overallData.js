@@ -191,7 +191,7 @@ breakdownControllers.controller('OverallDataController', [
 			$scope.historyData = {};
 			$scope.historyData.ADROverTime = new historyDataField(adrDataPoints, "adr", "ADR", function(index) {
 				return [
-					"Date: " + this.labels[index],
+					"Date: " + $filter('date')(this.labels[index], "M-dd-yy"),
 					"ADR: " + this.rawData[index].adr, 
 					"CT ADR: " + this.rawData[index].ctadr,
 					"T ADR: " + this.rawData[index].tadr
@@ -200,28 +200,28 @@ breakdownControllers.controller('OverallDataController', [
 			
 			$scope.historyData.DifferentialOverTime = new historyDataField(historyDataPoints, "differential", "Win/Loss Differential", function(index) {
 				return [
-					"Date: " + this.labels[index],
+					"Date: " + $filter('date')(this.labels[index], "M-dd-yy"),
 					"Differential: " + (this.data[index] > 0 ? "+" + this.data[index] : this.data[index])
 				];
 			});
 
 			$scope.historyData.HeadshotKillsOverTime  = new historyDataField(headshotKillDataPoints, "rate", "Headshot Kill Rate", function(index) {
 				return [
-					"Date: " + this.labels[index],
+					"Date: " + $filter('date')(this.labels[index], "M-dd-yy"),
 					"Rate: " + this.data[index] + "%"
 				];
 			});
 
 			$scope.historyData.HeadshotRateOverTime = new historyDataField(headshotRateDataPoints, "rate", "Headshot Rate", function(index) {
 				return [
-					"Date: " + this.labels[index],
+					"Date: " + $filter('date')(this.labels[index], "M-dd-yy"),
 					"Rate: " + this.data[index] + "%"
 				];
 			});
 
 			$scope.historyData.AccuracyOverTime = new historyDataField(accuracyDataPoints, "accuracy", "Accuracy", function(index) {
 				return [
-					"Date: " + this.labels[index],
+					"Date: " + $filter('date')(this.labels[index], "M-dd-yy"),
 					"Accuracy: " + this.data[index] + "%"
 				];
 			});

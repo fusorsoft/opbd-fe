@@ -1,11 +1,14 @@
 var breakdownDirectives = angular.module('breakdownDirectives');
 
-breakdownDirectives.directive('mapInfoTable', ['$timeout', function($timeout) {
+breakdownDirectives.directive('mapInfoTable', ['$timeout', 'Maps', function($timeout, Maps) {
 
 	var link = function(scope, elem, attrs) {
 
 		scope.visibilities = {};
 		scope.loadData = {};
+
+		scope.maps = Object.keys(scope.mapData).map(function(m) { return Maps.GetMapData(m); });
+
 
 		scope.toggleVisiblity = function(key) {
 			scope.visibilities[key] = !scope.visibilities[key];
