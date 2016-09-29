@@ -1,0 +1,78 @@
+.ob-map-breakdown {
+
+	background-color: rgba(255,255,255,0.8);
+	padding: 1em;
+
+	.ob-map-button-container {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		.ob-map-button {
+			margin-right: 2em;
+			height: 2em;
+
+			span {
+				padding: 0.3em 0.7em;
+				cursor: pointer;
+
+
+				&.selected {
+					border-radius: 10px;
+					background-color: #374146;
+					color: white;
+				}
+			}
+
+			img {
+				vertical-align: middle;
+				height: 50%;
+			}
+		}
+	}
+
+	.ob-detail-container {
+		display: flex;
+		margin-top: 3em;
+
+		.ob-map-detail-header {
+			margin-right: 1em;
+			background-color: white;
+			border: 1px solid #cecece;
+			padding:1em;
+			text-align: center;
+		}
+
+		.ob-overall-stats-container {
+			flex-grow: 1;
+			margin: 0;
+
+			.ob-chart-fullwidth {
+				margin-top: 1em;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	.ob-map-breakdown {
+
+		.ob-map-button-container {
+			
+			.ob-map-button {
+				flex-basis: 49%;
+				margin-right: 0;
+			}
+		}
+
+		.ob-detail-container {
+			display: block;
+
+			.ob-map-detail-header {
+				margin-right:0;
+				margin-bottom: 1em;
+			}
+		}
+	}
+}

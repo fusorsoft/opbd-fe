@@ -1,7 +1,13 @@
+#userActionsToggle {
+	display: block;
+	float: right;
+	padding: 1em;
+}
+
 #userActionsMenu {
 	position: absolute;
-	//top: 240px;
 	right: 0.1%;
+	top: 3em;
 	border: 1px solid gray;
 	height: 200px;
 	width: 150px;

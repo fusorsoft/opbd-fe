@@ -4,12 +4,20 @@ breakdownDirectives.directive('matchHistoryChart', ['$filter', function($filter)
 
 	var link = function(scope, element, attrs) {
 
-		scope.labels = scope.matchHistoryData.map(function(d) {
-			return $filter('date')(d.date, "M-dd-yy");//d.match;
-		});
+		var updateData = function() {
+			scope.labels = scope.matchHistoryData.map(function(d) {
+				return $filter('date')(d.date, "M-dd-yy");//d.match;
+			});
 
-		scope.data = scope.matchHistoryData.map(function(d) {
-			return d.differential;
+			scope.data = scope.matchHistoryData.map(function(d) {
+				return d.differential;
+			});
+		};
+
+		updateData();
+
+		scope.$watch('matchHistoryData', function() {
+			updateData();
 		});
 
 		scope.series = ['Win/Loss Differential'];

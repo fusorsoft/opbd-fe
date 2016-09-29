@@ -1,0 +1,82 @@
+<div>
+	<div>
+		<div ng-if="mostPlayedMaps">
+			<h3>Most Played Maps</h3>
+			<div class="ob-map-button-container">
+				<div ng-repeat="map in mostPlayedMaps" class="ob-map-button">
+					<span ng-class="map.name === selectedMap? 'selected': ''" ng-click="mapClick(map.name)">
+						<img ng-src="{{map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
+						{{map.prettyName}} ({{mapData[map.name].data.length}})
+					</span>
+				</div>
+			</div>
+		</div>
+		<div ng-if="otherMaps">
+			<h3>Other Maps</h3>
+			<div class="ob-map-button-container">
+				<div ng-repeat="map in otherMaps" class="ob-map-button">
+					<span ng-class="map.name === selectedMap? 'selected': ''" ng-click="mapClick(map.name)">
+						<img ng-src="{{map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
+						{{map.prettyName}} ({{mapData[map.name].data.length}})
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="ob-detail-container">
+			<div class="ob-map-detail-header">
+				<h2> {{selectedMapInfo.prettyName}}</h2>
+				<img ng-src="{{selectedMapInfo.medIconUrl}}" ng-if="selectedMapInfo"/>
+
+				<dl class="ob-list-side-by-side" ng-if="selectedMapData">
+					<dt>W/L/T</dt>
+					<dd>{{totals.wins}} / {{totals.losses}} / {{totals.ties}}</dd>
+					<dt>Differential</dt>
+					<dd>{{differential}}</dd>
+					<dt>Streak</dt>
+					<dd>{{streak}}</dd>
+				</dl>
+
+				<aggregate-map-data-chart map-data="selectedMapData.historyData" chart-title="" ng-if="selectedMapData.historyData"/>
+			</div>
+
+			<div class="ob-overall-stats-container">
+				<dl class="ob-list-side-by-side" ng-if="selectedMapData">
+					<dt>Total Kills</dt>
+					<dd>{{totals.kills}}</dd>
+					<dt>Deaths</dt>
+					<dd>{{totals.deaths}}</dd>
+					<dt>Assists</dt>
+					<dd>{{totals.assists}}</dd>
+					<dt>KDA</dt>
+					<dd>{{totals.kda}}</dd>
+				</dl>
+
+				<dl class="ob-list-side-by-side">
+					<dt>Total ADR</dt>
+					<dd>{{totals.totalADR}}</dd>
+					<dt>CT ADR</dt>
+					<dd>{{totals.ctADR}}</dd>
+					<dt>T ADR</dt>
+					<dd>{{totals.tADR}}</dd>
+				</dl>
+
+				<dl class="ob-list-side-by-side">
+					<dt>Overall Round Winrate</dt>
+					<dd>{{totals.roundWinRate}}% ({{totals.totalRoundWins}} / {{totals.totalRoundsPlayed}})</dd>
+
+					<dt>Counter Terrorist Winrate</dt>
+					<dd>{{totals.ctRoundWinRate}}% ({{totals.ctRoundsWon}} / {{totals.ctRoundsPlayed}})</dd>
+
+					<dt>Terrorist Winrate</dt>
+					<dd>{{totals.tRoundWinRate}}% ({{totals.tRoundsWon}} / {{totals.tRoundsPlayed}})</dd>
+				</dl>
+
+				<div class="ob-chart-fullwidth" style="flex-grow: 1; width: 100%">
+					<match-history-chart match-history-data="selectedMapData.historyData" chart-title="Match History" ng-if="selectedMapData.historyData"/>
+				</div>
+			</div>
+		</div>
+	</div>
+<div>

@@ -143,7 +143,7 @@ angular.module('csgoData').factory('Maps', function mapDataFactory() {
 						-2050,
 						3.7,
 						'assault.png',
-						'cs_assault.png',
+						'cs_assault.jpg',
 						'assault.png',
 						20,
 						20
@@ -157,7 +157,7 @@ angular.module('csgoData').factory('Maps', function mapDataFactory() {
 						-590,
 						4.9,
 						'aztec.png',
-						'de_aztec.png',
+						'de_aztec.jpg',
 						'aztec.png',
 						20,
 						20
@@ -171,7 +171,7 @@ angular.module('csgoData').factory('Maps', function mapDataFactory() {
 						-835,
 						4.95,
 						'dust.png',
-						'de_dust.png',
+						'de_dust.jpg',
 						'dust.png',
 						500,
 						600
