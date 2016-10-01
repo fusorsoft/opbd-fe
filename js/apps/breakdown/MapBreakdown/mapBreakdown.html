@@ -5,8 +5,8 @@
 			<div class="ob-map-button-container">
 				<div ng-repeat="map in mostPlayedMaps" class="ob-map-button">
 					<span ng-class="map.name === selectedMap? 'selected': ''" ng-click="mapClick(map.name)">
-						<img ng-src="{{map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
-						{{map.prettyName}} ({{mapData[map.name].data.length}})
+						<img ng-src="{{::map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
+						{{::map.prettyName}} ({{::mapData[map.name].data.length}})
 					</span>
 				</div>
 			</div>
@@ -16,8 +16,8 @@
 			<div class="ob-map-button-container">
 				<div ng-repeat="map in otherMaps" class="ob-map-button">
 					<span ng-class="map.name === selectedMap? 'selected': ''" ng-click="mapClick(map.name)">
-						<img ng-src="{{map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
-						{{map.prettyName}} ({{mapData[map.name].data.length}})
+						<img ng-src="{{::map.smallIconUrl}}" ng-if="map.imageUrl.indexOf('undefined') === -1"/> 
+						{{::map.prettyName}} ({{::mapData[map.name].data.length}})
 					</span>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 					<dd>{{totals.tRoundWinRate}}% ({{totals.tRoundsWon}} / {{totals.tRoundsPlayed}})</dd>
 				</dl>
 
-				<div class="ob-chart-fullwidth" style="flex-grow: 1; width: 100%">
+				<div class="ob-chart-fullwidth" style="flex-grow: 1;">
 					<match-history-chart match-history-data="selectedMapData.historyData" chart-title="Match History" ng-if="selectedMapData.historyData"/>
 				</div>
 			</div>

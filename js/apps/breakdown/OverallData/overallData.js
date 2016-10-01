@@ -34,13 +34,6 @@ breakdownControllers.controller('OverallDataController', [
 
 		matchData.getUserSummary(userId).then(function(response) {
 
-			/* NOTE:
-	
-			A LOT of the code here has to do with some aggressive optimization.  This page has so much shit going on
-			that it really needed it...
-
-			*/
-
 			if(response.length === 0) {
 				if ($window._obContextInfo.currentUserSteamId === userId) {
 					// current logged in user viewing their own data
