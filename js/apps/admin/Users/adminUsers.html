@@ -42,6 +42,7 @@
 			<th>Steam ID</th>
 			<th>Roles</th>
 			<th>Email</th>
+			<th>Last Access</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -50,7 +51,8 @@
 			<td><a href="/User/{{user.steamID}}" ng-click="$event.stopPropagation()">{{user.username}}</a></td>
 			<td>{{user.steamID}}</td>
 			<td>{{user.roles}}</td>
-			<tD><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+			<td><a href="mailto:{{user.email}}">{{user.email}}</a></td>
+			<td>{{user.session[0].lastAccess | date: short}}</td>
 		</tr>
 	</tbody>
 </table>

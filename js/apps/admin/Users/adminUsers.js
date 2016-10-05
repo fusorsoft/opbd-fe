@@ -1,9 +1,10 @@
 angular.module('adminControllers').controller('userAdminController', [
 	'$scope', 
+	'$filter',
 	'Users', 
 	'toaster',  
 	'ngDialog',
-	function($scope, users, toaster, ngDialog) { 
+	function($scope, $filter, users, toaster, ngDialog) { 
 	
 	$scope.currentUser = null;
 	
