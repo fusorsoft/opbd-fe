@@ -1,13 +1,5 @@
 <% if (user) { %>
 <div id="ob-feedback-form-container" class="closed">
-	<script type="text/javascript">
-		waitForAngular(function() {
-			angular.element(document).ready(function() {
-				var feedbackForm = document.getElementById('ob-feedback-form');
-				angular.bootstrap(feedbackForm, ['feedbackApp']);
-			});
-		});
-	</script>
 	<div id="ob-feedback-toggle">
 		<div class="vertical-text">
 				Feedback
@@ -92,5 +84,12 @@
 			families: ['FontAwesome'],
 			urls: ['/styles/lib/font-awesome/css/font-awesome.min.css']
 		}
+	});
+
+	waitForAngular(function() {
+		angular.element(document).ready(function() {
+			var feedbackForm = document.getElementById('ob-feedback-form');
+			angular.bootstrap(feedbackForm, ['feedbackApp']);
+		});
 	});
 </script>
