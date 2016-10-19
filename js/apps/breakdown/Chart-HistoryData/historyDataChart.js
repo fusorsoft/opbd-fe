@@ -43,6 +43,8 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 		scope.$watch('historyData', updateFn);
 		scope.$watch('selectedData', updateFn);
 
+		var sliceSize = 0;
+
 		scope.applyFilter = function(clickedFilter) {
 			scope.filters.map(function(f) { f.selected = false; });
 			clickedFilter.selected = true;
@@ -56,7 +58,7 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 				var filterDate = new Date();
 				filterDate.setDate(today.getDate() - clickedFilter.days);
 
-				var sliceSize = scope.historyData[scope.selectedData].labels.filter(function(d) {
+				sliceSize = scope.historyData[scope.selectedData].labels.filter(function(d) {
 					var thisDate = new Date(d);
 					return thisDate >= filterDate;
 				}).length;
@@ -113,11 +115,15 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 				callbacks: {
 					title: function(items, data) {
 						var i = items[0].index;
-						return scope.historyData[scope.selectedData].titleFn(i);
+						var points = scope.historyData[scope.selectedData].data;
+						var offsetIndex = points.length - sliceSize + i;
+						return scope.historyData[scope.selectedData].titleFn(offsetIndex);
 					},
 					label: function(item, data) {
 						var i = item.index;
-						return scope.historyData[scope.selectedData].labelFn(i);
+						var points = scope.historyData[scope.selectedData].data;
+						var offsetIndex = points.length - sliceSize + i;
+						return scope.historyData[scope.selectedData].labelFn(offsetIndex);
 					}
 				}
 			}
