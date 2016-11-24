@@ -2,10 +2,11 @@ var feedbackApp = angular.module('feedbackApp', ['toaster']);
 
 feedbackController = feedbackApp.controller('feedbackController', [
 	'$http',
-	'$location', 
-	'$scope', 
+	'$location',
+	'$scope',
+	'$q',
 	'toaster',
-	function($http, $location, $scope, toaster) {
+	function($http, $location, $scope, $q, toaster) {
 		$scope.url = $location.absUrl();
 		$scope.message = '';
 		$scope.subject = '';
@@ -25,13 +26,34 @@ feedbackController = feedbackApp.controller('feedbackController', [
 				})
 			};
 
-			$http(request).then(function() {
-					toaster.pop('success', 'Success', "Your feedback was sent");
-				},
-				function(err) {
-					toaster.pop('error', 'Error', "Error submitting feedback");
-				}
-			);
+			$http.get('/_api/users').then(function(info) {
+				contactRequest = {
+					method: 'PUT',
+					url: 'https://contact.fusorsoft.net',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					data: angular.toJson({
+						user: info.username + '(' + info.steamID + ')',
+						url : $scope.url,
+						message: $scope.message,
+						subject: $scope.subject
+					})
+				};
+
+				$q.all([
+					$http(request),
+					$http(contactRequest)
+				]).then(function() {
+						toaster.pop('success', 'Success', "Your feedback was sent");
+					},
+					function(err) {
+						toaster.pop('error', 'Error', "Error submitting feedback");
+					}
+				);
+
+
+			});
 		};
 	}
 ]);
