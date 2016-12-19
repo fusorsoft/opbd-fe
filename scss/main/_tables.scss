@@ -11,7 +11,7 @@ table.ob-table {
 			//font-weight: bold;
 			font-size: 1.4em;
 			text-align:left;
-			padding: 5px;		
+			padding: 5px;
 		}
 
 		th.ob-uber-heading {
@@ -61,6 +61,7 @@ table.ob-table {
 		}
 
 		tr {
+			transition: background 0.3s;
 			&:hover {
 				background: rgba(0,0,0,0.4);
 			}

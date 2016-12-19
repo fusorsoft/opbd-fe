@@ -60,7 +60,7 @@ p {
 
 ol {
 	padding-left: 1em;
-	
+
 	li {
 		counter-increment: step-counter;
 		margin-bottom: 1em;
@@ -94,7 +94,7 @@ dl.ob-def-list {
 		content: " ";
 		display: block;
 		clear: left;
-	} 
+	}
 }
 
 .ob-hidden {
@@ -224,6 +224,7 @@ strong {
 	@include drop-shadow(10px, 0.5);
 	text-decoration: none;
 	color: $mainTextColor;
+	transition: background-image 0.3s, background 0.3s, background-color 0.3s;
 
 	&:hover {
 		cursor: pointer;

@@ -16,12 +16,13 @@ nav {
 		float: left;
 
 		>li {
-			 
+
 			>a {
 				display: block;
 				text-decoration: none;
 				cursor: pointer;
 				padding: 13.5px 15px;
+				transition: background 0.3s;
 
 				&:hover {
 					height: auto;

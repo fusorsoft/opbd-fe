@@ -15,10 +15,17 @@
 			span {
 				padding: 0.3em 0.7em;
 				cursor: pointer;
+				border-radius: 10px;
+
+				transition: background 0.2s;
+
+				&:hover {
+					background-color: rgba(0,0,0,0.2);
+				}
 
 
 				&.selected {
-					border-radius: 10px;
+
 					background-color: #374146;
 					color: white;
 				}
@@ -63,7 +70,7 @@
 	.ob-map-breakdown {
 
 		.ob-map-button-container {
-			
+
 			.ob-map-button {
 				flex-basis: 49%;
 				margin-right: 0;
