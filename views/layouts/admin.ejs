@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<% include ../partials/head.ejs %> 
+	<% include ../partials/head.ejs %>
 	<link rel="stylesheet" type="text/css" href="/styles/main/breakdown.css"/>
 </head>
 <body>
@@ -24,26 +24,13 @@
 			</div>
 
 			<div data-ng-view></div>
-						
+
 			<toaster-container></toaster-container>
-		</div> 
+		</div>
 	</div>
 
-	<script type="text/javascript">
 
-		waitForAngular(function() {
-
-			e = document.createElement('script');
-			e.setAttribute('src', '/js/opBDadmin.js');
-			document.head.appendChild(e);
-
-			angular.element(document).ready(function() {
-				var breakdownApp = document.getElementById('breakdownContent');
-				angular.bootstrap(breakdownApp, ['adminApp']);
-			});
-		});
-
-	</script>
+	<script src="/js/opBDadmin.js"></script>
 	<% include ../partials/footer.ejs %>
 </body>
 </html>

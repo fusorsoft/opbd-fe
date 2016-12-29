@@ -1,7 +1,7 @@
 var breakdownControllers = angular.module('breakdownAppControllers');
 
 breakdownControllers.controller('MatchDetailController',  [
-	'$scope', 
+	'$scope',
 	'$location',
 	'$route',
 	'$timeout',
@@ -19,6 +19,19 @@ breakdownControllers.controller('MatchDetailController',  [
 		$scope.mapIcon = "";
 		$scope.mapInfo = {};
 
+		$scope.matchdata = [
+			{name: "Player", matchTeam: "Team 1", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 1", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 1", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 1", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 1", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 2", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 2", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 2", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 2", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+			{name: "Player", matchTeam: "Team 2", steamid: '1', adr: 0.0, kills: 0, deaths: 0, assists: 0, mvps: 0},
+		];
+
 		matchData.getMatchDetail(matchId).then(function(response) {
 			$scope.demoFileMetadata = response.data.demoFileMetadata;
 			$scope.matchMetadata = response.data.matchMetadata;
@@ -33,7 +46,7 @@ breakdownControllers.controller('MatchDetailController',  [
 			},0);
 
 			matchData.getMatchSummary($scope.breakdownMetadata.breakdownMatchId).then(function(data) {
-				
+
 				$scope.matchdata = data;
 
 				var sumRanks = 0;
@@ -41,13 +54,13 @@ breakdownControllers.controller('MatchDetailController',  [
 
 				data.map(function(userData) {
 					if (userData.finalRank) {
-						sumRanks += userData.finalRank.Rank;	
+						sumRanks += userData.finalRank.Rank;
 						numRankedPlayers++;
 					}
 				});
 
 				var avgRank = Math.round(sumRanks / numRankedPlayers);
-				$scope.averageRank = Ranks.GetRankData(avgRank);				
+				$scope.averageRank = Ranks.GetRankData(avgRank);
 
 			}, function(err) {
 				var x = err;
@@ -66,7 +79,7 @@ breakdownControllers.controller('MatchDetailController',  [
 				  	$scope.playerData.TSideDamageTotals.Deaths,
 				  	$scope.playerData.TSideDamageTotals.Assists
 				],
-				
+
 				[
 					$scope.playerData.CTSideDamageTotals.Kills,
 					$scope.playerData.CTSideDamageTotals.Deaths,
@@ -82,7 +95,7 @@ breakdownControllers.controller('MatchDetailController',  [
 
 			var getNumRoundsForKillCount = function(i) {
 				var c = 0;
-				
+
 				for(var r in $scope.playerData.RoundData) {
 					if ($scope.playerData.RoundData[r].DamageData.Kills == i) {
 						c++;
@@ -92,7 +105,7 @@ breakdownControllers.controller('MatchDetailController',  [
 				return c;
 			};
 
-			$scope.killCountData = 
+			$scope.killCountData =
 			 [
 			 	{ label: 'skunk', value: getNumRoundsForKillCount(0)},
 				{ label: '1k', value: getNumRoundsForKillCount(1)},

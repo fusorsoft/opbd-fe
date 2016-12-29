@@ -53,6 +53,7 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 				scope.data = scope.historyData[scope.selectedData].data;
 				scope.labels = beautifyLabels(scope.historyData[scope.selectedData].labels);
 				scope.series = scope.historyData[scope.selectedData].series;
+				sliceSize = 0;
 			} else {
 				var today = new Date();
 				var filterDate = new Date();
@@ -79,13 +80,13 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 				var firstPoint = points[0];
 				var dataIndex = firstPoint._index;
 				var datum = scope.historyData[scope.selectedData].matchIds[dataIndex];
-				
+
 				$window.location.href = "#/MatchData/" + datum;
 			}
 		};
 
-		
-		
+
+
 		scope.historyChartOptions = {
 			scales: {
 				xAxes: [{
@@ -116,13 +117,13 @@ breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeo
 					title: function(items, data) {
 						var i = items[0].index;
 						var points = scope.historyData[scope.selectedData].data;
-						var offsetIndex = points.length - sliceSize + i;
+						var offsetIndex = sliceSize !== 0 ? points.length - sliceSize + i : i;
 						return scope.historyData[scope.selectedData].titleFn(offsetIndex);
 					},
 					label: function(item, data) {
 						var i = item.index;
 						var points = scope.historyData[scope.selectedData].data;
-						var offsetIndex = points.length - sliceSize + i;
+						var offsetIndex = sliceSize !== 0 ? points.length - sliceSize + i : i;
 						return scope.historyData[scope.selectedData].labelFn(offsetIndex);
 					}
 				}
