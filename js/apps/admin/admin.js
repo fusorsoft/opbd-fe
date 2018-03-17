@@ -1,17 +1,16 @@
-angular.module('adminDataAccess', []);
+angular.module('adminDataAccess', [])
 
-var adminControllers = angular.module('adminControllers', ['adminDataAccess', 'toaster', 'ngDialog']);
-var adminApp = angular.module('adminApp', ['ngRoute', 'adminControllers']);
+angular.module('adminControllers', ['adminDataAccess', 'toaster', 'ngDialog'])
+var adminApp = angular.module('adminApp', ['ngRoute', 'adminControllers'])
 
-adminApp.config(['$routeProvider', function($routeProvider) {
+adminApp.config(['$routeProvider', function ($routeProvider) {
+  var basePath = '/ng-partials/admin'
 
-	var basePath = '/ng-partials/admin';
-
-	$routeProvider.when('/Users', {
-		templateUrl: basePath + '/Users/adminUsers.html',
-		controller: 'userAdminController'
-	}).
-	otherwise({
-		redirectTo: '/Users'
-	});
-}]);
+  $routeProvider.when('/Users', {
+    templateUrl: basePath + '/Users/adminUsers.html',
+    controller: 'userAdminController',
+  })
+    .otherwise({
+      redirectTo: '/Users',
+    })
+}])

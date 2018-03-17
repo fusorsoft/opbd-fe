@@ -1,144 +1,145 @@
-var breakdownDirectives = angular.module('breakdownDirectives');
+var breakdownDirectives = angular.module('breakdownDirectives')
 
-breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeout', function($filter, $window, $timeout) {
+breakdownDirectives.directive('historyDataChart', ['$filter', '$window', '$timeout', function ($filter, $window, $timeout) {
+  var link = function (scope, element, attrs) {
+    scope.selectedData = 'DifferentialOverTime'
+    scope.data = []
+    scope.labels = []
+    scope.series = ''
 
-	var link = function(scope, element, attrs) {
+    class FilterNode {
+      constructor (name, days, selected) {
+        this.name = name
+        this.days = days
+        this.selected = selected
+      }
+    }
 
-		scope.selectedData = "DifferentialOverTime";
-		scope.data = [];
-		scope.labels = [];
-		scope.series = '';
+    scope.filters = [
+      new FilterNode('All Time', 0, true),
+      new FilterNode('180 Days', 180, true),
+      new FilterNode('60 Days', 60, true),
+      new FilterNode('30 Days', 30, false),
+      new FilterNode('7 Days', 7, false),
+    ]
 
-		var filterNode = function(name, days, selected) {
-				var self = this;
-				self.name = name;
-				self.days = days;
-				self.selected = selected;
-			};
+    var beautifyLabels = function (labels) {
+      return labels.map(function (l) { return $filter('date')(l, 'M-dd-yy') })
+    }
 
-		scope.filters = [
-			new filterNode("All Time", 0, true),
-			new filterNode("180 Days", 180, true),
-			new filterNode("60 Days", 60, true),
-			new filterNode("30 Days", 30, false),
-			new filterNode("7 Days", 7, false)
-		];
+    var updateFn = function () {
+      if (scope.historyData) {
+        var currentFilter = scope.filters.filter(function (f) {
+          return f.selected
+        })
 
+        scope.applyFilter(currentFilter[0])
+      }
+    }
 
-		var beautifyLabels = function(labels) {
-			return labels.map(function(l) { return $filter('date')(l, "M-dd-yy"); });
-		};
+    scope.$watch('historyData', updateFn)
+    scope.$watch('selectedData', updateFn)
 
-		var updateFn = function() {
-			if (scope.historyData) {
+    var sliceSize = 0
 
-				var currentFilter = scope.filters.filter(function(f) {
-					return f.selected;
-				});
+    scope.applyFilter = function (clickedFilter) {
+      scope.filters.map(function (f) { f.selected = false })
+      clickedFilter.selected = true
 
-				scope.applyFilter(currentFilter[0]);
-			}
-		};
+      if (clickedFilter.days === 0) {
+        scope.data = scope.historyData[scope.selectedData].data
+        scope.labels =
+          beautifyLabels(scope.historyData[scope.selectedData].labels)
+        scope.series = scope.historyData[scope.selectedData].series
+        sliceSize = 0
+      } else {
+        var today = new Date()
+        var filterDate = new Date()
+        filterDate.setDate(today.getDate() - clickedFilter.days)
 
-		scope.$watch('historyData', updateFn);
-		scope.$watch('selectedData', updateFn);
+        sliceSize =
+          scope.historyData[scope.selectedData].labels.filter(function (d) {
+            var thisDate = new Date(d)
+            return thisDate >= filterDate
+          }).length
 
-		var sliceSize = 0;
+        if (sliceSize !== 0) {
+          scope.data =
+            scope.historyData[scope.selectedData].data.slice(sliceSize * -1)
+          scope.labels =
+            beautifyLabels(scope.historyData[scope.selectedData]
+              .labels
+              .slice(sliceSize * -1))
+        } else {
+          scope.data = []
+          scope.labels = []
+        }
+      }
+    }
 
-		scope.applyFilter = function(clickedFilter) {
-			scope.filters.map(function(f) { f.selected = false; });
-			clickedFilter.selected = true;
+    scope.onClick = function (points, evt) {
+      if (points.length > 0) {
+        var firstPoint = points[0]
+        var dataIndex = firstPoint._index
+        var datum = scope.historyData[scope.selectedData].matchIds[dataIndex]
 
-			if (clickedFilter.days === 0 ) {
-				scope.data = scope.historyData[scope.selectedData].data;
-				scope.labels = beautifyLabels(scope.historyData[scope.selectedData].labels);
-				scope.series = scope.historyData[scope.selectedData].series;
-				sliceSize = 0;
-			} else {
-				var today = new Date();
-				var filterDate = new Date();
-				filterDate.setDate(today.getDate() - clickedFilter.days);
+        $window.location.href = '#/MatchData/' + datum
+      }
+    }
 
-				sliceSize = scope.historyData[scope.selectedData].labels.filter(function(d) {
-					var thisDate = new Date(d);
-					return thisDate >= filterDate;
-				}).length;
+    scope.historyChartOptions = {
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false,
+          },
+          ticks: {
+            maxTicksLimit: 20,
+          },
+        }],
+        yAxes: [{
+          ticks: {
+            maxTicksLimit: 5,
+          },
+        }],
+      },
+      elements: {
+        point: {
+          radius: 2,
+          hitRadius: 3,
+        },
+      },
+      legend: {
+        display: false,
+      },
+      tooltips: {
+        callbacks: {
+          title: function (items, data) {
+            var i = items[0].index
+            var points = scope.historyData[scope.selectedData].data
+            var offsetIndex =
+              sliceSize !== 0 ? points.length - sliceSize + i : i
+            return scope.historyData[scope.selectedData].titleFn(offsetIndex)
+          },
+          label: function (item, data) {
+            var i = item.index
+            var points = scope.historyData[scope.selectedData].data
+            var offsetIndex =
+              sliceSize !== 0 ? points.length - sliceSize + i : i
+            return scope.historyData[scope.selectedData].labelFn(offsetIndex)
+          },
+        },
+      },
+    }
+  }
 
-				if (sliceSize !== 0 ) {
-					scope.data = scope.historyData[scope.selectedData].data.slice(sliceSize * -1);
-					scope.labels = beautifyLabels(scope.historyData[scope.selectedData].labels.slice(sliceSize * -1));
-				} else {
-					scope.data = [];
-					scope.labels = [];
-				}
-			}
-		};
-
-		scope.onClick = function(points, evt) {
-
-			if (points.length > 0) {
-				var firstPoint = points[0];
-				var dataIndex = firstPoint._index;
-				var datum = scope.historyData[scope.selectedData].matchIds[dataIndex];
-
-				$window.location.href = "#/MatchData/" + datum;
-			}
-		};
-
-
-
-		scope.historyChartOptions = {
-			scales: {
-				xAxes: [{
-					gridLines: {
-						display: false
-					},
-					ticks: {
-						maxTicksLimit: 20
-					}
-				}],
-				yAxes: [{
-					ticks: {
-						maxTicksLimit: 5
-					}
-				}]
-			},
-			elements: {
-				point: {
-					radius: 2,
-					hitRadius: 3,
-				}
-			},
-			legend: {
-				display: false
-			},
-			tooltips: {
-				callbacks: {
-					title: function(items, data) {
-						var i = items[0].index;
-						var points = scope.historyData[scope.selectedData].data;
-						var offsetIndex = sliceSize !== 0 ? points.length - sliceSize + i : i;
-						return scope.historyData[scope.selectedData].titleFn(offsetIndex);
-					},
-					label: function(item, data) {
-						var i = item.index;
-						var points = scope.historyData[scope.selectedData].data;
-						var offsetIndex = sliceSize !== 0 ? points.length - sliceSize + i : i;
-						return scope.historyData[scope.selectedData].labelFn(offsetIndex);
-					}
-				}
-			}
-		};
-
-	};
-
-	return {
-		restrict: 'E',
-		replace: 'true',
-		scope: {
-			historyData: '<',
-		},
-		link: link,
-		templateUrl: '/ng-partials/breakdown/Chart-HistoryData/historyDataChart.html'
-	};
-}]);
+  return {
+    restrict: 'E',
+    replace: 'true',
+    scope: {
+      historyData: '<',
+    },
+    link: link,
+    templateUrl: '/ng-partials/breakdown/Chart-HistoryData/historyDataChart.html',
+  }
+}])

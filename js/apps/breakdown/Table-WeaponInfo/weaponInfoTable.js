@@ -1,44 +1,35 @@
-var breakdownDirectives = angular.module('breakdownDirectives');
+var breakdownDirectives = angular.module('breakdownDirectives')
 
-breakdownDirectives.directive('weaponInfoTable', function() {
+breakdownDirectives.directive('weaponInfoTable', function () {
+  var controller = ['$scope', '$filter', function ($scope, $filter) {
+    $scope.orderByField = 'TotalDamage'
+    $scope.reverse = true
 
-	var controller = ['$scope', '$filter', function($scope, $filter) {
-		/*function init() {
-			$scope.items = angular.copy($scope.datasource);
-		}
+    $scope.toggleRow = function (w) {
+      w.expanded = !w.expanded
+    }
 
-		init();*/
+    $scope.headingClicked = function (field) {
+      var currentSortField = $scope.orderByField
 
-		$scope.orderByField = 'TotalDamage';
-		$scope.reverse = true;
+      if (field === currentSortField) {
+        // just changing direction
+        $scope.reverse = !$scope.reverse
+      } else {
+        // clicked a different field.... sort desc
+        $scope.reverse = true
+        $scope.orderByField = field
+      }
+    }
+  }]
 
-		$scope.toggleRow = function(w) {
-			w.expanded = !w.expanded;
-		};
-
-		$scope.headingClicked = function(field) {
-			
-			var currentSortField =  $scope.orderByField;
-
-			if (field == currentSortField) {
-				// just changing direction
-				$scope.reverse = !$scope.reverse;
-			} else {
-				// clicked a different field.... sort desc
-				$scope.reverse = true;
-				$scope.orderByField = field;
-			}
-		};
-
-	}];
-
-	return {
-		restrict: 'E',
-		replace: 'true',
-		scope: {
-			weaponInfoData: '=weaponInfoData',
-		},
-		controller: controller,
-		templateUrl: '/ng-partials/breakdown/Table-WeaponInfo/weaponInfoTable.html'
-	};
-});
+  return {
+    restrict: 'E',
+    replace: 'true',
+    scope: {
+      weaponInfoData: '=weaponInfoData',
+    },
+    controller: controller,
+    templateUrl: '/ng-partials/breakdown/Table-WeaponInfo/weaponInfoTable.html',
+  }
+})

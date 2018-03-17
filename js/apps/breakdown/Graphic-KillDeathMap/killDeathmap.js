@@ -1,252 +1,295 @@
-var breakdownDirectives = angular.module('breakdownDirectives');
+var breakdownDirectives = angular.module('breakdownDirectives')
 
-breakdownDirectives.directive('killDeathMap', ['Maps', '$timeout', function(Maps, $timeout) {
+breakdownDirectives.directive('killDeathMap', ['Maps', '$timeout', function (Maps, $timeout) {
+  var link = function (scope, element, attrs) {
+    var mapInfo = Maps.getMapData(scope.map)
+    var mapScale = 0.65
+    var tColor = '#FFCC66'
+    var ctColor = '#0033FF'
+    var killerColor = '#00CC66'
+    var victimColor = '#FF3300'
 
-	var link = function(scope, element, attrs) {
+    mapInfo.xOffset *= mapScale
+    mapInfo.yOffset *= mapScale
+    mapInfo.scaleFactor *= (1 + ((mapScale + (1 - mapScale)) / 2))
 
-		var mapInfo = Maps.GetMapData(scope.map);
-		var mapScale = 0.65;
-		var tColor = "#FFCC66";
-		var ctColor = "#0033FF";
-		var killerColor = "#00CC66";
-		var victimColor = "#FF3300";
+    var c = element.children('canvas')[0]
+    var ctx = c.getContext('2d')
 
-		mapInfo.xOffset *= mapScale;
-		mapInfo.yOffset *= mapScale;
-		mapInfo.scaleFactor *= (1 + ((mapScale + (1 - mapScale)) / 2));
+    function getMapPoint (coord, offset, scaleFactor) {
+      return Math.abs(offset + (coord / scaleFactor))
+    }
 
-		var c = element.children('canvas')[0];
-		var ctx = c.getContext("2d");
+    function getRadians (degrees) {
+      return (Math.PI / 180) * degrees
+    }
 
-		function getMapPoint(coord, offset, scaleFactor) {
-			return Math.abs(offset + (coord / scaleFactor));
-		}
+    function getPositionPoint (posInfo) {
+      return [posInfo.Position.Location.x, posInfo.Position.Location.y]
+    }
 
-		function getRadians(degrees) {
-			return (Math.PI / 180) * degrees;
-		}
+    // undoes getMapPoint, essentially
+    var getCsPoint = function (coord, offset, scaleFactor) {
+      return -(offset * scaleFactor) + coord * scaleFactor
+    }
 
-		function shadeColor2(color, percent) {   
-		    var f=parseInt(color.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=f>>8&0x00FF,B=f&0x0000FF;
-		    return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
-		}
+    var drawLegend = function () {
+      var legendBaseX = mapInfo.legendXOffset
+      var legendBaseY = mapInfo.legendYOffset
 
-		function getPositionPoint(posInfo) {
-			return [posInfo.Position.Location.x, posInfo.Position.Location.y];
-		}
+      var position = {
+        Position: {
+          Location: {
+            x: getCsPoint(
+              legendBaseX + 20,
+              mapInfo.xOffset,
+              mapInfo.scaleFactor
+            ),
+            y: getCsPoint(
+              legendBaseY + 20,
+              mapInfo.yOffset,
+              mapInfo.scaleFactor
+            ),
+          },
+          ViewX: 0,
+          ViewY: 0,
+        },
+        HasArmor: false,
+        HasHelmet: false,
+        HasBomb: false,
+        HasDefuseKit: false,
+      }
 
-		// undoes getMapPoint, essentially
-		var getCsPoint = function(coord, offset, scaleFactor) {
-			return -(offset * scaleFactor) + coord * scaleFactor;
-		};
+      ctx.beginPath()
+      ctx.fillStyle = 'rgba(0,0,0,0.5)'
+      ctx.fillRect(legendBaseX, legendBaseY, 270, 125)
 
-		var drawLegend = function() {
-			var legendBaseX = mapInfo.legendXOffset;
-			var legendBaseY = mapInfo.legendYOffset;
+      drawPoint(position, killerColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Killer', legendBaseX + 40, legendBaseY + 25)
 
-			var position = {
-				Position: {
-					Location: {
-						x: getCsPoint(legendBaseX + 20, mapInfo.xOffset, mapInfo.scaleFactor),
-						y: getCsPoint(legendBaseY + 20, mapInfo.yOffset, mapInfo.scaleFactor)
-					},
-					ViewX: 0,
-					ViewY: 0
-				},
-				HasArmor: false,
-				HasHelmet: false,
-				HasBomb: false,
-				HasDefuseKit: false 
-			};
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 50,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      drawPoint(position, victimColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Victim', legendBaseX + 40, legendBaseY + 55)
 
-			ctx.beginPath();
-			ctx.fillStyle = "rgba(0,0,0,0.5)";
-			ctx.fillRect(legendBaseX, legendBaseY, 270, 125);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 80,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      drawPoint(position, scope.team === 'T' ? tColor : ctColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Teammate', legendBaseX + 40, legendBaseY + 85)
 
-			drawPoint(position, killerColor);
-			ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Killer", legendBaseX + 40, legendBaseY + 25);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 110,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      drawPoint(position, scope.team === 'T' ? ctColor : tColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Enemy', legendBaseX + 40, legendBaseY + 115)
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 50, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	drawPoint(position, victimColor);
-	    	ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Victim", legendBaseX + 40, legendBaseY + 55);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 20,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      position.Position.Location.x = getCsPoint(
+        legendBaseX + 140,
+        mapInfo.xOffset,
+        mapInfo.scaleFactor
+      )
+      position.HasArmor = true
+      drawPoint(position, killerColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Armor', legendBaseX + 160, legendBaseY + 25)
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 80, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	drawPoint(position, scope.team === "T" ? tColor : ctColor);
-	    	ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Teammate", legendBaseX + 40, legendBaseY + 85);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 50,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      position.HasArmor = true
+      position.HasHelmet = true
+      drawPoint(position, victimColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Armor + Helmet', legendBaseX + 160, legendBaseY + 55)
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 110, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	drawPoint(position, scope.team === "T" ? ctColor: tColor);
-	    	ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Enemy", legendBaseX + 40, legendBaseY + 115);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 80,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      position.HasArmor = false
+      position.HasHelmet = false
+      position.HasBomb = true
+      drawPoint(position, tColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Bomb Carrier', legendBaseX + 160, legendBaseY + 85)
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 20, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	position.Position.Location.x = getCsPoint(legendBaseX + 140, mapInfo.xOffset, mapInfo.scaleFactor);
-	    	position.HasArmor = true;
-	    	drawPoint(position, killerColor);
-			ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Armor", legendBaseX + 160, legendBaseY + 25);
+      position.Position.Location.y = getCsPoint(
+        legendBaseY + 110,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
+      position.HasBomb = false
+      position.HasDefuseKit = true
+      drawPoint(position, ctColor)
+      ctx.beginPath()
+      ctx.font = '15px Arial'
+      ctx.fillStyle = '#FFFFFF'
+      ctx.fillText('Defuse Kit', legendBaseX + 160, legendBaseY + 115)
+    }
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 50, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	position.HasArmor = true;
-	    	position.HasHelmet = true;
-	    	drawPoint(position, victimColor);
-			ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Armor + Helmet", legendBaseX + 160, legendBaseY + 55);
+    var drawPoint = function (position, color) {
+      ctx.beginPath()
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 80, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	position.HasArmor = false;
-	    	position.HasHelmet = false;
-	    	position.HasBomb = true;
-	    	drawPoint(position, tColor);
-			ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Bomb Carrier", legendBaseX + 160, legendBaseY + 85);
+      const X = getMapPoint(
+        position.Position.Location.x,
+        mapInfo.xOffset,
+        mapInfo.scaleFactor
+      )
+      const Y = getMapPoint(
+        position.Position.Location.y,
+        mapInfo.yOffset,
+        mapInfo.scaleFactor
+      )
 
-	    	position.Position.Location.y = getCsPoint(legendBaseY + 110, mapInfo.yOffset, mapInfo.scaleFactor);
-	    	position.HasBomb = false;
-	    	position.HasDefuseKit = true;
-	    	drawPoint(position, ctColor);
-			ctx.beginPath();
-			ctx.font = "15px Arial";
-	    	ctx.fillStyle = "#FFFFFF";
-	    	ctx.fillText("Defuse Kit", legendBaseX + 160, legendBaseY + 115);
-		};
+      ctx.arc(X, Y, 15 * mapScale, 0, 2 * Math.PI, true)
+      ctx.fillStyle = color
+      ctx.fill()
 
-		var drawPoint = function(position, color) {
-			ctx.beginPath();
+      ctx.beginPath()
 
-			X = getMapPoint(position.Position.Location.x, mapInfo.xOffset, mapInfo.scaleFactor);
-			Y = getMapPoint(position.Position.Location.y, mapInfo.yOffset, mapInfo.scaleFactor);
+      var ViewX =
+        (((Math.cos(getRadians(position.Position.ViewX))) * 25) * mapScale) + X
+      var ViewY =
+        (((-1 * Math.sin(getRadians(position.Position.ViewX)) * 25)) * mapScale) + Y // eslint-disable-line
 
-			ctx.arc(X, Y, 15 * mapScale, 0, 2 * Math.PI, true);
-		    ctx.fillStyle = color;
-		    ctx.fill();
+      ctx.moveTo(X, Y)
+      ctx.lineTo(ViewX, ViewY)
+      ctx.lineWidth = 2
+      ctx.strokeStyle = color
+      ctx.stroke()
+      ctx.closePath()
 
-		    ctx.beginPath();
+      if (position.HasArmor) {
+        var arcLength = 0
 
+        if (position.HasHelmet) {
+          arcLength = 2 * Math.PI
+        } else {
+          arcLength = Math.PI
+        }
 
-		    var ViewX = (((Math.cos(getRadians(position.Position.ViewX))) * 25) * mapScale) + X;
-		    var ViewY = (((-1 * Math.sin(getRadians(position.Position.ViewX)) * 25)) * mapScale) + Y;
+        var arcStart =
+          (-1 * getRadians(position.Position.ViewX)) + (Math.PI / 2)
+        var arcEnd = arcStart + arcLength
 
-		    ctx.moveTo(X, Y);
-		    ctx.lineTo(ViewX, ViewY);
-		    ctx.lineWidth = 2;
-		    ctx.strokeStyle = color;
-		    ctx.stroke();
-		    ctx.closePath();
+        ctx.beginPath()
+        ctx.arc(X, Y, 18 * mapScale, arcStart, arcEnd)
+        ctx.stroke()
+      }
 
-		    if (position.HasArmor) {
-		    	var arcLength = 0;
+      if (position.HasBomb) {
+        ctx.beginPath()
+        ctx.font = (15 * mapScale) + 'px Arial'
+        ctx.fillStyle = '#000000'
+        ctx.fillText('B', X - (4 * mapScale), Y + (5 * mapScale))
+      }
 
-		    	if (position.HasHelmet) {
-		    		arcLength = 2 * Math.PI;
-		    	} else {
-		    		arcLength = Math.PI;
-		    	}
+      if (position.HasDefuseKit) {
+        ctx.beginPath()
+        ctx.font = (15 * mapScale) + 'px Arial'
+        ctx.fillStyle = '#CECECE'
+        ctx.fillText('D', X - (4 * mapScale), Y + (5 * mapScale))
+      }
+    }
 
-		    	var arcStart = (-1 * getRadians(position.Position.ViewX)) + (Math.PI / 2);
-		    	var arcEnd = arcStart + arcLength;
+    var initMap = function () {
+      var img = new Image()
+      var points = []
 
-		    	ctx.beginPath();
-		    	ctx.arc(X, Y, 18 * mapScale, arcStart, arcEnd);
-		    	ctx.stroke();
-		    }
+      img.onload = function () {
+        img.height *= mapScale
+        img.width *= mapScale
 
-		    if (position.HasBomb) {
-		    	ctx.beginPath();
-		    	ctx.font = (15 * mapScale)  + "px Arial";
-		    	ctx.fillStyle = "#000000";
-		    	ctx.fillText("B", X - (4 * mapScale), Y + (5 * mapScale));
-		    }
+        c.height = img.height
+        c.width = img.width
 
-		    if (position.HasDefuseKit) {
-		    	ctx.beginPath();
-		    	ctx.font = (15 * mapScale)  + "px Arial";
-		    	ctx.fillStyle = "#CECECE";
-		    	ctx.fillText("D", X - (4 * mapScale), Y + (5 * mapScale));
-		    }
-		};	
+        ctx.clearRect(0, 0, c.Width, c.Height)
 
-		var initMap = function() {
-			var img = new Image();
-			var points = [];
+        ctx.drawImage(img, 0, 0, c.width, c.height)
+        drawLegend()
 
-			img.onload = function() {
-				img.height *= mapScale;
-				img.width *= mapScale;
+        if (!scope.killData) {
+          return
+        }
 
-				c.height = img.height;
-				c.width = img.width;
+        var i = 0
+        let j
+        var color = ''
 
-				ctx.clearRect(0, 0, c.Width, c.Height);
+        for (i = 0, j = scope.killData.TeammatePositions.length; i < j; i++) {
+          color = scope.team === 'T' ? tColor : ctColor
+          drawPoint(scope.killData.TeammatePositions[i], color)
+          points.push(getPositionPoint(scope.killData.TeammatePositions[i]))
+        }
 
-				ctx.drawImage(img, 0, 0, c.width, c.height);
-				drawLegend();
+        for (i = 0, j = scope.killData.EnemyPositions.length; i < j; i++) {
+          color = scope.team === 'T' ? ctColor : tColor
+          drawPoint(scope.killData.EnemyPositions[i], color)
+          points.push(getPositionPoint(scope.killData.EnemyPositions[i]))
+        }
 
-				if (!scope.killData) {
-					return;
-				}
+        // drawing these last so that they're on top of any teammates.
 
-				var i = 0;
-				var color = "";
+        points.push(getPositionPoint(scope.killData.Position))
+        points.push(getPositionPoint(scope.killData.VictimPosition))
 
-			    for(i = 0, j = scope.killData.TeammatePositions.length; i < j; i++) {
-			    	color = scope.team === "T" ? tColor : ctColor;
-			    	drawPoint(scope.killData.TeammatePositions[i], color);
-			    	points.push(getPositionPoint(scope.killData.TeammatePositions[i]));
-			    }
+        drawPoint(scope.killData.Position, killerColor)
+        drawPoint(scope.killData.VictimPosition, victimColor)
+      }
 
-			    for(i = 0, j = scope.killData.EnemyPositions.length; i < j; i++) {
-			    	color = scope.team === "T" ? ctColor: tColor;
-			    	drawPoint(scope.killData.EnemyPositions[i], color);
-			    	points.push(getPositionPoint(scope.killData.EnemyPositions[i]));
-			    }
+      img.src = mapInfo.imageUrl
+    }
 
-			    // drawing these last so that they're on top of any teammates.
+    $timeout(initMap, 0)
 
-			    points.push(getPositionPoint(scope.killData.Position));
-				points.push(getPositionPoint(scope.killData.VictimPosition));
+    scope.$watch('killData', function () {
+      initMap()
+    })
+  }
 
-				drawPoint(scope.killData.Position, killerColor);
-			    drawPoint(scope.killData.VictimPosition, victimColor);
-			};
-
-			img.src = mapInfo.imageUrl;
-		};
-
-	
-		$timeout(initMap, 0);
-
-		scope.$watch('killData', function() {
-			initMap();
-		});
-	};
-
-	return {
-		restrict: 'E',
-		replace: 'true',
-		scope: {
-			killData: '=',
-			map: '@',
-			team: '@',
-		},
-		link: link,
-		templateUrl: '/ng-partials/breakdown/Graphic-KillDeathMap/killDeathMap.html'
-	};
-}]);
+  return {
+    restrict: 'E',
+    replace: 'true',
+    scope: {
+      killData: '=',
+      map: '@',
+      team: '@',
+    },
+    link: link,
+    templateUrl: '/ng-partials/breakdown/Graphic-KillDeathMap/killDeathMap.html',
+  }
+}])

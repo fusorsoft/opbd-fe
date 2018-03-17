@@ -1,3 +1,3 @@
-var breakdownControllers = angular.module('breakdownAppControllers');
+angular.module('breakdownAppControllers')
 
-//breakdownControllers.controller();
+// breakdownControllers.controller();
