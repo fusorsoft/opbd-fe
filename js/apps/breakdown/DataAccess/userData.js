@@ -1,33 +1,30 @@
-angular.module('dataAccess').factory('userData', ['$http', '$q', 'apiHelpers', function ($http, $q, apiHelpers) {
+export default function ($http, apiHelpers) {
   var addFriend = function (friendId, name) {
-    // todo: this should probably be explicit...
-    var deferred = $q.defer()
+    return new Promise((resolve, reject) => {
+      $http.get('/_api/users').then(function (me) {
+        // this is just loltastic....
 
-    $http.get('/_api/users').then(function (me) {
-      // this is just loltastic....
+        const request = {
+          method: 'POST',
+          url: '/_api/users/' + me.data.steamID + '/friends',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          data: angular.toJson({
+            steamId: friendId,
+            name: name,
+          }),
+        }
 
-      const request = {
-        method: 'POST',
-        url: '/_api/users/' + me.data.steamID + '/friends',
-        headers: {
-          'Content-Type': 'application/json',
+        $http(request).then(function (resp) {
+          resolve(resp)
         },
-        data: angular.toJson({
-          steamId: friendId,
-          name: name,
-        }),
-      }
-
-      $http(request).then(function (resp) {
-        deferred.resolve(resp)
-      },
-      function (err) {
-        deferred.reject(err)
-      }
-      )
+        function (err) {
+          reject(err)
+        }
+        )
+      })
     })
-
-    return deferred.promise
   }
 
   var removeFriend = function (userId, friendId) {
@@ -53,4 +50,4 @@ angular.module('dataAccess').factory('userData', ['$http', '$q', 'apiHelpers', f
     getResultsWithFriend: getResultsWithFriend,
     getUserInfo: getUserInfo,
   }
-}])
+}

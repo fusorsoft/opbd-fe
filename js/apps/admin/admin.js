@@ -1,14 +1,20 @@
-angular.module('adminDataAccess', [])
+import 'angular-route'
+import 'angularjs-toaster'
+import 'ng-dialog'
 
-angular.module('adminControllers', ['adminDataAccess', 'toaster', 'ngDialog'])
-var adminApp = angular.module('adminApp', ['ngRoute', 'adminControllers'])
+import {
+  userAdminController,
+  default as userAdminControllerModule,
+} from './users/adminUsers'
+
+const adminApp = angular.module('adminApp', ['ngRoute', userAdminControllerModule])
 
 adminApp.config(['$routeProvider', function ($routeProvider) {
-  var basePath = '/ng-partials/admin'
+  const basePath = '/ng-partials/admin'
 
   $routeProvider.when('/Users', {
     templateUrl: basePath + '/Users/adminUsers.html',
-    controller: 'userAdminController',
+    controller: userAdminController,
   })
     .otherwise({
       redirectTo: '/Users',

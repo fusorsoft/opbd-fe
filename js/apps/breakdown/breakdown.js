@@ -1,28 +1,87 @@
-angular.module('csgoData', [])
-angular.module('dataAccess', [])
-angular.module('utils', [])
+import 'angularjs-toaster'
+import 'chart.js'
+import 'angular-chart.js'
+import 'angular-tooltips'
+import 'angular-scroll'
+import 'angular-route'
+import 'angular-filter'
+import 'angular-animate'
+import 'angular-sanitize'
+import 'ng-dialog'
 
-angular.module('breakdownDirectives',
+import csgoData from './CSGOData'
+import dataAccess from './DataAccess'
+import utils from './utils'
+
+import matchSummaryAsideModule from './Aside-MatchSummary/matchSummaryAside'
+import adrChartModule from './Chart-ADR/adrChart'
+import adrOverTimeChartModule from './Chart-ADROverTime/adrOverTimeChart'
+import aggregateMapDataChartModule from './Chart-AggregateMapData/aggregateMapDataChart'
+import bodyDamageChartModule from './Chart-BodyDamage/bodyDamageChart'
+import historyDataChartModule from './Chart-HistoryData/historyDataChart'
+import kdaChartModule from './Chart-KDA/kdaChart'
+import killCountChartModule from './Chart-KillCounts/killCountChart'
+import matchHistoryChartModule from './Chart-MatchHistory/matchHistoryChart'
+import roundDamagehartModule from './Chart-RoundDamage/roundDamageChart'
+import weaponDamageChartModule from './Chart-WeaponDamage/weaponDamageChart'
+import killDeathMapModule from './Graphic-KillDeathMap/killDeathmap'
+import mapBreakdownModule from './MapBreakdown/mapBreakdown'
+import roundBreakdownModule from './RoundBreakdown/roundBreakdown'
+import roundInfoTableModule from './Table-RoundInfo/roundInfoTable'
+import weaponInfoTableModule from './Table-WeaponInfo/weaponInfoTable'
+import userLinkModule from './UserLink/userLink'
+
+import addDataModule from './AddData/addData'
+import friendsModule from './Friends/friends'
+import matchDataModule from './MatchData/matchData'
+import matchDetailModule from './MatchDetail/matchDetail'
+import breakdownNavModule from './Navigation/breakdownNavController'
+import overallDataModule from './OverallData/overallData'
+
+const directiveModule = angular.module('breakdownDirectives',
   ['chart.js',
     'toaster',
-    'csgoData',
-    'dataAccess',
+    csgoData,
+    dataAccess,
     '720kb.tooltips',
     'duScroll',
-  ])
+    matchSummaryAsideModule,
+    adrChartModule,
+    adrOverTimeChartModule,
+    aggregateMapDataChartModule,
+    bodyDamageChartModule,
+    historyDataChartModule,
+    kdaChartModule,
+    killCountChartModule,
+    matchHistoryChartModule,
+    roundDamagehartModule,
+    weaponDamageChartModule,
+    killDeathMapModule,
+    mapBreakdownModule,
+    roundBreakdownModule,
+    roundInfoTableModule,
+    weaponInfoTableModule,
+    userLinkModule,
+  ]).name
 
-angular.module('breakdownAppControllers',
+const controllersModule = angular.module('breakdownAppControllers',
   ['angular.filter',
     'toaster',
     'ngAnimate',
-    'breakdownDirectives',
-    'csgoData',
-    'dataAccess',
-    'utils',
+    directiveModule,
+    csgoData,
+    dataAccess,
+    utils,
     'ngSanitize',
-  ])
+    addDataModule,
+    friendsModule,
+    matchDataModule,
+    matchDetailModule,
+    breakdownNavModule,
+    overallDataModule,
+  ]).name
 
-var breakdownApp = angular.module('breakdownApp', ['ngRoute', 'breakdownAppControllers'])
+var breakdownApp = angular.module('breakdownApp', ['ngRoute', controllersModule])
 
 breakdownApp.controller('breakdownAppController', [
   '$scope',

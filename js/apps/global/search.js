@@ -1,38 +1,35 @@
+export default angular.module('searchControllerModule')
+  .controller('searchController', [
+    '$http',
+    '$scope',
+    '$window',
+    function ($http, $scope, $window) {
+      $scope.searchTerm = ''
 
-angular.module('opBreakdownWidgets', [])
-var searchApp = angular.module('searchApp', ['opBreakdownWidgets', '720kb.tooltips'])
+      $scope.autocompleteValues = []
 
-searchApp.controller('searchController', [
-  '$http',
-  '$scope',
-  '$window',
-  function ($http, $scope, $window) {
-    $scope.searchTerm = ''
+      $scope.onQueryModified = function () {
+        if ($scope.searchTerm.length < 2) {
+          return
+        }
 
-    $scope.autocompleteValues = []
+        $http.get('/_api/matchdata/players?query=' + $scope.searchTerm + '&limit=5').then(function (data) {
+          var info = data.data.map(function (d) {
+            return {
+              'label': d.name + ' (' + d.count + ' matches)',
+              'value': d.steamId,
+            }
+          })
 
-    $scope.onQueryModified = function () {
-      if ($scope.searchTerm.length < 2) {
-        return
+          $scope.autocompleteValues = info
+        },
+        function (err) {
+          console.log('error:\n' + err)
+        })
       }
 
-      $http.get('/_api/matchdata/players?query=' + $scope.searchTerm + '&limit=5').then(function (data) {
-        var info = data.data.map(function (d) {
-          return {
-            'label': d.name + ' (' + d.count + ' matches)',
-            'value': d.steamId,
-          }
-        })
-
-        $scope.autocompleteValues = info
-      },
-      function (err) {
-        console.log('error:\n' + err)
-      })
-    }
-
-    $scope.onItemSelected = function (selectedItem) {
-      $window.location.href = '/User/' + $scope.autocompleteValues[selectedItem].value
-    }
-  },
-])
+      $scope.onItemSelected = function (selectedItem) {
+        $window.location.href = '/User/' + $scope.autocompleteValues[selectedItem].value
+      }
+    },
+  ]).name

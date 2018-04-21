@@ -1,3 +1,1 @@
-angular.module('breakdownAppControllers')
-
-// breakdownControllers.controller();
+export default angular.module('breakdownNavModule', []).name

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "lint": "eslint ./js",
     "lint-fix": "eslint --fix ./js ./test"
   },
@@ -15,12 +16,27 @@
   "author": "Fusorsoft, LLC",
   "license": "MIT",
   "devDependencies": {
+    "angular": "^1.6.9",
+    "angular-animate": "^1.6.9",
+    "angular-chart.js": "^1.1.1",
+    "angular-filter": "^0.5.17",
+    "angular-route": "^1.6.9",
+    "angular-sanitize": "^1.6.9",
+    "angular-scroll": "^1.0.2",
+    "angular-tooltips": "^1.2.2",
+    "angularjs-toaster": "^2.2.0",
+    "autoprefixer": "^8.1.0",
     "eslint": "^4.19.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "hard-source-webpack-plugin": "^0.6.4",
+    "ng-dialog": "^1.4.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "dependencies": {}
 }

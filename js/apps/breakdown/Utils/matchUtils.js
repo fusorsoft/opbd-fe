@@ -1,4 +1,4 @@
-angular.module('utils').factory('matchUtils', [function () {
+export default function () {
   var getWinsFromMatch = function (match) {
     var d = match.playerData[0]
     return d.TotalWins
@@ -29,4 +29,4 @@ angular.module('utils').factory('matchUtils', [function () {
   return {
     getMatchResult: getMatchResult,
   }
-}])
+}
