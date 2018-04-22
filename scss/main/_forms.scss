@@ -1,4 +1,5 @@
-@import 'lib/pure-styles';
+@import '../../node_modules/purecss/build/forms';
+@import '../../node_modules/purecss/build/buttons';
 
 form legend.obLegend {
 	border-bottom: 1px solid gray;

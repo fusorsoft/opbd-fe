@@ -16,7 +16,7 @@ module.exports = {
     global: './js/apps/global/global.js',
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/js'),
     filename: '[name].min.js',
   },
   devtool: 'source-map',
@@ -52,74 +52,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ExtractTextWebpackPlugin.extract({
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                minimize: false,
-                sourceMap: false,
-              },
-            },
-            {
-              loader: 'csso-loader',
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [
-                  autoprefixer({ browsers: [
-                    'ff >= 55',
-                    'safari >= 9',
-                    'chrome >= 60',
-                    'ie >= 10',
-                  ]}),
-                ],
-              },
-            },
-          ],
-        }),
-      },
-      // images
-      {
-        test: /\.(jpe?g|png|gif|svg)(\?\S*)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images/',
-              useRelativePath: false,
-            },
-          },
-        ],
-      },
-      // fonts
-      {
-        test: /\.(otf|ttf|eot|woff(2)?)(\?\S*)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: './fonts/',
-              useRelativePath: false,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.xml$/,
-        use: [
-          {
-            loader: 'raw-loader',
-          },
-        ],
-      },
-      {
         test: /\.html/,
         exclude: /index\.html$/,
         use: [
@@ -136,9 +68,6 @@ module.exports = {
   plugins: [
     // Writes styles.css to disk.
     new ExtractTextWebpackPlugin('[name].css'),
-    new webpack.ProvidePlugin({
-      angular: 'angular',
-    }),
   ],
   resolve: {
     modules: [

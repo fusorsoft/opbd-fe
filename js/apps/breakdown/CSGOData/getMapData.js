@@ -1,6 +1,6 @@
-const mapBase = '/assets/images/maps/'
-const mapIconBase = '/assets/images/mapIcons/'
-const mapShotBase = '/assets/images/mapShots/'
+const mapBase = 'maps/'
+const mapIconBase = 'mapIcons/'
+const mapShotBase = 'mapShots/'
 
 class MapInfo {
   constructor (

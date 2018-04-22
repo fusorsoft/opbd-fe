@@ -1,5 +1,5 @@
-const iconBase = '/assets/images/weaponIcons/'
-const imageBase = '/assets/images/weapons/'
+const iconBase = '/images/weaponIcons/'
+const imageBase = '/images/weapons/'
 
 class WeaponInfo {
   constructor (weaponName, imageName) {

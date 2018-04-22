@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 export default angular.module('emailAppControllerModule', [])
   .controller('emailAppController', ['$http', '$scope', '$interval', 'toaster', function ($http, $scope, $interval, toaster) {
     $scope.email = ''
@@ -28,8 +30,8 @@ export default angular.module('emailAppControllerModule', [])
     $scope.submitEmailAddress = function () {
       if (emailsTried.indexOf($scope.email) > -1) {
         // crafty bastard is tried changing it, then changing it back...
-        // if you're clever enough to try to get around this, know that the server
-        // is just going to reject it anyway....
+        // if you're clever enough to try to get around this, know that the
+        // server is just going to reject it anyway....
         $scope.emailSent = true
         $scope.retryTimer = 180
         timerPromise = $interval(countDown, 1000)

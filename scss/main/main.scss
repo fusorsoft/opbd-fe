@@ -9,7 +9,10 @@
 @import 'footer';
 @import 'forms';
 @import 'tables';
-@import 'lib/css-lib';
+@import '../../node_modules/angularjs-toaster/toaster.min';
+@import '../../node_modules/angular-tooltips/dist/angular-tooltips.min';
+@import '../../node_modules/ng-dialog/css/ngDialog.min';
+@import '../../node_modules/ng-dialog/css/ngDialog-theme-default.min';
 @import 'chart';
 @import 'textDecorations';
 @import 'layouts';

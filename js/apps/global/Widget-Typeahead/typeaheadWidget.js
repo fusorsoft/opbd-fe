@@ -1,3 +1,5 @@
+import typeaheadWidgetTemplate from './typeaheadWidget.html'
+
 export default angular.module('obTypeaheadModule', [])
   .directive('obTypeahead', function () {
     var link = function (scope, elem, attrs) {
@@ -76,6 +78,6 @@ export default angular.module('obTypeaheadModule', [])
         selectedFn: '=',
       },
       link: link,
-      templateUrl: '/ng-partials/global/Widget-Typeahead/typeaheadWidget.html',
+      template: typeaheadWidgetTemplate,
     }
   }).name

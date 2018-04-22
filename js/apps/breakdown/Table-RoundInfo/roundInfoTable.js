@@ -48,7 +48,7 @@ export default angular.module('roundInfoTableModule', [])
         }
       })
 
-      scope.teamIcon = scope.roundData.Team === 'CT' ? '/assets/images/ctlogo64.png' : '/assets/images/tlogo64.png'
+      scope.teamIcon = scope.roundData.Team === 'CT' ? '/images/ctlogo64.png' : '/images/tlogo64.png'
 
       function oppositeTeam (team) {
         return team === 'CT' ? 'T' : 'CT'

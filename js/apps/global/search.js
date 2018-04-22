@@ -1,4 +1,6 @@
-export default angular.module('searchControllerModule')
+import angular from 'angular'
+
+export default angular.module('searchControllerModule', [])
   .controller('searchController', [
     '$http',
     '$scope',

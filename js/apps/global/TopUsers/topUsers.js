@@ -8,7 +8,7 @@ export default angular.module('topUsersControllerModule', [])
       var getDummyUser = function () {
         return {
           user: {
-            avatarMedium: '/assets/images/ctlogo64.png',
+            avatarMedium: '/images/ctlogo64.png',
           },
           name: [
             'User',
