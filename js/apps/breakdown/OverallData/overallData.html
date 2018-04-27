@@ -1,5 +1,4 @@
 <div class="ob-breakdown-container">
-
 <div>
 
 	<div class="ob-warning-notification" ng-if="warningMessage">
@@ -15,7 +14,7 @@
 
 	<div class="ob-match-summary-container">
 		<div data-ng-repeat="m in recentMatches">
-			<match-summary-aside 
+			<match-summary-aside
 				round-wins="{{::m.totalRoundWins}}"
 				round-losses="{{::(m.totalRoundsPlayed - m.totalRoundWins)}}"
 				map="{{::m.map}}"

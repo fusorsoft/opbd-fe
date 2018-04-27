@@ -1,3 +1,6 @@
+import angular from 'angular'
+import weaponInfoTableTemplate from './weaponInfoTable.html'
+
 export default angular.module('weaponInfoTableModule', [])
   .directive('weaponInfoTable', function () {
     var controller = ['$scope', '$filter', function ($scope, $filter) {
@@ -29,6 +32,6 @@ export default angular.module('weaponInfoTableModule', [])
         weaponInfoData: '=weaponInfoData',
       },
       controller: controller,
-      templateUrl: '/ng-partials/breakdown/Table-WeaponInfo/weaponInfoTable.html',
+      template: weaponInfoTableTemplate,
     }
   }).name

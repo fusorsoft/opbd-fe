@@ -1,3 +1,6 @@
+import angular from 'angular'
+import roundBreakdownTemplate from './roundBreakdown.html'
+
 export default angular.module('roundBreakdownModule', [])
   .directive('roundBreakdown', function () {
     var controller = ['$scope', function ($scope) {
@@ -25,6 +28,6 @@ export default angular.module('roundBreakdownModule', [])
         playerData: '=playerData',
       },
       controller: controller,
-      templateUrl: '/ng-partials/breakdown/RoundBreakdown/roundBreakdown.html',
+      template: roundBreakdownTemplate,
     }
   }).name

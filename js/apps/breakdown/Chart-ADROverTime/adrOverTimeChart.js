@@ -1,3 +1,6 @@
+import angular from 'angular'
+import adrOverTimeChartTemplate from './adrOverTimeChart.html'
+
 export default angular.module('adrOverTimeChartModule', [])
   .directive('adrOverTimeChart', ['$filter', function ($filter) {
     var link = function (scope, element, attrs) {
@@ -67,6 +70,6 @@ export default angular.module('adrOverTimeChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-ADROverTime/adrOverTimeChart.html',
+      template: adrOverTimeChartTemplate,
     }
   }]).name

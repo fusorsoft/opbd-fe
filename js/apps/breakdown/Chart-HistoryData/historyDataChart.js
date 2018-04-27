@@ -1,3 +1,6 @@
+import angular from 'angular'
+import historyDataChartTemplate from './historyDataChart.html'
+
 export default angular.module('historyDataChartModule', [])
   .directive('historyDataChart', ['$filter', '$window', '$timeout', function ($filter, $window, $timeout) {
     var link = function (scope, element, attrs) {
@@ -139,6 +142,6 @@ export default angular.module('historyDataChartModule', [])
         historyData: '<',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-HistoryData/historyDataChart.html',
+      template: historyDataChartTemplate,
     }
   }]).name

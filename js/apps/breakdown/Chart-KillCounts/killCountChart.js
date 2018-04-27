@@ -1,3 +1,6 @@
+import angular from 'angular'
+import killCountChartTemplate from './killCountChart.html'
+
 export default angular.module('killCountChart', [])
   .directive('killCountChart', function () {
     var link = function (scope, elem, attrs) {
@@ -21,6 +24,6 @@ export default angular.module('killCountChart', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-KillCounts/killCountChart.html',
+      template: killCountChartTemplate,
     }
   }).name

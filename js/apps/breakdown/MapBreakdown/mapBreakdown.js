@@ -1,3 +1,6 @@
+import angular from 'angular'
+import mapBreakdownTemplate from './mapBreakdown.html'
+
 export default angular.module('mapBreakdownModule', [])
   .directive('mapBreakdown', ['Maps', function (Maps) {
     var link = function (scope, elem, attrs) {
@@ -115,6 +118,6 @@ export default angular.module('mapBreakdownModule', [])
         mapData: '<',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/MapBreakdown/mapBreakdown.html',
+      template: mapBreakdownTemplate,
     }
   }]).name

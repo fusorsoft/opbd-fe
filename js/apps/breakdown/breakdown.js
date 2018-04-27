@@ -1,3 +1,4 @@
+import angular from 'angular'
 import 'angularjs-toaster'
 import 'chart.js'
 import 'angular-chart.js'
@@ -37,6 +38,12 @@ import matchDataModule from './MatchData/matchData'
 import matchDetailModule from './MatchDetail/matchDetail'
 import breakdownNavModule from './Navigation/breakdownNavController'
 import overallDataModule from './OverallData/overallData'
+
+import OverallDataTemplate from './OverallData/overallData.html'
+import AddDataTemplate from './AddData/addData.html'
+import MatchDataTemplate from './MatchData/matchData.html'
+import MatchDetailTemplate from './MatchDetail/matchDetail.html'
+import FriendsTemplate from './Friends/friends.html'
 
 const directiveModule = angular.module('breakdownDirectives',
   ['chart.js',
@@ -98,44 +105,33 @@ breakdownApp.controller('breakdownAppController', [
 
       userData.getUserInfo(userId).then(function (response) {
         $scope.userInfo = response.data
+        var overlay = document.getElementById('loadingOverlay')
+        overlay.style.display = 'none'
       })
     }
-
-    $timeout(function () {
-      var overlay = document.getElementById('loadingOverlay')
-      overlay.style.display = 'none'
-
-      var basePath = '/ng-partials/breakdown'
-
-      $http.get(basePath + '/MatchData/matchData.html', { cache: $templateCache })
-      $http.get(basePath + '/MatchDetail/matchDetail.html', { cache: $templateCache })
-      $http.get(basePath + '/Friends/friends.html', { cache: $templateCache })
-    }, 0)
   },
 ])
 
 breakdownApp.config(['$routeProvider', function ($routeProvider) {
-  var basePath = '/ng-partials/breakdown'
-
   $routeProvider.when('/OverallData', {
-    templateUrl: basePath + '/OverallData/overallData.html',
+    template: OverallDataTemplate,
     controller: 'OverallDataController',
   })
     .when('/AddData', {
-      templateUrl: basePath + '/AddData/addData.html',
+      template: AddDataTemplate,
       controller: 'AddDataController',
     })
+    .when('/Friends', {
+      template: FriendsTemplate,
+      controller: 'FriendsController',
+    })
     .when('/MatchData', {
-      templateUrl: basePath + '/MatchData/matchData.html',
+      template: MatchDataTemplate,
       controller: 'MatchDataController',
     })
     .when('/MatchData/:matchId?', {
-      templateUrl: basePath + '/MatchDetail/matchDetail.html',
+      template: MatchDetailTemplate,
       controller: 'MatchDetailController',
-    })
-    .when('/Friends', {
-      templateUrl: basePath + '/Friends/friends.html',
-      controller: 'FriendsController',
     })
     .otherwise({
       redirectTo: '/OverallData',

@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 export default angular.module('addDataModule', [])
   .controller('AddDataController', [
     '$scope',

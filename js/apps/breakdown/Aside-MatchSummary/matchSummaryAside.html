@@ -1,11 +1,11 @@
-<a href="#!/MatchData/{{matchId}}" class="ob-match-summary-aside ob-block-button">
+<a href="#!/MatchData/{{msavm.matchId}}" class="ob-match-summary-aside ob-block-button">
 	<div>
-		<img ng-src="{{::mapIcon}}"/>
+		<img ng-src="{{::msavm.mapIcon}}"/>
 	</div>
 	<div>
-		<div class="ob-score"><i class="fa fa-trophy" aria-hidden="true" ng-if="result === 'Win'"></i> {{::roundWins}} - {{::roundLosses}}</div>
-		<div>{{::mapName}}</div>
-		<div>{{::matchDate}}</div>
-		<div>{{::adr}}</div>
+		<div class="ob-score"><i class="fa fa-trophy" aria-hidden="true" ng-if="msavm.result === 'Win'"></i> {{::msavm.roundWins}} - {{::msavm.roundLosses}}</div>
+		<div>{{::msavm.mapName}}</div>
+		<div>{{::msavm.matchDate}}</div>
+		<div>{{::msavm.adr}}</div>
 	</div>
 </a>

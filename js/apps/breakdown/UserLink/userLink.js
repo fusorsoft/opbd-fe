@@ -1,3 +1,6 @@
+import angular from 'angular'
+import userLinkTemplate from './userLink.html'
+
 export default angular.module('userLinkModule', [])
   .directive('userLink', ['$window', 'toaster', 'userData', function ($window, toaster, userData) {
     var link = function (scope, elem, attrs) {
@@ -30,6 +33,6 @@ export default angular.module('userLinkModule', [])
         matchId: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/UserLink/userLink.html',
+      template: userLinkTemplate,
     }
   }]).name

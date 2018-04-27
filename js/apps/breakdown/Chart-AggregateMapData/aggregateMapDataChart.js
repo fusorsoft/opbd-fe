@@ -1,3 +1,6 @@
+import angular from 'angular'
+import aggregateMapDataChartTemplate from './aggregateMapDataChart.html'
+
 export default angular.module('aggregateMapDataChartModule', [])
   .directive('aggregateMapDataChart', function () {
     var link = function (scope, elem, attrs) {
@@ -34,6 +37,6 @@ export default angular.module('aggregateMapDataChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-AggregateMapData/aggregateMapDataChart.html',
+      template: aggregateMapDataChartTemplate,
     }
   }).name

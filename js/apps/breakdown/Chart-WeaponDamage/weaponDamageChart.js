@@ -1,3 +1,6 @@
+import angular from 'angular'
+import weaponDamageChartTemplate from './weaponDamageChart.html'
+
 export default angular.module('weaponDamageChartModule', [])
   .directive('weaponDamageChart', function () {
     var link = function (scope, elem, attrs) {
@@ -25,6 +28,6 @@ export default angular.module('weaponDamageChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-WeaponDamage/weaponDamageChart.html',
+      template: weaponDamageChartTemplate,
     }
   }).name

@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 export default angular.module('matchDataModule', [])
   .controller('MatchDataController', [
     '$scope',
@@ -47,6 +49,8 @@ export default angular.module('matchDataModule', [])
         }
 
         $scope.matchHistoryData = historyDataPoints
+
+        $scope.$digest()
       }, function (err) {
         console.log(err.message)
       })

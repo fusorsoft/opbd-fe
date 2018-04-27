@@ -1,3 +1,6 @@
+import angular from 'angular'
+import killDeathMapTemplate from './killDeathMap.html'
+
 export default angular.module('killDeathMapModule', [])
   .directive('killDeathMap', ['Maps', '$timeout', function (Maps, $timeout) {
     var link = function (scope, element, attrs) {
@@ -289,6 +292,6 @@ export default angular.module('killDeathMapModule', [])
         team: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Graphic-KillDeathMap/killDeathMap.html',
+      template: killDeathMapTemplate,
     }
   }]).name

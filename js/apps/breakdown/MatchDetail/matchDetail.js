@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 export default angular.module('matchDetailModule', [])
   .controller('MatchDetailController', [
     '$scope',
@@ -63,6 +65,7 @@ export default angular.module('matchDetailModule', [])
 
             var avgRank = Math.round(sumRanks / numRankedPlayers)
             $scope.averageRank = Ranks.getRankData(avgRank)
+            $scope.$digest()
           })
 
         $scope.weaponDamageData = $scope.playerData.WeaponData.map(function (p) {
@@ -129,6 +132,7 @@ export default angular.module('matchDetailModule', [])
         }
 
         $scope.roundDamageData = roundDamages
+        $scope.$digest()
       })
     }]
   ).name

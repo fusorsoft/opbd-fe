@@ -1,3 +1,6 @@
+import angular from 'angular'
+import bodyDamageChartTemplate from './bodyDamageChart.html'
+
 export default angular.module('bodyDamageChartModule', [])
   .directive('bodyDamageChart', function () {
     return {
@@ -7,6 +10,6 @@ export default angular.module('bodyDamageChartModule', [])
         w: '=weaponDamageData',
         bodyImageUrl: '@bodyImageUrl',
       },
-      templateUrl: '/ng-partials/breakdown/Chart-BodyDamage/bodyDamageChart.html',
+      template: bodyDamageChartTemplate,
     }
   }).name

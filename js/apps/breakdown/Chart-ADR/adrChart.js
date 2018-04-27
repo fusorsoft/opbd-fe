@@ -1,3 +1,6 @@
+import angular from 'angular'
+import adrChartTemplate from './adrChart.html'
+
 export default angular.module('adrChart', [])
   .directive('adrChart', function () {
     var link = function (scope, elem, attrs) {
@@ -26,6 +29,6 @@ export default angular.module('adrChart', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-ADR/adrChart.html',
+      template: adrChartTemplate,
     }
   }).name

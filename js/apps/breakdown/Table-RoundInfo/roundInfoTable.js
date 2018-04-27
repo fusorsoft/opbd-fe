@@ -1,3 +1,8 @@
+import angular from 'angular'
+import roundInfoTableTemplate from './roundInfoTable.html'
+import roundSummaryRowTemplate from './roundSummaryRow.html'
+import roundDetailRowTemplate from './roundDetailRow.html'
+
 export default angular.module('roundInfoTableModule', [])
   .directive('roundInfoTable', function () {
     var link = function (scope, elem, attrs) {
@@ -16,7 +21,7 @@ export default angular.module('roundInfoTableModule', [])
         map: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Table-RoundInfo/roundInfoTable.html',
+      template: roundInfoTableTemplate,
     }
   })
   .directive('roundSummaryRow', function () {
@@ -33,7 +38,7 @@ export default angular.module('roundInfoTableModule', [])
         round: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Table-RoundInfo/roundSummaryRow.html',
+      template: roundSummaryRowTemplate,
     }
   })
   .directive('roundDetailRow', ['Weapons', function (Weapons) {
@@ -127,6 +132,6 @@ export default angular.module('roundInfoTableModule', [])
         map: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Table-RoundInfo/roundDetailRow.html',
+      template: roundDetailRowTemplate,
     }
   }]).name

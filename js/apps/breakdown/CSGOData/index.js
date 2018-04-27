@@ -14,6 +14,8 @@ function weaponDataFactory () {
   return { getWeaponData }
 }
 
+import angular from 'angular'
+
 export default angular.module('csgoData', [])
   .factory('Maps', mapDataFactory)
   .factory('Ranks', rankDataFactory)

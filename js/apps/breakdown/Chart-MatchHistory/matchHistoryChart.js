@@ -1,3 +1,6 @@
+import angular from 'angular'
+import matchHistoryChartTemplate from './matchHistoryChart.html'
+
 export default angular.module('matchHistoryChartModule', [])
   .directive('matchHistoryChart', ['$filter', function ($filter) {
     var link = function (scope, element, attrs) {
@@ -72,6 +75,6 @@ export default angular.module('matchHistoryChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-MatchHistory/matchHistoryChart.html',
+      template: matchHistoryChartTemplate,
     }
   }]).name

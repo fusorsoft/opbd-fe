@@ -1,3 +1,6 @@
+import angular from 'angular'
+import roundDamageChartTemplate from './roundDamageChart.html'
+
 export default angular.module('roundDamageChartModule', [])
   .directive('roundDamageChart', function () {
     var link = function (scope, elem, attrs) {
@@ -20,6 +23,6 @@ export default angular.module('roundDamageChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-RoundDamage/roundDamageChart.html',
+      template: roundDamageChartTemplate,
     }
   }).name

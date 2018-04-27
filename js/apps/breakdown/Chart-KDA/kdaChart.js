@@ -1,3 +1,6 @@
+import angular from 'angular'
+import kdaChartTemplate from './kdaChart.html'
+
 export default angular.module('kdaChartModule', [])
   .directive('kdaChart', function () {
     var link = function (scope, elem, attrs) {
@@ -31,6 +34,6 @@ export default angular.module('kdaChartModule', [])
         chartTitle: '@',
       },
       link: link,
-      templateUrl: '/ng-partials/breakdown/Chart-KDA/kdaChart.html',
+      template: kdaChartTemplate,
     }
   }).name
