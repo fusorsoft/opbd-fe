@@ -1,0 +1,81 @@
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    
+before_script:
+  - npm install
+  - node -v
+  - npm -v
+
+stages:
+  - test
+  - build
+  - deploy
+  
+test-unit:
+  image: node:8
+  stage: test
+  script:
+    - npm test
+
+lint:
+  image: node:8
+  stage: test
+  script:
+    - npm run lint
+
+webpack:
+  image: node:8
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+    - dist/
+
+deploy-dev:
+  image: docker:stable
+  cache: {}
+  before_script:
+    - ''
+  dependencies:
+    - webpack
+  only:
+    refs:
+      - develop
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: deploy
+  script:
+    - docker build -t opbd-be .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-be:latest fusorsoft/opbd-be:develop
+    - docker push fusorsoft/opbd-be:develop
+    
+deploy-prod:
+  image: docker:stable
+  cache: {}
+  before_script:
+    - ''
+  dependencies:
+    - webpack
+  only:
+    refs:
+      - master
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: deploy
+  script:
+    - docker build -t opbd-be .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-be:latest fusorsoft/opbd-be:master
+    - docker push fusorsoft/opbd-be:master
