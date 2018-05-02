@@ -12,7 +12,7 @@ import 'ng-dialog'
 
 import csgoData from './CSGOData'
 import dataAccess from './DataAccess'
-import utils from './utils'
+import utils from './Utils'
 
 import matchSummaryAsideModule from './Aside-MatchSummary/matchSummaryAside'
 import adrChartModule from './Chart-ADR/adrChart'

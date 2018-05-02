@@ -1,6 +1,7 @@
 import getMapData from './getMapData'
 import getRankData from './getRankData'
 import getWeaponData from './getWeaponData'
+import angular from 'angular'
 
 function mapDataFactory () {
   return { getMapData }
@@ -13,8 +14,6 @@ function rankDataFactory () {
 function weaponDataFactory () {
   return { getWeaponData }
 }
-
-import angular from 'angular'
 
 export default angular.module('csgoData', [])
   .factory('Maps', mapDataFactory)

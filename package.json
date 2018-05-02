@@ -4,7 +4,7 @@
   "description": "Operation Breakdown frontend",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: TBD\"",
     "build": "npm run build-css && npm run build-js",
     "build-js": "webpack",
     "build-css": "node-sass --importer node_modules/node-sass-glob-importer/dist/cli.js --output-style compressed --source-map true --output dist/styles scss/main",
@@ -42,6 +42,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "force-case-sensitivity-webpack-plugin": "^0.2.1",
     "hard-source-webpack-plugin": "^0.6.4",
     "html-loader": "^0.5.5",
     "ng-dialog": "^1.4.0",

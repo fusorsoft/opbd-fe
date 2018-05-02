@@ -2,9 +2,8 @@
 'use strict'
 
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const webpack = require('webpack')
+const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
 const path = require('path')
-const autoprefixer = require('autoprefixer')
 
 module.exports = {
   mode: process.env.BUILD_MODE || 'development',
@@ -68,6 +67,7 @@ module.exports = {
   plugins: [
     // Writes styles.css to disk.
     new ExtractTextWebpackPlugin('[name].css'),
+    new ForceCaseSensitivityPlugin(),
   ],
   resolve: {
     modules: [

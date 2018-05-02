@@ -5,7 +5,7 @@ import 'ng-dialog'
 import {
   userAdminController,
   default as userAdminControllerModule,
-} from './users/adminUsers'
+} from './Users/adminUsers'
 
 const adminApp = angular.module('adminApp', ['ngRoute', userAdminControllerModule])
 
