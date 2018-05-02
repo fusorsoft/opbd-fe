@@ -51,7 +51,7 @@ webpack:
       - node_modules/
     policy: pull
   script:
-    - npm install # wtf...
+    - npm rebuild node-sass
     - npm run build
   artifacts:
     paths:
