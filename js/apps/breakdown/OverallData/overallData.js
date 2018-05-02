@@ -270,7 +270,7 @@ export default angular.module('overallDataModule', [])
           tRoundsWon: tRoundsWon,
           ctRoundsWon: ctRoundsWon,
         }
-        
+
         $scope.$digest()
       }, function (err) {
         console.log(err.message)

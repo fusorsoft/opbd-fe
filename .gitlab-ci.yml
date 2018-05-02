@@ -1,0 +1,102 @@
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  untracked: true
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+stages:
+  - init
+  - test
+  - build
+  - deploy
+
+init:
+  image: node:8
+  stage: init
+  script:
+    - npm install
+    - node -v
+    - npm -v
+  
+test-unit:
+  image: node:8
+  stage: test
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - npm test
+
+lint:
+  image: node:8
+  stage: test
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - npm run lint
+
+webpack:
+  image: node:8
+  stage: build
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+    policy: pull
+  script:
+    - npm rebuild node-sass
+    - npm run build
+  artifacts:
+    paths:
+    - dist/
+
+deploy-dev:
+  image: docker:stable
+  cache: {}
+  before_script:
+    - ''
+  dependencies:
+    - webpack
+  only:
+    refs:
+      - develop
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: deploy
+  script:
+    - docker build -t opbd-fe .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-fe:latest fusorsoft/opbd-fe:develop
+    - docker push fusorsoft/opbd-fe:develop
+    
+deploy-prod:
+  image: docker:stable
+  cache: {}
+  before_script:
+    - ''
+  dependencies:
+    - webpack
+  only:
+    refs:
+      - master
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind 
+  stage: deploy
+  script:
+    - docker build -t opbd-fe .
+    - docker -v
+    - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
+    - docker tag opbd-fe:latest fusorsoft/opbd-fe:master
+    - docker push fusorsoft/opbd-fe:master
