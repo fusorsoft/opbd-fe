@@ -56,11 +56,11 @@ deploy-dev:
     - docker:dind 
   stage: deploy
   script:
-    - docker build -t opbd-be .
+    - docker build -t opbd-fe .
     - docker -v
     - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
-    - docker tag opbd-be:latest fusorsoft/opbd-be:develop
-    - docker push fusorsoft/opbd-be:develop
+    - docker tag opbd-fe:latest fusorsoft/opbd-fe:develop
+    - docker push fusorsoft/opbd-fe:develop
     
 deploy-prod:
   image: docker:stable
@@ -78,8 +78,8 @@ deploy-prod:
     - docker:dind 
   stage: deploy
   script:
-    - docker build -t opbd-be .
+    - docker build -t opbd-fe .
     - docker -v
     - echo $DOCKER_PASS | docker login --username $DOCKER_LOGIN --password-stdin
-    - docker tag opbd-be:latest fusorsoft/opbd-be:master
-    - docker push fusorsoft/opbd-be:master
+    - docker tag opbd-fe:latest fusorsoft/opbd-fe:master
+    - docker push fusorsoft/opbd-fe:master
