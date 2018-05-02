@@ -4,16 +4,20 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - node_modules/
-    
-before_script:
-  - npm install
-  - node -v
-  - npm -v
 
 stages:
+  - init
   - test
   - build
   - deploy
+
+init:
+  image: node:8
+  stage: init
+  script:
+    - npm install
+    - node -v
+    - npm -v
   
 test-unit:
   image: node:8
