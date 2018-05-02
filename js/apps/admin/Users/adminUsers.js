@@ -1,7 +1,4 @@
-import {
-  default as adminDataAccessModule,
-  users,
-} from '../DataAccess/adminDataAccess'
+import adminDataAccessModule from '../DataAccess/adminDataAccess'
 
 const userAdminControllerModule = angular.module(
   'userAdminControllerModule',
@@ -14,7 +11,7 @@ export const userAdminController = userAdminControllerModule
   .controller('userAdminController', [
     '$scope',
     '$filter',
-    users,
+    'users',
     'toaster',
     'ngDialog',
     function ($scope, $filter, users, toaster, ngDialog) {
