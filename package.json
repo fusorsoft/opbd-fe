@@ -42,6 +42,7 @@
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "force-case-sensitivity-webpack-plugin": "^0.2.1",
     "hard-source-webpack-plugin": "^0.6.4",
     "html-loader": "^0.5.5",
     "ng-dialog": "^1.4.0",
