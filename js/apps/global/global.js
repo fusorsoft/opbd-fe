@@ -10,34 +10,29 @@ import emailAppControllerModule from './betaEmail'
 import topUsersControllerModule from './TopUsers/topUsers'
 import feedbackControllerModule from './Feedback/feedback'
 
-console.log('s', searchControllersModule)
-
 const widgetsModule = angular.module('opBreakdownWidgets', [
   typeaheadWidgetModule,
 ]).name
 
-angular.module('breakdownBetaEmailApp', [
+const breakdownBetaEmailAppModule = angular.module('breakdownBetaEmailApp', [
   'toaster',
   emailAppControllerModule,
 ]).name
 
-angular.module('searchApp', [
+const searchAppModule = angular.module('searchApp', [
   searchControllersModule,
   widgetsModule,
   '720kb.tooltips',
 ]).name
 
-angular.module('topUsersApp', [
+const topUsersAppModule = angular.module('topUsersApp', [
   'toaster',
   topUsersControllerModule,
 ]).name
 
-angular.module('feedbackApp', [
+const feedbackAppModule = angular.module('feedbackApp', [
   'toaster',
   feedbackControllerModule,
-<<<<<<< Updated upstream
-])
-=======
 ]).name
 
 export default angular.module('global', [
@@ -46,4 +41,3 @@ export default angular.module('global', [
   topUsersAppModule,
   feedbackAppModule,
 ]).name
->>>>>>> Stashed changes

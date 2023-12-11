@@ -45,7 +45,7 @@ export default angular.module('roundInfoTableModule', [])
     var link = function (scope, elem, attrs) {
       scope.weaponDamageData = scope.roundData.WeaponData.map(function (p) {
         return {
-          weapon: Weapons.getInfo(p.Weapon).Name,
+          weapon: Weapons.getWeaponData(p.Weapon).Name,
           damage: p.TotalDamage,
           accuracy: p.Accuracy * 100,
           shotsHit: p.ShotsHit,
@@ -75,7 +75,7 @@ export default angular.module('roundInfoTableModule', [])
             }
           }
 
-          weaponIcon = Weapons.getInfo(weapon).IconUrl
+          weaponIcon = Weapons.getWeaponData(weapon).IconUrl
         } catch (e) {
           console.error('No data for ' + d.Weapon)
         }

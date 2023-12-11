@@ -1,8 +1,9 @@
 /* eslint-env node */
 'use strict'
 
+const webpack = require('webpack')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin');
+const ForceCaseSensitivityPlugin = require('force-case-sensitivity-webpack-plugin')
 const path = require('path')
 
 module.exports = {
@@ -17,6 +18,9 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist/js'),
     filename: '[name].min.js',
+  },
+  externals: {
+    angular: 'angular',
   },
   devtool: 'source-map',
   module: {

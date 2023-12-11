@@ -132,7 +132,7 @@ export default angular.module('matchDetailModule', [])
         }
 
         $scope.roundDamageData = roundDamages
-        $scope.$digest()
+        $timeout(() => $scope.$digest())
       })
     }]
   ).name
