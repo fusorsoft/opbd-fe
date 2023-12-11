@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: TBD\"",
-    "build": "npm run build-css && npm run build-js",
+    "build": "rm -fR dist/ && npm run build-css && npm run build-js && ln -s ../assets/images dist/images",
     "build-js": "webpack",
     "build-css": "node-sass --importer node_modules/node-sass-glob-importer/dist/cli.js --output-style compressed --source-map true --output dist/styles scss/main",
     "dockert-setup-network": "docker network create -d bridge --subnet 192.168.10.0/24 --gateway 192.168.10.1 dockernet",
@@ -52,5 +52,7 @@
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   },
-  "dependencies": {}
+  "dependencies": {
+    "nodemon": "^1.18.9"
+  }
 }

@@ -19,20 +19,31 @@ const widgetsModule = angular.module('opBreakdownWidgets', [
 angular.module('breakdownBetaEmailApp', [
   'toaster',
   emailAppControllerModule,
-])
+]).name
 
 angular.module('searchApp', [
   searchControllersModule,
   widgetsModule,
   '720kb.tooltips',
-])
+]).name
 
 angular.module('topUsersApp', [
   'toaster',
   topUsersControllerModule,
-])
+]).name
 
 angular.module('feedbackApp', [
   'toaster',
   feedbackControllerModule,
+<<<<<<< Updated upstream
 ])
+=======
+]).name
+
+export default angular.module('global', [
+  breakdownBetaEmailAppModule,
+  searchAppModule,
+  topUsersAppModule,
+  feedbackAppModule,
+]).name
+>>>>>>> Stashed changes
